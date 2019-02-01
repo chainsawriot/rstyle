@@ -1,5 +1,6 @@
 require(dbplyr)
 require(tidyverse)
+require(lintr)
 
 con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "code.db")
 
@@ -40,7 +41,44 @@ break_export_content <- function(code) {
 }
 
 
+## Turing test for function definition
+is_named_function_definition <- function(expression) {
+    if (is.null(expression$parsed_content)) {
+        return(FALSE)
+    }
+    expression$parsed_content %>% mutate(tid = row_number()) %>% filter(text == 'function') -> function_tokens
+    if (nrow(function_tokens) == 0) {
+        return(FALSE)
+    }
+    expression$parsed_content %>% mutate(tid = row_number()) %>% filter(text == 'function') %>% head(1) %>% pull(tid) -> function_tid
+    expression$parsed_content %>% mutate(tid = row_number()) %>% filter(tid <= function_tid) -> function_parsed_content
+    function_parsed_content %>% summarise(function_definition = ('SYMBOL' %in% token & "LEFT_ASSIGN" %in% token)) %>% pull -> expr_is_function_definition
+    ## Not annonymous function
+    function_parsed_content %>% filter(token == "SYMBOL") %>% nrow -> n_symbols
+    named_function_definition <- n_symbols == 1
+    return(expr_is_function_definition & named_function_definition)
+}
 
+extract_function_name_from_expr <- function(expression) {
+    if (is_named_function_definition(expression)) {
+        expression$parsed_content %>% mutate(tid = row_number()) %>%
+            filter(text == 'function') %>% head(1) %>%
+            pull(tid) -> function_tid
+        expression$parsed_content %>% mutate(tid = row_number()) %>%
+            filter(tid <= function_tid) %>% filter(token == "SYMBOL") %>%
+            select(text) %>% pull -> function_name
+        return(function_name)
+    } else {
+        return(NA)
+    }
+}
+
+extract_functions_from_source <- function(pkg_source) {
+    tmp_rcode_location <- tempfile()
+    writeLines(pull(pkg_source), tmp_rcode_location)
+    z <- get_source_expressions(tmp_rcode_location)    
+    map_chr(z$expression, extract_function_name_from_expr) %>% Filter(Negate(is.na), .)
+}
 
 extract_exported_functions <- function(target_pkg_name, target_pub_year, cran_code, verbose = TRUE) {
     if (verbose) {
@@ -48,17 +86,7 @@ extract_exported_functions <- function(target_pkg_name, target_pub_year, cran_co
     }
     cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename != "NAMESPACE" & filename != "DESCRIPTION") %>% select(code) %>% collect() -> pkg_source
     cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename == "NAMESPACE") %>% select(code) %>% collect() -> pkg_ns
-    ## This part is super error-prone! Must spin this off!
-    pull(pkg_source) %>% textConnection() -> zz
-    e <- new.env()
-    source(zz, local = e)
-    close(zz)
-    all_functions <- ls(envir = e)
-    rm(e)
-    if (length(all_functions) == 0) {
-        return(NA)
-    }
-    ##
+    all_functions <- extract_functions_from_source(pkg_source)
     pkg_ns %>% filter(str_detect(code, "^export")) %>% rowwise %>% mutate(pattern = str_detect(code, "exportPattern"), content = break_export_content(code)) %>% ungroup -> res
     res %>% filter(!pattern) %>% select(content) %>% pull %>% unlist -> ns_export
     res %>% filter(pattern) %>% select(content) %>% pull %>% unlist -> ns_exportpattern
@@ -77,7 +105,10 @@ extract_exported_functions <- function(target_pkg_name, target_pub_year, cran_co
 
 test_cases %>% mutate(functions = map2(pkg_name, pub_year, safely(extract_exported_functions), cran_code =  cran_code)) -> res
 
-map(map(res$functions, "error"), is.null) %>% unlist %>% sum ## ~10% death
+map(map(res$functions, "error"), is.null) %>% unlist %>% sum ## only one dead.
+
+### CRAZY CASE: inlinedocs, 2013
+
 
 
 ## Possible strategy
