@@ -57,9 +57,9 @@ is_named_function_definition <- function(expression) {
     }
     expression$parsed_content %>% mutate(tid = row_number()) %>% filter(text == 'function') %>% head(1) %>% pull(tid) -> function_tid
     expression$parsed_content %>% mutate(tid = row_number()) %>% filter(tid <= function_tid) -> function_parsed_content
-    function_parsed_content %>% summarise(function_definition = ('SYMBOL' %in% token & "LEFT_ASSIGN" %in% token) | ('SYMBOL' %in% token & "EQ_ASSIGN" %in% token)) %>% pull -> expr_is_function_definition
+    function_parsed_content %>% summarise(function_definition = ('SYMBOL' %in% token & "LEFT_ASSIGN" %in% token) | ("SYMBOL" %in% token & "EQ_ASSIGN" %in% token) | ("STR_CONST" %in% token & "LEFT_ASSIGN" %in% token)) %>% pull -> expr_is_function_definition
     ## Not annonymous function
-    function_parsed_content %>% filter(token == "SYMBOL") %>% nrow -> n_symbols
+    function_parsed_content %>% filter(token == "SYMBOL" | token == "STR_CONST") %>% nrow -> n_symbols
     named_function_definition <- n_symbols == 1
     return(expr_is_function_definition & named_function_definition)
 }
@@ -70,7 +70,7 @@ extract_function_name_from_expr <- function(expression) {
             filter(text == 'function') %>% head(1) %>%
             pull(tid) -> function_tid
         expression$parsed_content %>% mutate(tid = row_number()) %>%
-            filter(tid <= function_tid) %>% filter(token == "SYMBOL") %>%
+            filter(tid <= function_tid) %>% filter(token == "SYMBOL" | token == "STR_CONST") %>%
             select(text) %>% pull -> function_name
         return(function_name)
     } else {
@@ -153,7 +153,7 @@ extract_exported_functions <- function(target_pkg_name, target_pub_year, dbname 
     ns_export <- res$functions
     ns_exportpattern <- res$patterns
     export_pattern <- paste(ns_exportpattern, collapse = "|")
-    if (is.null(all_functions)) {
+    if (is.null(all_functions) | length(all_functions) == 0) {
 ### Can only infer from NS
         if (verbose) {
             warning("Parsing R source failed. Infer from NAMESPACE only.")
@@ -192,6 +192,9 @@ test_cases_no_ns %>% mutate(functions = future_map2(pkg_name, pub_year, safely(e
 
 ## no ns
 # ade4 2010
+
+## Other test case
+## Rpad 2006
 
 ## using exportPattern
 
