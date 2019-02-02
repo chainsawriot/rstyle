@@ -3,34 +3,6 @@ require(tidyverse)
 require(lintr)
 require(furrr)
 
-con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "code.db")
-
-cran_code <- tbl(con, "cran_code")
-
-##cran_code %>% filter(filename == "NAMESPACE") %>% summarize(minyear = min(pub_year), maxyear = max(pub_year))
-
-## NAMESPACE was introduced in R version 1.7.0 (Jan 2003)
-## https://developer.r-project.org/170update.txt
-
-## TASK: Find out packages which do not have a NAMESPACE
-## If NAMESPACE -> parse NAMESPACE
-## IF no NAMESPACE -> parse R files (Problem: some of them are possibly S3 objects)
-
-## cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(filename, "NAMESPACE"))) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> pkg_has_namespace
-
-## saveRDS(pkg_has_namespace, 'pkg_has_namespace.RDS')
-pkg_has_namespace <- readRDS('pkg_has_namespace.RDS')
-### good news is: most of them have NAMESPACE
-
-pkg_has_namespace %>% group_by(has_ns) %>% tally
-
-## let's work with those with NAMESPACE first, shall we?
-
-pkg_has_namespace %>% filter(has_ns == 1) %>% sample_n(20) -> test_cases
-
-pkg_has_namespace %>% filter(has_ns == 0) %>% sample_n(10) -> test_cases_no_ns
-
-
 str_trim_extra <- function(x) {
     if (length(x) == 1) {
         if (str_detect(x, "^c\\(")) {
@@ -193,16 +165,27 @@ extract_exported_functions <- function(target_pkg_name, target_pub_year, dbname 
     return(final_exported_functions)
 }
 
-plan(multiprocess)
-test_cases %>% mutate(functions = future_map2(pkg_name, pub_year, safely(extract_exported_functions), dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> res
+con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "code.db")
+cran_code <- tbl(con, "cran_code")
 
-test_cases_no_ns %>% mutate(functions = future_map2(pkg_name, pub_year, safely(extract_exported_functions), dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> res
+
+
+## NAMESPACE was introduced in R version 1.7.0 (Jan 2003)
+## https://developer.r-project.org/170update.txt
+
+cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(filename, "NAMESPACE"))) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> all_pkgs
+
+plan(multiprocess)
+
+all_pkgs %>% mutate(functions = future_map2(pkg_name, pub_year, extract_exported_functions, dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> all_pkgs
+saveRDS(all_pkgs, "pkgs_functions.RDS")
 
 ## inlinedocs 2013
 ## uniah 2015
 ## coin 2009
 ## coin 2006
 
+## 'EBMAforecast', 2016
 
 ## Amsterdam style test case
 # pheatmap 2012
