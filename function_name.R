@@ -23,7 +23,7 @@ pkg_has_namespace %>% group_by(has_ns) %>% tally
 
 ## let's work with those with NAMESPACE first, shall we?
 
-pkg_has_namespace %>% filter(has_ns == 1) %>% sample_n(50) -> test_cases
+pkg_has_namespace %>% filter(has_ns == 1) %>% sample_n(200) -> test_cases
 
 
 
@@ -80,12 +80,15 @@ extract_functions_from_source <- function(pkg_source) {
     map_chr(z$expression, extract_function_name_from_expr) %>% Filter(Negate(is.na), .)
 }
 
-extract_exported_functions <- function(target_pkg_name, target_pub_year, cran_code, verbose = TRUE) {
+extract_exported_functions <- function(target_pkg_name, target_pub_year, dbname = 'code.db', verbose = TRUE) {
+    con <- DBI::dbConnect(RSQLite::SQLite(), dbname = dbname)
+    cran_code <- tbl(con, "cran_code")
     if (verbose) {
         print(target_pkg_name)
     }
     cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename != "NAMESPACE" & filename != "DESCRIPTION") %>% select(code) %>% collect() -> pkg_source
     cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename == "NAMESPACE") %>% select(code) %>% collect() -> pkg_ns
+    DBI::dbDisconnect(con)
     all_functions <- extract_functions_from_source(pkg_source)
     pkg_ns %>% filter(str_detect(code, "^export")) %>% rowwise %>% mutate(pattern = str_detect(code, "exportPattern"), content = break_export_content(code)) %>% ungroup -> res
     res %>% filter(!pattern) %>% select(content) %>% pull %>% unlist -> ns_export
@@ -98,16 +101,20 @@ extract_exported_functions <- function(target_pkg_name, target_pub_year, cran_co
 
     }
     if (is.null(final_exported_functions)) {
-        return(NA)
+        final_exported_functions <- NA
     }
     return(final_exported_functions)
 }
 
-test_cases %>% mutate(functions = map2(pkg_name, pub_year, safely(extract_exported_functions), cran_code =  cran_code)) -> res
+plan(multiprocess)
+test_cases %>% mutate(functions = future_map2(pkg_name, pub_year, safely(extract_exported_functions), dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> res
 
 map(map(res$functions, "error"), is.null) %>% unlist %>% sum ## only one dead.
-
-### CRAZY CASE: inlinedocs, 2013
+### CRAZY CASES:
+## inlinedocs 2013
+## uniah 2015
+## coin 2009
+## coin 2006
 
 
 
