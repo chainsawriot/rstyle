@@ -16,8 +16,10 @@ cran_code <- tbl(con, "cran_code")
 ## If NAMESPACE -> parse NAMESPACE
 ## IF no NAMESPACE -> parse R files (Problem: some of them are possibly S3 objects)
 
-cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(filename, "NAMESPACE"))) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> pkg_has_namespace
+## cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(filename, "NAMESPACE"))) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> pkg_has_namespace
 
+## saveRDS(pkg_has_namespace, 'pkg_has_namespace.RDS')
+pkg_has_namespace <- readRDS('pkg_has_namespace.RDS')
 ### good news is: most of them have NAMESPACE
 
 pkg_has_namespace %>% group_by(has_ns) %>% tally
@@ -29,9 +31,19 @@ pkg_has_namespace %>% filter(has_ns == 1) %>% sample_n(20) -> test_cases
 pkg_has_namespace %>% filter(has_ns == 0) %>% sample_n(10) -> test_cases_no_ns
 
 
-
 str_trim_extra <- function(x) {
-    str_replace_all(str_trim(x), "\"", "")
+    if (length(x) == 1) {
+        if (str_detect(x, "^c\\(")) {
+            ## Can one be that crazy by putting this into NAMESPACE?
+            x <- paste("res <- ", x)
+            e <- new.env()
+            zz <- textConnection(x)
+            source(zz, local = e)
+            close(zz)
+            return(get('res', envir = e))
+        }
+    }   
+    str_replace_all(str_trim(x), "^[\"`']|[\"`']$", "")
 }
 
 
@@ -71,7 +83,7 @@ extract_function_name_from_expr <- function(expression) {
             pull(tid) -> function_tid
         expression$parsed_content %>% mutate(tid = row_number()) %>%
             filter(tid <= function_tid) %>% filter(token == "SYMBOL" | token == "STR_CONST") %>%
-            select(text) %>% pull -> function_name
+            select(text) %>% pull %>% str_trim_extra -> function_name
         return(function_name)
     } else {
         return(NA)
@@ -98,20 +110,25 @@ make_expression <- function(src) {
     })
 }
 
+filter_good_expressions <- function(expressions, content_regex) {
+    expressions_w_parsed_content <- expressions[map_lgl(expressions, ~ !is.null(.$parsed_content))]
+    Filter(function(x) str_detect(x$content, content_regex), expressions_w_parsed_content)
+}
+
 extract_functions_from_ns <- function(pkg_ns) {
     z <- make_expression(pkg_ns)
     if (is.null(z)) {
         return(list('functions' = NULL, 'patterns' = NULL))
     }
-    Filter(function(x) str_detect(x$content, "^export *\\("), z$expression) -> export_expression
-    Filter(function(x) str_detect(x$content, "^exportPattern *\\("), z$expression) -> exportpattern_expression
+    export_expression <- filter_good_expressions(z$expression, "^export *\\(")
+    exportpattern_expression <- filter_good_expressions(z$expression, "^exportPattern *\\(")
     if (length(export_expression) > 0) {
-        map_dfr(export_expression, extract_symbolconst) %>% pull -> exported_functions
+        map(export_expression, extract_symbolconst) %>% unlist -> exported_functions
     } else {
         exported_functions <- c()
     }
     if (length(exportpattern_expression) > 0) {
-        map_dfr(exportpattern_expression, extract_symbolconst) %>% pull %>% str_replace_all("\"", "") -> exported_patterns
+        map(exportpattern_expression, extract_symbolconst) %>% unlist -> exported_patterns
     } else {
         exported_patterns <- ""
     }
@@ -122,7 +139,7 @@ extract_symbolconst <- function(expression) {
     if (is.null(expression$parsed_content)) {
         return(NULL)
     }
-    expression$parsed_content %>% filter(token == "SYMBOL" | token == "STR_CONST") %>% select(text)
+    expression$parsed_content %>% filter(token == "SYMBOL" | token == "STR_CONST") %>% select(text) %>% pull %>% str_trim_extra
 }
 
 
@@ -195,7 +212,15 @@ test_cases_no_ns %>% mutate(functions = future_map2(pkg_name, pub_year, safely(e
 
 ## Other test case
 ## Rpad 2006
+## giRaph 2007 <- I give up on this
+## Excecessive warnings
+## Nlp 2017
 
 ## using exportPattern
+
+## Genius style
+# weirs 2012
+
+
 
 ## NOTE: some smart people put `` around function names
