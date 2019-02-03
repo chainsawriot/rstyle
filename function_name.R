@@ -88,6 +88,9 @@ filter_good_expressions <- function(expressions, content_regex) {
 }
 
 extract_functions_from_ns <- function(pkg_ns) {
+    if (is.null(pkg_ns)) {
+        return(list('functions' = NULL, 'patterns' = NULL))
+    }
     z <- make_expression(pkg_ns)
     if (is.null(z)) {
         return(list('functions' = NULL, 'patterns' = NULL))
@@ -115,19 +118,27 @@ extract_symbolconst <- function(expression) {
 }
 
 
-grab_source_ns <- function(target_pkg_name, target_pub_year, dbname = 'code.db') {
+grab_source_ns <- function(target_pkg_name, target_pub_year, ns_only = FALSE, source_only = FALSE, dbname = 'code.db') {
     con <- DBI::dbConnect(RSQLite::SQLite(), dbname = dbname)
     cran_code <- tbl(con, "cran_code")
-    cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename != "NAMESPACE" & filename != "DESCRIPTION") %>% select(code) %>% collect() -> pkg_source
     cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename == "NAMESPACE") %>% select(code) %>% collect() -> pkg_ns
-    DBI::dbDisconnect(con)
     if (nrow(pkg_ns) == 0) {
         pkg_ns <- NULL
     }
+    if (ns_only) {
+        DBI::dbDisconnect(con)
+        return(list("pkg_ns" = pkg_ns))
+    }
+    cran_code %>% filter(pkg_name == target_pkg_name & pub_year == target_pub_year & filename != "NAMESPACE" & filename != "DESCRIPTION") %>% select(code) %>% collect() -> pkg_source
+    if (source_only) {
+        DBI::dbDisconnect(con)
+        return(list("pkg_source" = pkg_source))
+    }
+    DBI::dbDisconnect(con)
     return(list("pkg_source" = pkg_source, "pkg_ns" = pkg_ns))
 }
 
-extract_exported_functions <- function(target_pkg_name, target_pub_year, dbname = 'code.db', verbose = TRUE) {
+extract_exported_functions_old <- function(target_pkg_name, target_pub_year, dbname = 'code.db', verbose = TRUE) {
     raw_data <- grab_source_ns(target_pkg_name, target_pub_year, dbname = dbname)
     pkg_source <- raw_data$pkg_source
     pkg_ns <- raw_data$pkg_ns
@@ -165,6 +176,50 @@ extract_exported_functions <- function(target_pkg_name, target_pub_year, dbname 
     return(final_exported_functions)
 }
 
+extract_exported_functions <- function(target_pkg_name, target_pub_year, dbname = 'code.db', verbose = TRUE) {
+    raw_data <- grab_source_ns(target_pkg_name, target_pub_year, dbname = dbname, ns_only = TRUE)
+    ##pkg_source <- raw_data$pkg_source
+    pkg_ns <- raw_data$pkg_ns
+    res <- extract_functions_from_ns(pkg_ns)
+    ns_export <- res$functions
+    ns_exportpattern <- res$patterns
+    export_pattern <- paste(ns_exportpattern, collapse = "|")
+    ## Most typical case
+    if (!is.null(pkg_ns) & length(ns_export) >= 1 & export_pattern == "") {
+        return(ns_export)
+    }
+    pkg_source <- grab_source_ns(target_pkg_name, target_pub_year, dbname = dbname, source_only = TRUE)$pkg_source
+    all_functions <- extract_functions_from_source(pkg_source)
+    if (is.null(pkg_ns)) {
+        if (is.null(all_functions)) {
+            return(NA)
+        }
+        return(all_functions)
+    }
+    if (is.null(all_functions) | length(all_functions) == 0) {
+### Can only infer from NS
+        if (verbose) {
+            warning("Parsing R source failed. Infer from NAMESPACE only.")
+        }
+        return(ns_export)
+    }
+    if (export_pattern == "") {
+        final_exported_functions <- intersect(all_functions, ns_export)
+    } else {
+        if (is.null(ns_export)) {
+            final_exported_functions <- c(grep(export_pattern, all_functions, value = TRUE))
+        } else {
+            final_exported_functions <- c(intersect(all_functions, ns_export), grep(export_pattern, all_functions, value = TRUE))
+
+        }
+    }
+    if (is.null(final_exported_functions)) {
+        final_exported_functions <- NA
+    }
+    return(final_exported_functions)
+}
+
+
 con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "code.db")
 cran_code <- tbl(con, "cran_code")
 
@@ -174,6 +229,19 @@ cran_code <- tbl(con, "cran_code")
 ## https://developer.r-project.org/170update.txt
 
 cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(filename, "NAMESPACE"))) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> all_pkgs
+
+### Benchmark
+
+## all_pkgs %>% sample_n(20) -> test_cases
+## system.time({
+##     test_cases %>% mutate(functions = future_map2(pkg_name, pub_year, extract_exported_functions, dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> test_cases
+## })
+
+## system.time({
+##     test_cases %>% mutate(functions = future_map2(pkg_name, pub_year, extract_exported_functions_old, dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> test_cases
+## })
+
+## 39 secs versus 122.79 -> about 3-fold reduction...
 
 plan(multiprocess)
 

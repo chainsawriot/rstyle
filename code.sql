@@ -10,3 +10,4 @@ create table if not exists cran_code (
 
 create index cran_pkg_name on cran_code(pkg_name);
 create index cran_year on cran_code(pub_year);
+create index cran_filename on cran_code(filename);
