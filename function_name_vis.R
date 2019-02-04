@@ -22,7 +22,7 @@ fx_style %>% mutate(alllower = alllower / total,
                     snake = snake / total,
                     dotted = dotted / total,
                     other = other / total) %>%
-  select(-total) %>% mutate(entropy = 
+  select(-total) %>% mutate(entropy = -
                                  (alllower * log(alllower) +
                                         allupper * log(allupper) +
                                         upcamel * log(upcamel) +
