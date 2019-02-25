@@ -5,11 +5,13 @@ con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "code.db")
 
 cran_code <- tbl(con, "cran_code")
 
-cran_code %>% filter(filename != "NAMESPACE" & filename != "DESCRIPTION" & code %like% "#") %>% mutate(n_chars = nchar(code)) %>% group_by(pub_year, n_chars) %>% tally -> res
+##cran_code %>% filter(filename != "NAMESPACE" & filename != "DESCRIPTION" & code %like% "#") %>% mutate(n_chars = nchar(code)) %>% group_by(pub_year, n_chars) %>% tally -> res
 
-comment_dist <- collect(res)
 
 cran_code %>% filter(filename != "NAMESPACE" & filename != "DESCRIPTION") %>% mutate(n_chars = nchar(code), comment = str_detect(code, "#")) %>% group_by(pub_year, n_chars, comment) %>% tally -> res
+comment_dist <- collect(res)
+
+
 require(gganimate)
 comment_dist %>% mutate(comment = comment == 1) %>%  group_by(pub_year, comment) %>% mutate(totalline = sum(n), prob = (n / totalline) * 100) %>% select(pub_year, n_chars, prob, comment) %>% filter(n_chars < 150 & pub_year < 2019) %>% 
   ggplot(aes(x = n_chars, y = prob, color = comment)) + 
@@ -33,16 +35,6 @@ comment_dist %>% mutate(comment = comment == 1) %>% filter(n_chars > 1) %>%  gro
   labs(title = 'Year: {frame_time}', x = 'Number of Characters', y = 'Proportion') +
   transition_time(pub_year)
 
-# 
-# library(gapminder)
-# 
-# ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
-#   geom_point(alpha = 0.7, show.legend = FALSE) +
-#   scale_colour_manual(values = country_colors) +
-#   scale_size(range = c(2, 12)) +
-#   scale_x_log10() +
-#   facet_wrap(~continent) +
-#   # Here comes the gganimate specific bits
-#   labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
-#   transition_time(year) +
-#   ease_aes('linear')
+## information entropy
+
+comment_dist %>% mutate(comment = comment == 1) %>%  group_by(pub_year, comment) %>% mutate(totalline = sum(n), prob = (n / totalline), plogp = prob * log(prob)) %>% summarise(entropy = - sum(plogp)) %>% ungroup %>% mutate(type = paste0('linelength_', ifelse(comment, "comment", "code"))) %>% select(pub_year, entropy, type) %>% saveRDS('entropy_linelength.R')

@@ -33,3 +33,19 @@ fx_style %>% mutate(alllower = alllower / total,
   ggplot(aes(x = pub_year, y = entropy)) + geom_line() -> entropy_plot
 
 ggsave('func_entropy_plot.png', entropy_plot)
+
+fx_style %>% mutate(alllower = alllower / total,
+                    allupper = allupper / total,
+                    upcamel = upcamel / total,
+                    lowcamel = lowcamel / total,
+                    snake = snake / total,
+                    dotted = dotted / total,
+                    other = other / total) %>%
+  select(-total) %>% mutate(entropy = -
+                                 (alllower * log(alllower) +
+                                        allupper * log(allupper) +
+                                        upcamel * log(upcamel) +
+                                        lowcamel * log(lowcamel) +
+                                        ifelse(snake != 0, snake * log(snake), 0) +
+                                        dotted * log(dotted) +
+                                        other * log(other))) %>% mutate(type = "function_name_style") %>%  select(pub_year, entropy, type) %>% saveRDS('entropy_fx_name.RDS')
