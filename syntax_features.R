@@ -3,6 +3,8 @@ require(tidyverse)
 require(lintr)
 require(furrr)
 
+source('helpers.R')
+
 str_trim_extra <- function(x) {
     if (length(x) == 1) {
         if (str_detect(x, "^c\\(")) {
@@ -101,17 +103,17 @@ extract_features <- function(expr) {
     fx_t_f <- b(T_and_F_symbol_linter)(expr)
     fx_closecurly <- b(closed_curly_linter())(expr)
     fx_tab <- b(no_tab_linter)(expr)
-    res <- data_frame(fx_name, fx_assign, fx_opencurly, fx_infix, fx_integer, fx_singleq, fx_commas, fx_semi, fx_t_f, fx_closecurly, fx_tab)
+    res <- tibble(fx_name, fx_assign, fx_opencurly, fx_infix, fx_integer, fx_singleq, fx_commas, fx_semi, fx_t_f, fx_closecurly, fx_tab)
     return(res)
 }
 
-target_pkg_name <- "rio"
-target_pub_year  <- 2017
-dbname <- "code.db"
+## target_pkg_name <- "rio"
+## target_pub_year  <- 2017
+## dbname <- "code.db"
 
-con <- DBI::dbConnect(RSQLite::SQLite(), dbname = dbname)
-cran_code <- tbl(con, "cran_code")
-pkg_source <- grab_source_ns(target_pkg_name, target_pub_year, dbname = dbname, source_only = TRUE)$pkg_source
+## con <- DBI::dbConnect(RSQLite::SQLite(), dbname = dbname)
+## cran_code <- tbl(con, "cran_code")
+## pkg_source <- grab_source_ns(target_pkg_name, target_pub_year, dbname = dbname, source_only = TRUE)$pkg_source
 
 
 ##all_functions <- extract_functions_from_source(data_frame(src = amsterdam))
@@ -127,5 +129,32 @@ pkg_functions <- readRDS('pkgs_functions.RDS')
 
 
 plan(multiprocess)
-pkg_functions %>% sample_n(20) -> test
-test %>% mutate(function_feat  = map2(pkg_name, pub_year, extract_pkg_fx_features, dbname = 'code.db')) -> test
+pkg_functions %>% filter(pub_year >= 1999 & pub_year < 2019) %>% group_by(pub_year) %>% sample_n(100) %>% ungroup -> test
+test %>% bind_rows((pkg_functions %>% filter(pub_year == 1998))) %>% mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db', .progress = TRUE)) -> test
+
+##saveRDS(test, "lang_feat_test.RDS")
+test <- readRDS('lang_feat_test.RDS')
+
+ent_cal <- function(x) {
+    base <- length(x)
+    group <- c(sum(x) / base, sum(!x) / base)
+    group <- Filter(function(x) x != 0, group)
+    res <-  sum(sapply(group, function(x) x * log(x)))
+    return(-res)
+}
+
+ratio <- function(x) {
+    return(sum(x) / length(x))
+}
+
+cal_entro <- function(yr, data) {
+    data %>% filter(pub_year == yr) %>% pull(function_feat) %>% map("result") %>% Filter(Negate(is.null), .) %>% bind_rows() %>% summarise_at(vars(fx_assign:fx_tab), funs("entropy" = ent_cal, "ratio" = ratio)) %>% mutate(pub_year = yr)
+}
+
+res_entropy  <- map_dfr(1998:2018, cal_entro, data = test)
+
+res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "entropy$")) %>% ggplot(aes(x = pub_year, y = entropy)) + geom_line() + facet_wrap(~feature)
+ggsave('lang_feature.png')
+
+res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% ggplot(aes(x = pub_year, y = entropy)) + geom_line() + facet_wrap(~feature)
+ggsave('lang_feature_ratio.png')
