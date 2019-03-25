@@ -1,7 +1,7 @@
 require(dbplyr)
 require(tidyverse)
 require(lintr)
-require(furrr)
+require(purrr)
 
 source('helpers.R')
 
@@ -119,6 +119,9 @@ extract_features <- function(expr) {
 ##all_functions <- extract_functions_from_source(data_frame(src = amsterdam))
 
 extract_pkg_fx_features <- function(target_pkg_name, target_pub_year, dbname = 'code.db', verbose = TRUE) {
+    if (verbose) {
+        print(target_pkg_name)
+    }
     pkg_source <- grab_source_ns(target_pkg_name, target_pub_year, dbname = dbname, source_only = TRUE)$pkg_source
     z <- make_expression(pkg_source)
     fx_expr <- Filter(is_named_function_definition, z$expression)
@@ -128,11 +131,10 @@ extract_pkg_fx_features <- function(target_pkg_name, target_pub_year, dbname = '
 pkg_functions <- readRDS('pkgs_functions.RDS')
 
 
-plan(multiprocess)
 
 pkg_functions %>% 
-  mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), 
-                                      dbname = 'code.db', .progress = TRUE)) -> pkg_functions
+  mutate(function_feat  = map2(pkg_name, pub_year, safely(extract_pkg_fx_features), 
+                                      dbname = 'code.db')) -> pkg_functions
 
 saveRDS(pkg_functions, "pkgs_functions_with_syntax_feature.RDS")
 
