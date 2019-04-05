@@ -37,14 +37,17 @@ This section may contain a figure such as Figure \ref{figure:rlogo}.
   \label{figure:rlogo}
 \end{figure}
 
-## Another section
+## Method
 
-There will likely be several sections, perhaps including code snippets, such as:
+### CRAN packages
 
-```{r}
-x <- 1:10
-x
-```
+In Jaunary 2019, a static snapshot of CRAN was archived using the **rsync** method outlined in the CRAN mirror HOWTO/FAQ guide. All CRAN submissions from 1998 to 2018, including active, archived and delisted packages were included for analysis.
+
+The H1 of this study is to analyze the time-related changes in programming style. To this end, we cannot analyze all submissions from our static snapshot. If doing so the analysis would biased towards packages with many submissions. In order to balance the broadness of inclusion and bias, we sampled CRAN submissions using the "one submission per year" approach. For a package, if it has multiple CRAN submissions in a given year, only one submission is randomly selected.
+
+The year of publication of a package is determined by the file time stamp of the package's tarball. This information was extracted with the **fs** package.
+
+### Language feature extraction
 
 ## Summary
 

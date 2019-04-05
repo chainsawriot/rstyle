@@ -10,6 +10,6 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     cargo \
     && install2.r --error \
-    rio quanteda rtweet topicmodels stm dbplyr gganimate rmarkdown rticles fs RSQLite furrr ctv\
+    rio quanteda rtweet topicmodels stm dbplyr gganimate rmarkdown rticles fs RSQLite furrr ctv rticles\
     && chown rstudio.rstudio /home/rstudio .
 RUN R -e "devtools::install_github('jimhester/lintr') ; devtools::install_github('chainsawriot/baaugwo')"
