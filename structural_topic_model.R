@@ -33,3 +33,7 @@ prep <- estimateEffect(stmobj = find_k$out[[2]], metadata = out$meta, formula = 
 stmes_tibble <- function(stmes) {
     stmes[[1]] %>% as_tibble %>% mutate(var_name = row.names(stmes[[1]]))
 }
+
+
+summary(prep)[[3]][2]
+labelTopics(find_k$out[[2]],2)
