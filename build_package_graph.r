@@ -40,6 +40,7 @@ for (i in 2:10){
       
       for (dest in package_relate_li) { 
         new_row <- data.frame("source"=toString(target), "dest"=toString(dest), "weight"=1,"depth"=i)
+        #TODO if "no NA" and if "no duplicated source dest", then rbind
         if (new_row['dest']!='NA'){
           df<-rbind(df, new_row) 
         }
@@ -54,3 +55,7 @@ for (i in 2:10){
 df
 import_plot<-graph.data.frame(df,directed = TRUE)
 plot(import_plot)
+
+# community walktrap
+communities<-cluster_walktrap(import_plot)
+communities
