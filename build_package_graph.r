@@ -28,51 +28,55 @@ get_neibor_graph <- function(pkg_source, neibor_type='Imports'){
 
 
 MAX_DEPTH <- 10
+
 pck_name <- "ggplot2"
 
 
-
-df <- data.frame("source"=character(), "dest"=character(), "weight"=numeric(),"neibor_type"=character(), "depth"=numeric())
-n_depth <- 1
-while (n_depth <= MAX_DEPTH){
-
-    # collect source packags 
-    if (n_depth == 1){
-      pcks_source <-  c(pck_name) 
-    } else {
-      pcks_source <-  df %>% filter(depth==n_depth-1) %>% pull(dest) %>% unique() %>% as.character()
-    }
-    print(pcks_source)
-    
-    # get neibor of each source package
-    has_detected <-  df  %>% pull(source) %>% unique() %>% as.character()
-    for (pck_source in pcks_source){
-      if (pck_source %in% has_detected){
-        break
+get_neibor_graph_given_depth <- function(){
+  df <- data.frame("source"=character(), 
+                   "dest"=character(), 
+                   "weight"=numeric(),
+                   "neibor_type"=character(), 
+                   "depth"=numeric())
+  
+  n_depth <- 1
+  while (n_depth <= MAX_DEPTH){
+  
+      # collect source packags 
+      if (n_depth == 1){
+        pcks_source <-  c(pck_name) 
+      } else {
+        pcks_source <-  df %>% filter(depth==n_depth-1) %>% pull(dest) %>% unique() %>% as.character()
       }
-      sprintf('Depth: %s, Package: %s', n_depth, pck_source) %>% print()
+      print(pcks_source)
       
-
-      tryCatch({
-        df_imports <- get_neibor_graph(pck_source, neibor_type='Imports')
-        # df_suggests <- get_neibor_graph(pck_source, neibor_type='Suggests')
-        # df_depth <- rbind(df_imports, df_suggests)
-        df_depth <- df_imports#TODO: tmp
-        df_depth['depth'] <- n_depth
-        df_depth <- df_depth %>% filter(!is.na(dest))
-        df <- rbind(df, df_depth)  
-        
-      }, error = function(err) {
-        sprintf('- %s can not found', pck_source) %>% print()
-      })
-    }
-    
-    # go to next depth
-    n_depth <- n_depth + 1
+      # get neibor of each source package
+      pcks_has_detected <-  df  %>% pull(source) %>% unique() %>% as.character()
+      for (pck_source in pcks_source){
+        if (!pck_source %in% pcks_has_detected){
+          tryCatch({
+            sprintf('Depth: %s, Package: %s', n_depth, pck_source) %>% print()
+            
+            df_imports <- get_neibor_graph(pck_source, neibor_type='Imports')
+            df_suggests <- get_neibor_graph(pck_source, neibor_type='Suggests')
+            df_depth <- rbind(df_imports, df_suggests) %>% filter(!is.na(dest))
+            df_depth['depth'] <- n_depth
+            df <- rbind(df, df_depth)  
+            
+            }, error = function(err) {
+              sprintf('- %s can not found', pck_source) %>% print()
+            })
+        }
+      }
+      # go to next depth
+      n_depth <- n_depth + 1
+  }
+  return(df)
 }
-
 import_plot<-graph.data.frame(df,directed = TRUE)
 plot(import_plot)
+
+
 
 
 # community walktrap
