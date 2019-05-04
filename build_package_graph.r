@@ -20,15 +20,9 @@ for (i in package_relate_li) {
 }
 df
 
-#plot as graph
+#plot as depth 1 graph
 import_plot<-graph.data.frame(df,directed = TRUE)
 plot(import_plot)
-
-#___把search_target變成可iterator的物件
-search_target<- (df[which(df$depth == 1),]['dest'])
-len<-length(search_target[[1]])
-for (i in 1:len){
-  print(toString(search_target[[1]][i]))}
 
 
 #for 2 to 10 depth
