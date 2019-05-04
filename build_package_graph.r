@@ -52,6 +52,7 @@ while (n_depth <= MAX_DEPTH){
       }
       sprintf('Depth: %s, Package: %s', n_depth, pck_source) %>% print()
       
+
       tryCatch({
         df_imports <- get_neibor_graph(pck_source, neibor_type='Imports')
         # df_suggests <- get_neibor_graph(pck_source, neibor_type='Suggests')
@@ -72,3 +73,8 @@ while (n_depth <= MAX_DEPTH){
 
 import_plot<-graph.data.frame(df,directed = TRUE)
 plot(import_plot)
+
+
+# community walktrap
+communities <- cluster_walktrap(import_plot)
+communities
