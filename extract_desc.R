@@ -2,6 +2,7 @@ require(tidyverse)
 require(fs)
 require(baaugwo)
 require(lubridate)
+require(purrr)
 
 
 target_meta <- readRDS('target_meta.RDS')
