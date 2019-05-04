@@ -30,6 +30,8 @@ for (i in 2:10){
   search_target<- df[which(df$depth == (i-1)),]['dest']
   for (target in search_target[[1]]){
     tryCatch({
+      # since some package can't get their description page,
+      # here we use trycatch
       desc <- description$new(package = toString(target))
       imports_li <- desc$get("Imports")
       li<-strsplit(imports_li, ",") 
