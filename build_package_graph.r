@@ -2,55 +2,73 @@
 library(desc) 
 library(stringr) 
 library(igraph)
+library(dplyr)
 
-#get import/suggest from description
-desc <- description$new(package = "ggplot2")
-Imports_li <- desc$get("Imports")
-Suggests_li <-desc$get("Suggests")
 
-#clean import list, make it as df
-#TODO add suggest list
-li<-strsplit(Imports_li, ",") 
-package_relate<-str_extract_all(li, "[a-z0-9]{2,}") 
-package_relate_li<-(strsplit(package_relate[[1]], "\'"))
-df <- data.frame("id"=numeric(), "source"=character(), "dest"=character(), "weight"=numeric(),"depth"=numeric())
-for (i in package_relate_li) { 
-  new_row <- data.frame("source"="ggplot2", "dest"=toString(i), "weight"=1,"depth"=1)
-  df<-rbind(df, new_row) 
+parse_desc_to_pck_names <-  function(raw_desc_pkg){
+  #TODO: warning for strsplit
+  li <- strsplit(raw_desc_pkg, ",") 
+  package_relate <- str_extract_all(li, "[a-z0-9]{2,}") 
+  return(package_relate[[1]])
 }
-df
 
-#plot as depth 1 graph
-import_plot<-graph.data.frame(df,directed = TRUE)
-plot(import_plot)
+get_neibor_graph <- function(pkg_source, neibor_type='Imports'){
+  desc <- description$new(package = pkg_source)
+  raw_neibor_from_desc <- desc$get(neibor_type)
+  pkg_neibors <- parse_desc_to_pck_names(raw_neibor_from_desc)
+  df <- data.frame(
+    source = pkg_source,
+    dest = pkg_neibors,
+    weight = 1,
+    neibor_type=neibor_type
+  )
+  return(df)
+}
 
 
-#for 2 to 10 depth
-for (i in 2:10){
-  search_target<- df[which(df$depth == (i-1)),]['dest']
-  for (target in search_target[[1]]){
-    tryCatch({
-      # since some package can't get their description page,
-      # here we use trycatch
-      desc <- description$new(package = toString(target))
-      imports_li <- desc$get("Imports")
-      li<-strsplit(imports_li, ",") 
-      package_relate<-str_extract_all(li, "[a-z0-9]{2,}") 
-      package_relate_li<-(strsplit(package_relate[[1]], "\'"))
-      
-      for (dest in package_relate_li) { 
-        new_row <- data.frame("source"=toString(target), "dest"=toString(dest), "weight"=1,"depth"=i)
-        if (new_row['dest']!='NA'){
-          df<-rbind(df, new_row) 
-        }
-        
+
+MAX_DEPTH <- 10
+pck_name <- "ggplot2"
+
+
+
+df <- data.frame("source"=character(), "dest"=character(), "weight"=numeric(),"neibor_type"=character(), "depth"=numeric())
+n_depth <- 1
+while (n_depth <= MAX_DEPTH){
+
+    # collect source packags 
+    if (n_depth == 1){
+      pcks_source <-  c(pck_name) 
+    } else {
+      pcks_source <-  df %>% filter(depth==n_depth-1) %>% pull(dest) %>% unique() %>% as.character()
+    }
+    print(pcks_source)
+    
+    # get neibor of each source package
+    has_detected <-  df  %>% pull(source) %>% unique() %>% as.character()
+    for (pck_source in pcks_source){
+      if (pck_source %in% has_detected){
+        break
       }
-    }, error = function(err) {
-      print(toString(target))
-      print("can not found")
-    })
-  }
+      sprintf('Depth: %s, Package: %s', n_depth, pck_source) %>% print()
+      
+      tryCatch({
+        df_imports <- get_neibor_graph(pck_source, neibor_type='Imports')
+        # df_suggests <- get_neibor_graph(pck_source, neibor_type='Suggests')
+        # df_depth <- rbind(df_imports, df_suggests)
+        df_depth <- df_imports#TODO: tmp
+        df_depth['depth'] <- n_depth
+        df_depth <- df_depth %>% filter(!is.na(dest))
+        df <- rbind(df, df_depth)  
+        
+      }, error = function(err) {
+        sprintf('- %s can not found', pck_source) %>% print()
+      })
+    }
+    
+    # go to next depth
+    n_depth <- n_depth + 1
 }
-df
+
 import_plot<-graph.data.frame(df,directed = TRUE)
 plot(import_plot)
