@@ -25,14 +25,7 @@ get_neibor_graph <- function(pkg_source, neibor_type='Imports'){
   return(df)
 }
 
-
-
-MAX_DEPTH <- 10
-
-pck_name <- "ggplot2"
-
-
-get_neibor_graph_given_depth <- function(){
+get_neibor_graph_given_depth <- function(pck_name, max_depth){
   df <- data.frame("source"=character(), 
                    "dest"=character(), 
                    "weight"=numeric(),
@@ -40,7 +33,7 @@ get_neibor_graph_given_depth <- function(){
                    "depth"=numeric())
   
   n_depth <- 1
-  while (n_depth <= MAX_DEPTH){
+  while (n_depth <= max_depth){
   
       # collect source packags 
       if (n_depth == 1){
@@ -73,6 +66,9 @@ get_neibor_graph_given_depth <- function(){
   }
   return(df)
 }
+
+
+df <- get_neibor_graph_given_depth("ggplot2", max_depth = 10)
 import_plot<-graph.data.frame(df,directed = TRUE)
 plot(import_plot)
 
