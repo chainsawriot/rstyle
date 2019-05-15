@@ -6,8 +6,7 @@ library(dplyr)
 
 
 parse_desc_to_pck_names <-  function(raw_desc_pkg){
-  #TODO: warning for strsplit
-  li <- strsplit(raw_desc_pkg, ",") 
+  li <- strsplit(raw_desc_pkg, ",")[[1]]
   package_relate <- str_extract_all(li, "[a-z0-9]{2,}") 
   return(package_relate[[1]])
 }
