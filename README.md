@@ -42,10 +42,16 @@ R files:
 
 11. **analyse_master_entropy.R** (requires: entropy_fx_name.RDS, entropy_linelength.RDS): visualize the information entropy values of line length and function name's styles. Generates images. (END)
 
+12. **extract_dependency.R** (requires: code.db): extract dependencies of packages. Generate **pkg_dependency.RDS** (END)
+
+13. **detect_community_by_walktrap.R** (requires: pkg_dependency.RDS): detect communities by using walktrap algorithm (working)
+
 # Related projects
 
 * [baaugwo](https://github.com/chainsawriot/baaugwo) - this project depends on this experimental package to extract meta data and dump code from R packages.
 
 
+# How to lunch docker in remote server?
+- some tricky setting regarding file previledge: to be added by Yen
 ----
 [^1]: [CRAN mirror HOWTO/FAQ](https://cran.r-project.org/mirror-howto.html)

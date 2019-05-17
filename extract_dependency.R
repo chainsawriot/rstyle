@@ -1,37 +1,64 @@
 require(RSQLite)
 require(dplyr)
-require(stringr)
+require(tidyverse)
+setwd('docker_data/rstyle/')#todo: make it automatically and more flexible
 
-parse_field_content <- function(field, codes){
-    idx_start <- str_which(codes, pattern = str_c('^', field))
-    idx_end <-   idx_start + str_which(codes[idx_start+1:length(codes)], pattern = '^[^ ]')[1] - 1
-    valid_lines  <- codes[idx_start:idx_end]
+execute_sql <- function(path_db, sql_string){
+    con <- dbConnect(RSQLite::SQLite(), path_db)
+    res <- dbSendQuery(con, sql_string) 
+    data <- res %>% dbFetch()
+    dbClearResult(res)
+    dbDisconnect(con)
+    return(data)    
+}
+
+extract_description <- function(path_db = 'code.db'){
+    sql_string <- 'select pkg_name, pub_year, line_num, code from cran_code where filename="DESCRIPTION"'
+    desc <- execute_sql(path_db, sql_string)
+    desc <- desc %>% group_by(pkg_name, pub_year) %>% nest(.key = 'description')
+    return(desc)    
+}
+
+parse_field <- function(df, field){
+    # todo: dirty code, need refactor to simpler and more readible strcuture
+    lines <- df$code
+    idx_start <- str_which(lines, pattern = str_c('^', field))
+    
+    no_exist <- length(idx_start) == 0
+    if (no_exist){
+        return(NA)
+    }
+    
+    is_last_line <- idx_start == length(lines)
+    if (is_last_line){
+        idx_end <- idx_start 
+    } else {
+        idx_end <- idx_start + str_which(lines[idx_start+1:length(lines)], pattern = '^[^ ]')[1] - 1
+    }
+    
+    valid_lines  <- lines[idx_start:idx_end]
     field_content <- str_c(valid_lines, collapse = '') %>% str_replace_all(' ' , '')
     return(field_content)
 }
 
-parse_pkgname_from_content <-  function(raw_content){
-    pkgs_versions <- str_split(raw_content, ':') %>% map(2) %>% str_split(',')
+parse_pkgname <-  function(content){
+    # todo: dirty code when extract data from list
+    pkgs_versions <- str_split(content, ':') %>% map(2) %>% str_split(',')
     pkgs <- map_chr(pkgs_versions[[1]], function(pkg) str_extract(pkg, '[a-zA-Z0-9]{2,}'))
     return(pkgs)
 }
 
 
-con <- dbConnect(RSQLite::SQLite(), 'code.db')
+desc <- extract_description(path_db = 'code.db')
+#todo: warning
+dependency <- desc %>% 
+    mutate(imports=map_chr(description, parse_field, field='Imports'),
+           suggests=map_chr(description, parse_field, field='Suggests')) %>% 
+    mutate(pkgs_imports=map(imports, parse_pkgname), 
+           pkgs_suggests=map(suggests, parse_pkgname))
 
+saveRDS(dependency, "pkg_dependency.RDS")
 
-sql_string = 'select pkg_name, pub_year, line_num, code from cran_code where filename="DESCRIPTION"'
-codes <- dbSendQuery(con, sql_string) %>% dbFetch()
-pkg_codes <- codes %>% group_by(pkg_name, pub_year) %>% nest()
-
-
-# todo: map each df into fun: get_imports_suggests
-df <- pkg_codes$data[[300]]
-parse_field_content(field='Suggests', codes = df$code) %>% parse_pkgname_from_content()
-parse_field_content(field='Imports', codes = df$code) %>% parse_pkgname_from_content()
-
-
-dbDisconnect(con)
 
 
 
