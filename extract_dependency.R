@@ -43,6 +43,9 @@ parse_field <- function(df, field){
 
 parse_pkgname <-  function(content){
     # todo: dirty code when extract data from list
+    if (is.na(content)){
+        return(NA)
+    }
     pkgs_versions <- str_split(content, ':') %>% map(2) %>% str_split(',')
     pkgs <- map_chr(pkgs_versions[[1]], function(pkg) str_extract(pkg, '[a-zA-Z0-9]{2,}'))
     return(pkgs)
@@ -54,8 +57,8 @@ desc <- extract_description(path_db = 'code.db')
 dependency <- desc %>% 
     mutate(imports=map_chr(description, parse_field, field='Imports'),
            suggests=map_chr(description, parse_field, field='Suggests')) %>% 
-    mutate(pkgs_imports=map(imports, parse_pkgname), 
-           pkgs_suggests=map(suggests, parse_pkgname))
+    gather(field, content, imports:suggests) %>% 
+    mutate(pkgs=map(content, parse_pkgname))
 
 saveRDS(dependency, "pkg_dependency.RDS")
 
