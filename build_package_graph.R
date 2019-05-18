@@ -2,12 +2,12 @@ require(igraph)
 require(tidyverse)
 setwd('docker_data/rstyle/')#todo: make it automatically and more flexible
 
-
-
 get_dependency_snapshot <- function(type){
     pkg_dependency <- readRDS('pkg_dependency.RDS')
     if (type=="latest"){
-        snapshot <- pkg_dependency %>% group_by(pkg_name) %>% filter(pub_year==max(pub_year)) %>% ungroup()        
+        snapshot <- pkg_dependency %>% 
+            group_by(pkg_name) %>% filter(pub_year==max(pub_year)) %>% ungroup() %>% 
+            mutate(type_dependency=type)
     } else if (type=="cross-sectional") {
         # TODO: aggregate across time
     } else {
@@ -18,19 +18,19 @@ get_dependency_snapshot <- function(type){
 
 get_neibor_graph <- function(dependency, pkg_source){ # dependency as global variable?
     df <- dependency %>% filter(pkg_name==pkg_source) %>% 
-        select(pkg_name, field, pkgs) %>% unnest() 
+        select(type_dependency, pkg_name, field, pkgs) %>% unnest() 
     if (nrow(df) == 0){
         # some packages have no fields like "Imports" or "Suggests"
         # for example, stats (https://stat.ethz.ch/R-manual/R-devel/library/stats/html/stats-package.html)
         return(NA)
     }#TODO: better way to write it? the problem is at "pkgs"
     df_rename <- df %>% 
-        transmute(source=pkg_name, dest=pkgs, weight=1, neibor_type=field) %>% 
+        transmute(source=pkg_name, dest=pkgs, weight=1, neibor_type=field, type_dependency=type_dependency) %>% 
         filter(!is.na(dest))
     return(df_rename)
 }
 
-get_neibor_graph_given_depth <- function(dependency, pkg_source, max_depth, type_dependency='latest'){
+get_neibor_graph_given_depth <- function(dependency, pkg_source, max_depth){
     n_depth <- 1
     pcks_source <- c(pkg_source)
     pcks_has_detected <- c()
@@ -70,9 +70,8 @@ type_dependency = 'latest'
 # trial: ggplot2
 dependency <- get_dependency_snapshot(type=type_dependency)#TODO: how can I put it outside the function safely for better performance?
 
-
 pkg_source <- 'ggplot2'
-df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth, type_dependency) 
+df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth) 
 
 df_imports <- df %>% filter(neibor_type=="imports") %>% filter(depth==1)
 df_suggests <- df %>% filter(neibor_type=="suggests")
