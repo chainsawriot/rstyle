@@ -21,10 +21,11 @@ df_suggests <- df %>% filter(neibor_type=="suggests")
 graph_imports <- graph.data.frame(df_imports, directed = TRUE)
 graph_suggests <- graph.data.frame(df_suggests, directed = TRUE)
 
+#TODO: wierd elements
 plot(graph_imports)
 
 # TODO: suggests
-community <- cluster_walktrap(graph_imports, steps)
+community <- cluster_walktrap(graph_imports,steps = steps)
 member <- tibble(
     pkg_name=community$name,
     membership=community$membership,
@@ -38,5 +39,5 @@ df_res <- member %>%
 df_res
 View(df_res)
 
-#TODO: wierd elements
 #TODO: how to determine number of groups
+#TODO: data structure?
