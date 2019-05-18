@@ -1,7 +1,5 @@
 require(RSQLite)
-require(dplyr)
 require(tidyverse)
-setwd('docker_data/rstyle/')#todo: make it automatically and more flexible
 
 execute_sql <- function(path_db, sql_string){
     con <- dbConnect(RSQLite::SQLite(), path_db)
@@ -48,7 +46,7 @@ parse_pkgname <-  function(content){
         return(NA)
     }
     pkgs_versions <- str_split(content, ':') %>% map(2) %>% str_split(',')
-    pkgs <- map_chr(pkgs_versions[[1]], function(pkg) str_extract(pkg, '[a-zA-Z0-9]{2,}'))
+    pkgs <- map_chr(pkgs_versions[[1]], function(pkg) str_replace_all(pkg, "\\(.+\\)", "") %>% str_extract('[a-zA-Z0-9]{2,}'))
     return(pkgs)
 }
 
