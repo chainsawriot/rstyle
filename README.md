@@ -44,7 +44,9 @@ R files:
 
 12. **extract_dependency.R** (requires: code.db): extract dependencies of packages. Generate **pkg_dependency.RDS** (END)
 
-13. **detect_community_by_walktrap.R** (requires: pkg_dependency.RDS): detect communities by using walktrap algorithm (working)
+13. **build_package_graph.R** (requires: code.db): TBA (working)
+
+14. **detect_community_by_walktrap.R** (requires: pkg_dependency.RDS): detect communities by using walktrap algorithm (working)
 
 # Related projects
 
