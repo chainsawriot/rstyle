@@ -18,7 +18,7 @@ get_dependency_snapshot <- function(type){
 
 get_neibor_graph <- function(dependency, pkg_source){ # dependency as global variable?
     df <- dependency %>% filter(pkg_name==pkg_source) %>% 
-        select(type_dependency, pkg_name, field, pkgs) %>% unnest() 
+        select(type_dependency, pkg_name, field, pkgs) %>% unnest()
     if (nrow(df) == 0){
         # some packages have no fields like "Imports" or "Suggests"
         # for example, stats (https://stat.ethz.ch/R-manual/R-devel/library/stats/html/stats-package.html)

@@ -20,7 +20,7 @@ extract_description <- function(path_db = 'code.db'){
 }
 
 parse_field <- function(df, field){
-    # todo: dirty code, need refactor to simpler and more readible strcuture
+    # TODO: dirty code, need refactor to simpler and more readible strcuture
     lines <- df$code
     idx_start <- str_which(lines, pattern = str_c('^', field))
     
@@ -42,7 +42,8 @@ parse_field <- function(df, field){
 }
 
 parse_pkgname <-  function(content){
-    # todo: dirty code when extract data from list
+    # TODO: dirty code when extract data from list
+    # TODO: pkg names are not correctly parsed. Ex. tm (https://cran.r-project.org/web/packages/tm/index.html)
     if (is.na(content)){
         return(NA)
     }
@@ -53,7 +54,7 @@ parse_pkgname <-  function(content){
 
 
 desc <- extract_description(path_db = 'code.db')
-#todo: warning
+#TODO: warning
 dependency <- desc %>% 
     mutate(imports=map_chr(description, parse_field, field='Imports'),
            suggests=map_chr(description, parse_field, field='Suggests')) %>% 
