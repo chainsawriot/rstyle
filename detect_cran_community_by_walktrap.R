@@ -10,7 +10,7 @@ tibble(pkg = V(cran_graph), comm = cran_wc$membership) %>% group_by(comm) %>% su
 tibble(pkg = V(cran_graph)$name, comm = cran_wc$membership, evcent = cran_event$vector) %>% 
     filter(comm == 60) %>% arrange(desc(evcent))
 
-write_rds(cran_wc, "cran_communities.RDS")
+write_rds(cran_wc, "cran_community.RDS")
 
 
 # # ##########################################################################################
