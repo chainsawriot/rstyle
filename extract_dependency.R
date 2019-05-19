@@ -18,7 +18,7 @@ extract_description <- function(path_db = 'code.db'){
 }
 
 parse_field <- function(df, field){
-    # TODO: dirty code, need refactor to simpler and more readible strcuture
+    # TODO: can use baugwo::read_dcf => does not export
     lines <- df$code
     idx_start <- str_which(lines, pattern = str_c('^', field))
     

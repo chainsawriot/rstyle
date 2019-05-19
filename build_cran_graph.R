@@ -72,21 +72,12 @@ dependency <- get_dependency_snapshot(type=type_dependency)#TODO: how can I put 
 dependency$pkg_name %>% map_dfr(get_neibor, dependency = dependency) -> dependency_edgelist
 
 cran_graph <- graph.data.frame(dependency_edgelist, direct = TRUE)
-set.seed(42)
-cran_wc <- walktrap.community(cran_graph, steps = 4)
-cran_event <- evcent(cran_graph, direct = TRUE)
-
-tibble(pkg = V(cran_graph), comm = cran_wc$membership) %>% group_by(comm) %>% summarize(n = n()) %>% arrange(desc(n))
-tibble(pkg = V(cran_graph)$name, comm = cran_wc$membership, evcent = cran_event$vector) %>% 
-    filter(comm == 60) %>% arrange(desc(evcent))
-
 write_rds(cran_graph, "cran_graph.RDS")
-write_rds(cran_wc, "cran_communities.RDS")
 
 ###############
 # trial: ggplot2
 pkg_source <- 'ggplot2'
-df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth) 
+df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth=10) 
 
 df_imports <- df %>% filter(neibor_type=="imports") 
 df_suggests <- df %>% filter(neibor_type=="suggests")
