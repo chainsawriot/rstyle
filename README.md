@@ -42,9 +42,9 @@ R files:
 
 11. **analyse_master_entropy.R** (requires: entropy_fx_name.RDS, entropy_linelength.RDS): visualize the information entropy values of line length and function name's styles. Generates images. (END)
 
-12. **extract_dependency.R** (requires: code.db): extract dependencies of packages. Generate **pkg_dependency.RDS** (END)
+12. **extract_cran_dependency.R** (requires: code.db): extract dependencies of packages. Generate **pkg_dependency.RDS** (END)
 
-13. **build_package_graph.R** (requires: code.db): TBA (working)
+13. **build_cran_graph.R** (requires: code.db): TBA (working)
 
 14. **detect_community_by_walktrap.R** (requires: pkg_dependency.RDS): detect communities by using walktrap algorithm (working)
 

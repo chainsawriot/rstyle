@@ -59,7 +59,7 @@ dependency <- desc %>%
     gather(field, content, imports:suggests) %>% 
     mutate(pkgs=map(content, parse_pkgname))
 
-saveRDS(dependency, "pkg_dependency.RDS")
+saveRDS(dependency, "cran_dependency.RDS")
 
 
 

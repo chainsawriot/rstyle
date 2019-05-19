@@ -2,7 +2,7 @@ require(igraph)
 require(tidyverse)
 
 get_dependency_snapshot <- function(type){
-    pkg_dependency <- readRDS('pkg_dependency.RDS')
+    pkg_dependency <- readRDS('cran_dependency.RDS')
     if (type=="latest"){
         snapshot <- pkg_dependency %>% 
             group_by(pkg_name) %>% filter(pub_year==max(pub_year)) %>% ungroup() %>% 
@@ -74,19 +74,21 @@ dependency$pkg_name %>% map_dfr(get_neibor, dependency = dependency) -> dependen
 cran_graph <- graph.data.frame(dependency_edgelist, direct = TRUE)
 write_rds(cran_graph, "cran_graph.RDS")
 
-###############
-# trial: ggplot2
-pkg_source <- 'ggplot2'
-df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth=10) 
 
-df_imports <- df %>% filter(neibor_type=="imports") 
-df_suggests <- df %>% filter(neibor_type=="suggests")
 
-graph_imports <- graph.data.frame(df_imports, directed = TRUE)
-graph_suggests <- graph.data.frame(df_suggests, directed = TRUE)
-
-plot(graph_imports)
-plot(graph_suggests)
+# ###############
+# # trial: ggplot2
+# pkg_source <- 'ggplot2'
+# df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth=10) 
+# 
+# df_imports <- df %>% filter(neibor_type=="imports") 
+# df_suggests <- df %>% filter(neibor_type=="suggests")
+# 
+# graph_imports <- graph.data.frame(df_imports, directed = TRUE)
+# graph_suggests <- graph.data.frame(df_suggests, directed = TRUE)
+# 
+# plot(graph_imports)
+# plot(graph_suggests)
 
 
 
