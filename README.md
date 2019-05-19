@@ -42,11 +42,12 @@ R files:
 
 11. **analyse_master_entropy.R** (requires: entropy_fx_name.RDS, entropy_linelength.RDS): visualize the information entropy values of line length and function name's styles. Generates images. (END)
 
-12. **extract_cran_dependency.R** (requires: code.db): extract dependencies of packages. Generate **pkg_dependency.RDS** (END)
+12. **extract_cran_dependency.R** (requires: code.db): extract dependencies of packages. Generate **cran_dependency.RDS** (END)
 
-13. **build_cran_graph.R** (requires: code.db): TBA (working)
+13. **build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS** (END)
 
-14. **detect_community_by_walktrap.R** (requires: pkg_dependency.RDS): detect communities by using walktrap algorithm (working)
+14. **detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **cran_community.RDS** (END)
+    - NOTE: **cran_community_20190518.RDS** is the result generated at 2019-M5-18, and the clustered communities makes much sense while we cannot replicate because we forgot to set a random seed.
 
 # Related projects
 
@@ -54,6 +55,12 @@ R files:
 
 
 # How to lunch docker in remote server?
-- some tricky setting regarding file previledge: to be added by Yen
+- By default, docker launches rstudio server and mounts folders by using root user, which makes user **rstudio** not able to write files due to lack of previledge. 
+- One of the solution of this problem is to ask docker to launch rstudio server by using current UID
+- Command: 
+```sh
+docker run -v /home/cyyen/rstyle:/home/rstudio/rstyle -e PASSWORD=xxxx -e USERID=$UID -p 8787:8787 rstudio/rstyle
+```
+
 ----
 [^1]: [CRAN mirror HOWTO/FAQ](https://cran.r-project.org/mirror-howto.html)
