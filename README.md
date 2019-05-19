@@ -47,7 +47,6 @@ R files:
 13. **build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS** (END)
 
 14. **detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **cran_community.RDS** (END)
-    - NOTE: **cran_community_20190518.RDS** is the result generated at 2019-M5-18, and the clustered communities makes much sense while we cannot replicate because we forgot to set a random seed.
 
 # Related projects
 
@@ -61,6 +60,31 @@ R files:
 ```sh
 docker run -v /home/cyyen/rstyle:/home/rstudio/rstyle -e PASSWORD=xxxx -e USERID=$UID -p 8787:8787 rstudio/rstyle
 ```
+# Notes regarding the result from Walktrap clustering
+- **cran_community_20190518.RDS** is the result generated at 2019-M5-18, and the clustered communities makes much sense while we cannot replicate because we forgot to set a random seed.
+
+|community id   | field   | 
+|---|---|
+| 15  | Rstudio-related packages  |
+| 9  | base   |
+| 4  | image plotting   |
+| 60  | RCpp   |
+| 14  | GPS and GEO   |
+| 35  | ML   |
+| 7  | public health and Statistics   |
+| 36  | text analysis    |
+| 25  | social network analysis   |
+| 39  | mix of graphics and anomaly detection   |
+| 23  | graph and its visualization   |
+| 19  | genetics   |
+| 31  | finance   |
+| 8  | insurance and actuary   |
+| 64  | numerical optimization    |
+| 73  | sparse matrix   |
+| 18  | Java   |
+| 20  | time, date, and money   |
+| 120  | neuronal science   |
 
 ----
 [^1]: [CRAN mirror HOWTO/FAQ](https://cran.r-project.org/mirror-howto.html)
+
