@@ -42,10 +42,49 @@ R files:
 
 11. **analyse_master_entropy.R** (requires: entropy_fx_name.RDS, entropy_linelength.RDS): visualize the information entropy values of line length and function name's styles. Generates images. (END)
 
+12. **extract_cran_dependency.R** (requires: code.db): extract dependencies of packages. Generate **cran_dependency.RDS** (END)
+
+13. **build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS** (END)
+
+14. **detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **cran_community.RDS** (END)
+
 # Related projects
 
 * [baaugwo](https://github.com/chainsawriot/baaugwo) - this project depends on this experimental package to extract meta data and dump code from R packages.
 
 
+# How to lunch docker in remote server?
+- By default, docker launches rstudio server and mounts folders by using root user, which makes user **rstudio** not able to write files due to lack of previledge. 
+- One of the solution of this problem is to ask docker to launch rstudio server by using current UID
+- Command: 
+```sh
+docker run -v /home/cyyen/rstyle:/home/rstudio/rstyle -e PASSWORD=xxxx -e USERID=$UID -p 8787:8787 rstudio/rstyle
+```
+# Notes regarding the result from Walktrap clustering
+- **cran_community_20190518.RDS** is the result generated at 2019-M5-18, and the clustered communities makes much sense while we cannot replicate because we forgot to set a random seed.
+
+|community id   | field   | 
+|---|---|
+| 15  | Rstudio-related packages  |
+| 9  | base   |
+| 4  | image plotting   |
+| 60  | RCpp   |
+| 14  | GPS and GEO   |
+| 35  | ML   |
+| 7  | public health and Statistics   |
+| 36  | text analysis    |
+| 25  | social network analysis   |
+| 39  | mix of graphics and anomaly detection   |
+| 23  | graph and its visualization   |
+| 19  | genetics   |
+| 31  | finance   |
+| 8  | insurance and actuary   |
+| 64  | numerical optimization    |
+| 73  | sparse matrix   |
+| 18  | Java   |
+| 20  | time, date, and money   |
+| 120  | neuronal science   |
+
 ----
 [^1]: [CRAN mirror HOWTO/FAQ](https://cran.r-project.org/mirror-howto.html)
+
