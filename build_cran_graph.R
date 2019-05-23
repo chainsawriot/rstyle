@@ -10,7 +10,8 @@ get_dependency_snapshot <- function(type){
     } else if (type=="cross-sectional") {
         # TODO: aggregate across time
     } else {
-        # TODO: raise error   
+        # TODO: raise error
+	print('only "latest" and "cross-sectional" are allowed as input of type')   
     }
     return(snapshot)
 }
