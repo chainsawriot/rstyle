@@ -5,13 +5,18 @@ get_dependency_snapshot <- function(type){
     pkg_dependency <- readRDS('cran_dependency.RDS')
     if (type=="latest"){
         snapshot <- pkg_dependency %>% 
-            group_by(pkg_name) %>% filter(pub_year==max(pub_year)) %>% ungroup() %>% 
+            group_by(pkg_name, field) %>% filter(pub_year==max(pub_year)) %>% ungroup() %>% 
+            select(pkg_name, field, pkgs) %>% 
             mutate(type_dependency=type)
     } else if (type=="cross-sectional") {
-        # TODO: aggregate across time
+        snapshot <- pkg_dependency %>% 
+            group_by(pkg_name, field) %>% summarize(pkgs=pkgs %>% unlist() %>% 
+                                                 unique() %>% na.omit() %>% 
+                                                 list()) %>% ungroup() %>% 
+            mutate(type_dependency=type)
     } else {
         # TODO: raise error
-	print('only "latest" and "cross-sectional" are allowed as input of type')   
+	    print('only "latest" and "cross-sectional" are allowed as input of type')   
     }
     return(snapshot)
 }
@@ -69,7 +74,7 @@ get_neibor <- function(pkg_name, dependency) {
     get_neibor_graph_given_depth(dependency, pkg_name, 1)
 }
 
-dependency <- get_dependency_snapshot(type=type_dependency)#TODO: how can I put it outside the function safely for better performance?
+dependency <- get_dependency_snapshot(type=type_dependency)
 dependency$pkg_name %>% map_dfr(get_neibor, dependency = dependency) -> dependency_edgelist
 
 cran_graph <- graph.data.frame(dependency_edgelist, direct = TRUE)
