@@ -80,7 +80,6 @@ cran_graph <- graph.data.frame(dependency_edgelist, direct = TRUE)
 write_rds(cran_graph, "cran_graph.RDS")
 
 
-# test docker's git previledge
 
 # ###############
 # # trial: ggplot2
