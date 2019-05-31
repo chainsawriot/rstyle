@@ -68,8 +68,12 @@ docker run -v $(pwd):/home/$USER/rstyle -e USER=$USER -e PASSWORD=xxxx -e USERID
 ```sh
 bash dev-tmux.sh
 ```
-
-
+if you are developing under Window Subsystem Linus (WSL), you may encounter a problem that docker can not see the folder you mounted into the container. Then try to soft link /mnt/c/ to the root directory as illustrated in the blog article below:
+https://medium.com/@lixis630/extra-setup-on-wsl-for-ros-7c539463370a
+And git clone this repository anywhere under the /c/Users/{YOUR_USERNAME}. And then specify the PATH_RSTYLE as environment variable as shown below, such that you can launch the dashboard successfully.
+```sh
+PATH_RSTYLE=/c/Users/{YOUR_USERNAME}/{PATH_TO_RSTYLE}/rstyle bash dev-tmux.sh
+```
  
 
 # Notes regarding the result from Walktrap clustering
