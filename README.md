@@ -54,12 +54,24 @@ R files:
 
 
 # How to lunch docker in remote server?
+- Build docker file
+```sh
+docker build -t rstudio/rstyle -f docker/Dockerfile . 
+```
 - By default, docker launches rstudio server and mounts folders by using root user, which makes user **rstudio** not able to write files due to lack of previledge. 
 - One of the solution of this problem is to ask docker to launch rstudio server by using current UID
-- Command: 
+
 ```sh
-docker run -v /home/cyyen/rstyle:/home/rstudio/rstyle -e PASSWORD=xxxx -e USERID=$UID -p 8787:8787 rstudio/rstyle
+docker run -v $(pwd):/home/$USER/rstyle -e USER=$USER -e PASSWORD=xxxx -e USERID=$UID -p 8787:8787 rstudio/rstyle
 ```
+- or you can launch a development dashboard by executing the following command:
+```sh
+bash dev-tmux.sh
+```
+
+
+ 
+
 # Notes regarding the result from Walktrap clustering
 - **cran_community_20190518.RDS** is the result generated at 2019-M5-18, and the clustered communities makes much sense while we cannot replicate because we forgot to set a random seed.
 
