@@ -15,6 +15,7 @@ get_dependency_snapshot <- function(type){
                                                  list()) %>% ungroup() %>% 
             mutate(type_dependency=type)
     } else {
+        # TODO: raise error
 	    print('only "latest" and "cross-sectional" are allowed as input of type')   
     }
     return(snapshot)
