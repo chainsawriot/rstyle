@@ -46,7 +46,6 @@ style_regexes <- list(
     "dotted.case"    = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more(dot, one_or_more(rex(one_of(lower, digit)))), end)
 )
 
-
 conv_style <- function(x, style_regexes) {
     x <- x[!is.na(x) & !is.null(x)]
     styles <- map_chr(x, match_function_style, style_regexes = style_regexes)
@@ -77,7 +76,10 @@ pkgs %>% filter(pub_year <= 2018) %>%
               dotted = sum(unlist(styles) == "dotted.case"),
               other = sum(unlist(styles) == "other"))
 
-### build a table for all communities
+### build two fx feature tables for all communities
+### df_total: counting
+### df_ratio_total: ratio
+
 community_ids <- list(15,9,4,60,14,35,7,36,25,39,23,19,31,8,64,73,18,20,120)
 iter_community_ids <- iter(community_ids)
 
@@ -107,14 +109,15 @@ while (i < length(community_ids)) {
     
     if (i==0){
         df_total <- feature_table
+        df_ratio_total<- prop.table(feature_table)
     }
     else{
         df_total <- cbind(df_total, feature_table)
+        df_ratio_total<- cbind(df_ratio_total, prop.table(feature_table))
     }
     i=i+1 
 } 
-
-colnames(df_total) <- c(
+column_name <- c(
     "Rstudio-related packages","base","image plotting",
     "RCpp","GPS and GEO","ML","public health and Statistics",
     "text analysis","social network analysis",
@@ -122,4 +125,10 @@ colnames(df_total) <- c(
     "graph and its visualization","genetics",
     "finance","insurance and actuary","numerical optimization",
     "sparse matrix","Java","time, date, and money","neuronal science")
+colnames(df_total) <- column_name
+colnames(df_ratio_total) <- column_name
+
 View(df_total)
+View(df_ratio_total)
+
+###
