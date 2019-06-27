@@ -17,6 +17,26 @@ wide_to_long <- function(df, id_var, key_var, val_var, sort_by){
         gather(!!key_var, !!val_var, -(!!id_var)) 
 }
 
+cols <- c("Rstudio-related","base","Image Plotting",
+    "RCpp","GPS and Geography","Machine learning","Public Health and Statistics",
+    "Text Analysis","Social Network Analysis",
+    "Mix of Graphics and Anomaly Detection",
+    "Graph","Genetics",
+    "Finance","Insurance and Actuary","Numerical Optimization",
+    "Sparse Matrix","Java","Time, Date, and Money","Neuronal Science")
+
+
+df_naming_ratio_total <- readRDS('community_df_naming_ratio_total.RDS')
+colnames(df_naming_ratio_total) <- cols
+rownames(df_naming_ratio_total) <- c("alllower", "ALLUPPER", "UpperCamel", "lowerCamel", "lower_snack", "dotted.func", "other")
+
+df_ratio_total <- readRDS('community_df_ratio_total.RDS')
+colnames(df_ratio_total) <- cols
+# rownames(df_ratio_total) <- c("")
+
+
+
+
 ```
 
 ## community
@@ -29,10 +49,9 @@ wide_to_long <- function(df, id_var, key_var, val_var, sort_by){
 
 ## function naming convention
 ```{r, include=FALSE}
-df_naming_ratio_total <- readRDS('community_df_naming_ratio_total.RDS')
-levels_naming <- c('dotted', 'allupper', 'alllower', 'other', 'upcamel', 'lowcamel', 'snake')
+levels_naming <- c("dotted.func", "UpperCamel", "lowerCamel",  "other", "ALLUPPER", "alllower", "lower_snack")
 df_naming_ratio_long <- df_naming_ratio_total %>% 
-    wide_to_long(id_var = 'community', key_var = 'naming', val_var = 'ratio', sort_by = quo(snake)) %>% 
+    wide_to_long(id_var = 'community', key_var = 'naming', val_var = 'ratio', sort_by = quo(lower_snack)) %>% 
     mutate(percentage = ratio*100, 
            community=factor(community, levels = unique(community)),
            naming=factor(naming, levels = levels_naming)) 
@@ -40,6 +59,37 @@ df_naming_ratio_long <- df_naming_ratio_total %>%
 
 #### overall
 
+#### what's most popular naming convention within community?
+
+- Summary
+    - Anomaly Detection is a big fan of lowerCamel, 78%, of great harmony within community. (But suffer from open curly problem most)
+    - Java has its own styles => other
+    - rstudio is the main advocate of lower_snake style, consistent with the overall trend across years above
+    - dotted.fun gains great support from social network analysis
+    - Finance, for some reason, uses UpperCamel, which is not common in other communities
+    - ALLUPPER is not an abandoned naming
+    - dotted.func, only proportional
+
+- Historical reason for them?
+
+```{r, echo=FALSE}
+idxmax <- function(vals){
+    idx <- which(vals == max(vals))
+    return(names(vals)[idx])
+}
+df_pop <- df_naming_ratio_total %>% t() %>% as.data.frame()
+df_pop_summary <- data.frame(community = df_pop %>% apply(2, idxmax), ratio = df_pop %>% apply(2, max)) 
+df_pop_summary %>% rownames_to_column(var = "naming") %>% arrange(-ratio) %>% select(community, naming, ratio)
+
+```
+
+- main stream community
+    - rstudio
+- Community that is different from others
+    - anomaly detection: lowerCamel
+    - Finance: UpperCamel
+    - Java: other
+    - Public health: little snake/alllower
 ```{r naming, echo=FALSE, fig.height = 6, fig.width = 12}
 g_naming <- ggplot(aes(y = percentage, x = community, fill = naming), data = df_naming_ratio_long) + 
     geom_bar(stat="identity") + 
@@ -59,19 +109,22 @@ dev.off()
 gen_fig_naming_dist <- function(target_community){
     df_plot <- df_naming_ratio_long %>% filter(community == target_community)
     g <- ggplot(aes(y = percentage, x = naming, fill=naming), data = df_plot) + 
-        geom_bar(stat="identity") + 
+        geom_bar(stat="identity") + ylim(0, 100) +         
+        labs(title = target_community, subtitle = "put key packages names here", x = "", y = "") + 
+        theme_hc() + theme(legend.position = "none", panel.grid.major.y = element_blank()) +
+        theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) + 
         coord_flip() +
-        labs(title = target_community) + 
-        theme_hc() + theme(legend.position = "none", panel.grid.major.y = element_blank())    
+        geom_text(aes(label=sprintf("%s %s", round(percentage, 2), "%")), position = position_dodge(width=0.9), hjust = -0.25) + 
+        theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size=24), text = element_text(size = 24))
     return(g)
 }
-
+#gen_fig_naming_dist(comm)
 
 communities <- as.character(unique(df_naming_ratio_long$community))
 for (comm in communities){
     g <- gen_fig_naming_dist(comm)
     print(g)
-    png(sprintf("visualization_community/naming_in_comm_%s.png", comm), width = 2*96, height = 2*96)
+    png(sprintf("visualization_community/naming_in_comm_%s.png", comm), width = 4*96, height = 4*96)
     print(g)
     dev.off()
 }
@@ -79,24 +132,31 @@ for (comm in communities){
 ```
 
 
-#### what's most popular naming convention within community?
-```{r, echo=FALSE}
-idxmax <- function(vals){
-    idx <- which(vals == max(vals))
-    return(names(vals)[idx])
-}
-df_pop <- df_naming_ratio_total %>% t() %>% as.data.frame()
-df_pop_summary <- data.frame(community = df_pop %>% apply(2, idxmax), ratio = df_pop %>% apply(2, max)) 
-df_pop_summary
 
-```
 
 
 
 ## cake plot: features 
+- settle down: most-agreed
+    - fx_close_curly
+    - fx_semi
+    - fx_t_f
+    - fx_singleq
+    
+- rstudio does not good at
+    - fx_integer (nr. 1)
+    - fx_inflix
+    - fx_assign
+    - fx_sigleq
+    
+- lowest variation inside community
+    - time, date, and money
+    
+- everyone need to improve
+    - fx_integer
+    - fx_infix
 
 ```{r features, echo=FALSE, fig.height = 24, fig.width = 12}
-df_ratio_total <- readRDS('community_df_ratio_total.RDS')
 levels_feature <- apply(df_ratio_total, 1, max) %>% sort(decreasing = TRUE) %>% names()
 
 df_ratio_long <- df_ratio_total %>% 
@@ -111,8 +171,6 @@ g_features <- ggplot(aes(y = percentage, x = community), data = df_ratio_long) +
     facet_grid(feature ~ ., switch="y") + 
     scale_y_continuous("percentage", position="right") +
     theme(axis.text.x = element_text(angle = 90, hjust = 1), strip.text.y=element_text(angle=180))
-    # facet_grid(. ~ feature) + 
-    # coord_flip()
 
 g_features
 ```
