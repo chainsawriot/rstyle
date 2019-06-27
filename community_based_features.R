@@ -73,7 +73,7 @@ get_naming_feature_table_from_pkgs <-function(target_pkgs){
 ### df_total: counting
 ### df_ratio_total: ratio
 
-community_ids <- list(15,9,4,60,14,35,7,36,25,39,23,19,31,8,64,73,18,20,120)
+community_ids <- list(15,9,4,60,14,35,1,36,25,39,23,19,31,8,64,73,18,20,120)
 #community_ids <- list(20,120)
 iter_community_ids <- iter(community_ids)
 column_name <- c(

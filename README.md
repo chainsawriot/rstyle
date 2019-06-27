@@ -87,7 +87,7 @@ PATH_RSTYLE=/c/Users/{YOUR_USERNAME}/{PATH_TO_RSTYLE}/rstyle bash dev-tmux.sh
 | 60  | RCpp   |
 | 14  | GPS and GEO   |
 | 35  | ML   |
-| 7  | public health and Statistics   |
+| 1  | public health and Statistics   |
 | 36  | text analysis    |
 | 25  | social network analysis   |
 | 39  | mix of graphics and anomaly detection   |
