@@ -26,15 +26,15 @@ poster_scale_color <- scale_color_brewer(palette="Dark2")
 
 cols <- c("Rstudio-related", "base", "Image Plotting",
           "RCpp", "GPS and Geography", "Machine learning",
-          "trash", # error
-          "Text Analysis", "Social Network Analysis", "Mix of Graphics and Anomaly Detection", 
+          # "public health and Statistics", # error
+          "Text Analysis", "Social Network Analysis", "Graphics", 
           "Graph", "Genetics", "Finance", 
           "Insurance and Actuary", "Numerical Optimization", "Sparse Matrix", 
           "Java", "Time, Date, and Money", "Neuronal Science")
 
 community_ids <- list(15, 9, 4, 
                       60, 14, 35, 
-                      7,# error
+                      # 7,# error, shall be 1
                       36, 25, 39, 
                       23, 19, 31, 
                       8, 64, 73, 
@@ -63,11 +63,13 @@ get_size_community <- function(target_community){
     size_community %>% filter(comm == target_community_id) %>% pull(n)
 }
 
-df_naming_ratio_total <- readRDS('community_df_naming_ratio_total.RDS')
+# naming
+df_naming_ratio_total <- readRDS('community_df_naming_ratio_total.RDS') %>% select(-`public health and Statistics`)
 colnames(df_naming_ratio_total) <- cols
-rownames(df_naming_ratio_total) <- c("alllower", "ALLUPPER", "UpperCamel", "lowerCamel", "lower_snack", "dotted.func", "other")
+rownames(df_naming_ratio_total) <- c("alllower", "ALLUPPER", "UpperCamel", "lowerCamel", "lower_snake", "dotted.func", "other")
 
-df_ratio_total <- readRDS('community_df_ratio_total.RDS')
+# features
+df_ratio_total <- readRDS('community_df_ratio_total.RDS') %>% as.data.frame() %>% select(-`public health and Statistics`)
 colnames(df_ratio_total) <- cols
 # rownames(df_ratio_total) <- c("")
 ```
@@ -75,16 +77,16 @@ colnames(df_ratio_total) <- cols
 ## community
 
 #### what's the size of each community? Also the top 10 package members?
-```{r}
+```{r, echo=FALSE}
 size_community
 ```
 
 
 ## function naming convention
 ```{r, include=FALSE}
-levels_naming <- c("dotted.func", "UpperCamel", "lowerCamel",  "other", "ALLUPPER", "alllower", "lower_snack")
+levels_naming <- c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")
 df_naming_ratio_long <- df_naming_ratio_total %>% 
-    wide_to_long(id_var = 'community', key_var = 'naming', val_var = 'ratio', sort_by = quo(lower_snack)) %>% 
+    wide_to_long(id_var = 'community', key_var = 'naming', val_var = 'ratio', sort_by = quo(lower_snake)) %>% 
     mutate(percentage = ratio*100, 
            community=factor(community, levels = unique(community)),
            naming=factor(naming, levels = levels_naming)) 
@@ -136,20 +138,24 @@ ggsave("visualization_community/naming_among_community.png", plot = g_naming, wi
 ```
 
 #### within each community
-```{r, fig.height = 4, fig.width = 6}
+```{r, echo=FALSE, fig.height = 4, fig.width = 6}
+
+wrapper <- function(x, ...) 
+{
+  paste(strwrap(x, ...), collapse = "\n")
+}
+
 get_key_members_subtitle <- function(target_community){
     members <- get_key_members(target_community) 
-    line1 <- paste(members[1:3], collapse = ", ")
-    line2 <- paste(members[4:6], collapse = ", ")
-    line3 <- paste(members[7:10], collapse = ", ")
-    top10_members <- paste(line1, line2, line3, sep = "\n")
+    top10_members <- paste(members, collapse = ", ")
     total_members <- get_size_community(target_community)
-    sprintf("TOP 10 / %s: %s", total_members, top10_members )
+    subtitle <- sprintf("TOP 10 / %s: %s", total_members, top10_members )
+    wrapper(subtitle, width=60)
 }
 
 gen_fig_naming_dist <- function(target_community){
     df_plot <- df_naming_ratio_long %>% filter(community == target_community, 
-                                               naming %in% c("lower_snack", "lowerCamel", "UpperCamel", "dotted.func"))
+                                               naming %in% c("lower_snake", "lowerCamel", "UpperCamel", "dotted.func"))
     g <- ggplot(aes(y = percentage, x = naming, fill=naming), data = df_plot) + 
         geom_bar(stat="identity") + ylim(0, 100) +         
         labs(title = target_community, subtitle = get_key_members_subtitle(target_community), x = "", y = "") + 
@@ -176,7 +182,60 @@ for (comm in communities){
 
 
 
-## cake plot: features 
+## features 
+
+#### distance
+```{r, echo=FALSE}
+avg_feature_error <- df_ratio_total %>% rowMeans()
+get_distance <- function(target_community){
+    feature_error <- df_ratio_total[, target_community]
+    dist <- dist(matrix(c(feature_error, avg_feature_error), nrow = 2))[1]
+    return(dist)
+}
+
+get_size_community_v <- function(communities){
+  sapply(communities, get_size_community)
+}
+
+communities <- as.character(unique(df_naming_ratio_long$community))
+dist_comm <- sapply(communities, get_distance)
+z_dist_comm <- (dist_comm - mean(dist_comm))/sd(dist_comm)
+df_dist <- bind_cols(community = names(dist_comm), dist = dist_comm, zdist = z_dist_comm) %>%
+  mutate(size = get_size_community_v(community)) %>%
+  arrange(dist)
+df_dist
+
+```
+
+```{r, echo=FALSE, fig.height=6, fig.width=12} 
+wt <- df_dist$size/sum(df_dist$size)
+mu_dist <- weighted.mean(df_dist$dist, wt)
+sigma_dist <- sum(wt * (df_dist$dist - mu_dist)^2) %>% sqrt()
+
+df_dist_plot <- df_dist %>% 
+  add_row(community = "average", dist = 0, zdist = 0, .before = 1) %>% 
+   mutate(community = factor(community, levels = unique(community)))
+
+g_dist <- df_dist_plot %>% ggplot(aes(x = community, y = dist)) + 
+  geom_point() + 
+  geom_segment(aes(x=community, xend = community, y = 0, yend = dist)) +
+  labs(x = "", y = "distance") + 
+  geom_hline(yintercept = mu_dist, color = 'red', alpha = 0.4) + 
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 1, ymax = mu_dist + sigma_dist * 2, alpha = 0.1, fill = "red") + 
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 2, ymax = mu_dist + sigma_dist * 3, alpha = 0.2, fill = "red") +
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 3, ymax = Inf, alpha = 0.4, fill = "red") +
+  geom_text(aes(label = round(dist, 2)), position = position_dodge(width=0.9), hjust = -0.40) + 
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  poster_theme + poster_scale_color + 
+  coord_flip()
+
+print(g_dist)
+
+ggsave("visualization_community/feature_distance.png", plot = g_dist, width = 12, height = 6, units = "in", bg = "transparent")
+```
+
+
 - settle down: most-agreed
     - fx_close_curly
     - fx_semi
@@ -196,7 +255,7 @@ for (comm in communities){
     - fx_integer
     - fx_infix
 
-```{r features, echo=FALSE, fig.height = 24, fig.width = 12}
+```{r features, echo=FALSE, fig.height = 12, fig.width = 12}
 levels_feature <- apply(df_ratio_total, 1, max) %>% sort(decreasing = TRUE) %>% names()
 
 df_ratio_long <- df_ratio_total %>% 
@@ -205,15 +264,59 @@ df_ratio_long <- df_ratio_total %>%
            community= factor(community, levels = unique(community)),
            feature = factor(feature, levels_feature)) 
 
-
 g_features <- ggplot(aes(y = percentage, x = community), data = df_ratio_long) + 
     geom_bar(stat="identity", position="dodge") +
     labs(x = "") + 
-    facet_grid(feature ~ ., switch="y") + scale_y_continuous("percentage", position="right") +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1), 
-          strip.text.y=element_text(angle=180)) + 
+    facet_grid(feature ~ ., switch="y") + 
+    scale_y_continuous("percentage", position="right") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1),
+          strip.text.y=element_text(angle=180)) +
     poster_theme + poster_scale_color
 
 print(g_features)
 ggsave("visualization_community/features_among_community.png", plot = g_features, width = 10, height = 16, units = "in", bg = "transparent")
 ```
+
+#### selected features
+
+```{r, echo=FALSE, fig.height = 6, fig.width = 12}
+levels_community <- unique(df_dist_plot$community) %>% as.character()
+
+df_ratio_long_sub <- df_ratio_long %>% 
+  filter(feature %in% c("fx_opencurly", "fx_integer", "fx_infix", "fx_assign")) 
+
+df_ratio_sub_avg <- df_ratio_long_sub %>% 
+  mutate(size = get_size_community_v(community), wt = size/sum(size)) %>% 
+  group_by(feature) %>% summarise(ratio = weighted.mean(ratio, wt), 
+                                  percentage = weighted.mean(percentage, wt)) %>%
+  mutate(community = "average") %>% 
+  select(community, feature, ratio, percentage)
+
+df_ratio_long_sub_plot <- bind_rows(df_ratio_long_sub, df_ratio_sub_avg) %>% 
+    mutate(color =  case_when(
+        community == "average" ~ 1,
+        community != "average" ~ 0)) %>% 
+    mutate(community = factor(community, levels = levels_community), color = factor(color))
+
+g_features_sub <- ggplot(aes(y = percentage, x = community, fill = color), data = df_ratio_long_sub_plot) +
+  geom_bar(stat="identity", position="dodge") + 
+  labs(x="", y = "") + 
+  scale_x_discrete(position="top") + 
+  scale_y_continuous(trans = 'reverse', limits = c(60, 0)) + 
+  coord_flip() +
+  facet_grid(. ~ feature) + 
+  geom_text(aes(label=sprintf("%s%s", round(percentage, 0), "%")), position = position_dodge(width=0.9), hjust = 1.1) + 
+  theme(legend.position = "none", 
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  poster_theme + poster_scale_color
+
+print(g_features_sub)
+ggsave("visualization_community/features_among_selected_community.png", plot = g_features_sub, width = 12, height = 6, units = "in", bg = "transparent")
+
+
+
+
+```
+
+
