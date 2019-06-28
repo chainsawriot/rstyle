@@ -16,15 +16,30 @@ wide_to_long <- function(df, id_var, key_var, val_var, sort_by){
         gather(!!key_var, !!val_var, -(!!id_var)) 
 }
 
-cols <- c("Rstudio-related","base","Image Plotting",
-    "RCpp","GPS and Geography","Machine learning","Public Health and Statistics",
-    "Text Analysis","Social Network Analysis",
-    "Mix of Graphics and Anomaly Detection",
-    "Graph","Genetics",
-    "Finance","Insurance and Actuary","Numerical Optimization",
-    "Sparse Matrix","Java","Time, Date, and Money","Neuronal Science")
+poster_theme <- theme(plot.title = element_text(size = 24, face = "bold"), 
+                      plot.subtitle =  element_text(size = 10), 
+                      axis.text = element_text(size = 15), 
+                      axis.title=element_text(size=14,face="bold")) +  
+    theme(rect = element_rect(fill = "transparent")) 
+poster_scale_color <- scale_color_brewer(palette="Dark2") 
+    
 
-community_ids <- list(15, 9, 4, 60, 14, 35, 1, 36, 25, 39, 23, 19, 31, 8, 64, 73, 18, 20, 120)
+cols <- c("Rstudio-related", "base", "Image Plotting",
+          "RCpp", "GPS and Geography", "Machine learning",
+          "trash", # error
+          "Text Analysis", "Social Network Analysis", "Mix of Graphics and Anomaly Detection", 
+          "Graph", "Genetics", "Finance", 
+          "Insurance and Actuary", "Numerical Optimization", "Sparse Matrix", 
+          "Java", "Time, Date, and Money", "Neuronal Science")
+
+community_ids <- list(15, 9, 4, 
+                      60, 14, 35, 
+                      7,# error
+                      36, 25, 39, 
+                      23, 19, 31, 
+                      8, 64, 73, 
+                      18, 20, 120)
+
 cran_graph <- read_rds("cran_graph.RDS")
 cran_wc <- read_rds("cran_community_20190518.RDS")
 cran_event <- evcent(cran_graph, direct = TRUE)
@@ -55,7 +70,6 @@ rownames(df_naming_ratio_total) <- c("alllower", "ALLUPPER", "UpperCamel", "lowe
 df_ratio_total <- readRDS('community_df_ratio_total.RDS')
 colnames(df_ratio_total) <- cols
 # rownames(df_ratio_total) <- c("")
-
 ```
 
 ## community
@@ -114,21 +128,23 @@ g_naming <- ggplot(aes(y = percentage, x = community, fill = naming), data = df_
     geom_bar(stat="identity") + 
     labs(x = "", y = "%") + 
     theme(legend.title = element_blank()) +
-    coord_flip()
+    coord_flip() + 
+    poster_theme + poster_scale_color
 
 print(g_naming)
-ggsave("visualization_community/naming_among_community.png", plot = g_naming, width = 9, height = 6, units = "in")
+ggsave("visualization_community/naming_among_community.png", plot = g_naming, width = 9, height = 6, units = "in", bg = "transparent")
 ```
 
 #### within each community
 ```{r, fig.height = 4, fig.width = 6}
 get_key_members_subtitle <- function(target_community){
     members <- get_key_members(target_community) 
-    line1 <- paste(members[1:5], collapse = ", ")
-    line2 <- paste(members[6:10], collapse = ", ")
-    top10_members <- paste(line1, line2, sep = "\n")
+    line1 <- paste(members[1:3], collapse = ", ")
+    line2 <- paste(members[4:6], collapse = ", ")
+    line3 <- paste(members[7:10], collapse = ", ")
+    top10_members <- paste(line1, line2, line3, sep = "\n")
     total_members <- get_size_community(target_community)
-    sprintf("TOP 10/%s: %s", total_members, top10_members )
+    sprintf("TOP 10 / %s: %s", total_members, top10_members )
 }
 
 gen_fig_naming_dist <- function(target_community){
@@ -137,11 +153,13 @@ gen_fig_naming_dist <- function(target_community){
     g <- ggplot(aes(y = percentage, x = naming, fill=naming), data = df_plot) + 
         geom_bar(stat="identity") + ylim(0, 100) +         
         labs(title = target_community, subtitle = get_key_members_subtitle(target_community), x = "", y = "") + 
-        theme_hc() + theme(legend.position = "none", panel.grid.major.y = element_blank()) +
-        theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) + 
+        theme_hc() + theme(legend.position = "none", 
+                           panel.grid.major.y = element_blank(), 
+                           axis.text.x = element_blank(), 
+                           axis.ticks.x = element_blank()) +
         coord_flip() +
         geom_text(aes(label=sprintf("%s %s", round(percentage, 2), "%")), position = position_dodge(width=0.9), hjust = -0.25) + 
-        theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15))
+        poster_theme + poster_scale_color
     return(g)
 }
 
@@ -151,7 +169,7 @@ for (comm in communities){
     g <- gen_fig_naming_dist(comm)
     print(g)
     filename <- sprintf("visualization_community/naming_in_comm_%s.png", comm)
-    ggsave(filename, plot = g, width = 6, height = 4, units = "in") #TODO: bg = "transparent"
+    ggsave(filename, plot = g, width = 6, height = 4, units = "in", bg = "transparent")
 }
 ```
 
@@ -190,10 +208,12 @@ df_ratio_long <- df_ratio_total %>%
 
 g_features <- ggplot(aes(y = percentage, x = community), data = df_ratio_long) + 
     geom_bar(stat="identity", position="dodge") +
-    facet_grid(feature ~ ., switch="y") + 
-    scale_y_continuous("percentage", position="right") +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1), strip.text.y=element_text(angle=180))
+    labs(x = "") + 
+    facet_grid(feature ~ ., switch="y") + scale_y_continuous("percentage", position="right") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+          strip.text.y=element_text(angle=180)) + 
+    poster_theme + poster_scale_color
 
 print(g_features)
-ggsave("visualization_community/features_among_community.png", plot = g_features, width = 10, height = 16, units = "in")
+ggsave("visualization_community/features_among_community.png", plot = g_features, width = 10, height = 16, units = "in", bg = "transparent")
 ```
