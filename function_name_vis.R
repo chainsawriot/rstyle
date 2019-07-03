@@ -8,11 +8,26 @@ fx_style %>% mutate(alllower = alllower / total,
                     snake = snake / total,
                     dotted = dotted / total,
                     other = other / total) %>%
-  select(-total) %>% 
-  gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2018) %>%
-  ggplot(aes(x = pub_year, y = share, col = style)) + geom_line() + scale_color_brewer(palette="Dark2") -> prob_plot
+    select(-total) %>% filter(pub_year == 2018)
 
-ggsave('func_prob_plot.png', prob_plot)
+
+fx_style %>% mutate(alllower = alllower / total,
+                    allupper = allupper / total,
+                    upcamel = upcamel / total,
+                    lowcamel = lowcamel / total,
+                    snake = snake / total,
+                    dotted = dotted / total,
+                    other = other / total) %>%
+    select(-total) %>% 
+    gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2018) %>%
+    mutate(opacity = ifelse(style %in% c('dotted', 'snake', 'lowcamel', 'upcamel'), 0.8, 0.4)) %>%
+    ggplot(aes(x = pub_year, y = share, col = style, alpha = opacity)) + geom_line() + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") + 
+    theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15), axis.title=element_text(size=14,face="bold")) + 
+    theme(rect = element_rect(fill = "transparent")) +
+    theme(legend.position = "none") -> prob_plot
+ggsave('func_prob_plot.png', prob_plot, width = 6, height = 5, units = 'in', bg = "transparent") 
+
+
 
 
 fx_style %>% mutate(alllower = alllower / total,

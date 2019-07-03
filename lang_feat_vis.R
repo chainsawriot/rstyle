@@ -28,5 +28,17 @@ res_entropy  <- map_dfr(1998:2018, cal_entro, data = test)
 res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "entropy$")) %>% ggplot(aes(x = pub_year, y = entropy)) + geom_line() + facet_wrap(~feature)
 ggsave('lang_feature.png')
 
-res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% ggplot(aes(x = pub_year, y = entropy)) + geom_line() + facet_wrap(~feature)
+res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature)
 ggsave('lang_feature_ratio.png')
+
+
+res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% 
+    rename(share = 'entropy') %>% filter(feature == "fx_assign_ratio") %>% 
+    ggplot(aes(x = pub_year, y = share)) + geom_line() + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") + 
+    theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15), axis.title=element_text(size=14,face="bold")) + 
+    theme(rect = element_rect(fill = "transparent")) +
+    theme(legend.position = "none") -> amsterdam
+ggsave('lang_amsterdam__ratio.png', amsterdam ,width = 6, height = 5, units = 'in', bg = "transparent")
+
+
+res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% filter(pub_year == 2018)
