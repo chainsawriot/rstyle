@@ -1,0 +1,23 @@
+A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years
+================
+Chia-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan
+
+This is a blog post accompanied the useR! 2019 poster presentation of the paper *"A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years"* by Ms. Chia-Yi Yen, Ms. Mia Huai-Wen Chang and Dr. Chung-hong Chan. The full paper is pending.
+
+Five-sentence Summary
+---------------------
+
+-   There are many programming style variations. R is particularly problematic.
+-   We have analyzed 94 Million Lines of R code and quantified the evolution in popularities of many style-elements.
+-   We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features and effect of editors.
+-   We have identified communitity-specific programming style variations. For example, there are communities which do not use snake\_case at all!
+-   A consensus in programming style is forming. We have summarised it into a **Consensus-based Style**.
+
+Data source
+-----------
+
+In January 2019, we created an local mirror of CRAN using the rsync method suggested by the [CRAN Mirror HOWTO](https://cran.r-project.org/mirror-howto.html). In our local mirror, it contains all package as tarball files (.tar.gz). By all package, we mean all packages actively listed online on the CRAN websites and all packages delisted for whatever reasons e.g. no maintainer, etc. In this analysis, we include all packages, including those delisted.
+
+In order to faciliate the analysis, we have developed the [baaugwo package](https://github.com/chainsawriot/baaugwo) to extract all R sourcecode and metadata from these tarballs. In this study, only the source code from the */R* directory of each tarball file is included. We have also archived the meta data from the DESCRIPTION and NAMESPACE files from these tarballs.
+
+In order to cancel out the effect of multiple submissions in a year by one particular package, we have applied the "one-submission-per-year" rule to randomly selected only one submission from a year for each package. Unless explicitly notice, we present below the analysis of this "one-submission-per-year" sample. Similarly, unless explicitily notice, the unit of the analysis is **function**.
