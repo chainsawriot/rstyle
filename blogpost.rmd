@@ -1,20 +1,24 @@
 ---
-title: "A Computational Analysis of the Dynamics of R Style 
-Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years"
+title: "A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years"
 author: "Chia-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan"
-output: github_document
+date: "04-07-2019"
+output: 
+    pdf_document: 
+        fig_caption: yes
+    github_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is a blog post accompanied the useR! 2019 poster presentation of the paper _"A Computational Analysis of the Dynamics of R Style 
-Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years"_ by Ms. Chia-Yi Yen, Ms. Mia Huai-Wen Chang and Dr. Chung-hong Chan. The full paper is pending.
+This is a preliminary report accompanied the useR! 2019 poster presentation of the paper "A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years" by Ms. Chia-Yi Yen, Ms. Mia Huai-Wen Chang and Dr. Chung-hong Chan. The full paper is pending.
 
+Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years. Paper presented at the useR! 2019 conference, Toulouse, France.
+ 
 ## Five-sentence Summary
 
-* There are many programming style variations. R is particularly problematic.
+* There are so many programming style variations. R is particularly problematic.
 * We have analyzed 94 Million Lines of R code and quantified the evolution in popularities of many style-elements.
 * We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features and effect of editors.
 * We have identified communitity-specific programming style variations. For example, there are communities which do not use snake_case at all!
@@ -44,18 +48,202 @@ Various efforts to standardize the programming style (e.g. [Google's R Style Gui
 ## Analysis
 ### Data Source
 
-In January 2019, we created an local mirror of CRAN using the rsync method suggested by the [CRAN Mirror HOWTO](https://cran.r-project.org/mirror-howto.html). In our local mirror, it contains all package as tarball files (.tar.gz). By all package, we mean all packages actively listed online on the CRAN websites and all packages delisted for whatever reasons e.g. no maintainer, etc. In this analysis, we include all packages, including those delisted.
+In January 2019, we cloned a local mirror of CRAN using the rsync method suggested by the [CRAN Mirror HOWTO](https://cran.r-project.org/mirror-howto.html). In our local mirror, it contains all package as tarball files (.tar.gz). By all package, we mean all packages actively listed online on the CRAN websites and all packages delisted for whatever reasons e.g. no maintainer, etc. In this analysis, we include all packages, including those delisted.
 
 In order to faciliate the analysis, we have developed the [baaugwo package](https://github.com/chainsawriot/baaugwo) to extract all R sourcecode and metadata from these tarballs. In this study, only the source code from the _/R_ directory of each tarball file is included. We have also archived the meta data from the DESCRIPTION and NAMESPACE files from these tarballs.
 
-In order to cancel out the effect of multiple submissions in a year by one particular package, we have applied the "one-submission-per-year" rule to randomly selected only one submission from a year for each package. Unless explicitly notice, we present below the analysis of this "one-submission-per-year" sample. Similarly, unless explicitily notice, the unit of the analysis is __function__.
+In order to cancel out the effect of multiple submissions in a year by one particular package, we have applied the "one-submission-per-year" rule to randomly selected only one submission from a year for each package. Unless explicitly notice, we present below the analysis of this "one-submission-per-year" sample. Similarly, unless explicitily notice, the unit of the analysis is __exported function__. The study period of this study is from 1998 to 2018.
 
 ### Quantification of PSV
 
 Every function in our sample are parsed into a parse tree (or [expression](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expression.html)) using the [parser](https://github.com/jimhester/lintr/blob/master/R/get_source_expressions.R) from the [lintr package](https://github.com/jimhester/lintr).
 
-These parse trees were then linted using the linters from the lintr package to detect for specific style-elements. The style-element considered in this study are:
+These parse trees were then filtered for function definitions and then linted using the linters from the lintr package to detect for specific style-elements. Style-elements considered in this study are:
 
-* Using T/F instead of TRUE / FALSE
+* __fx_assign__: Use = as assignment operators
 
+```{r eval=FALSE}
+softplusFunc = function(value, leaky = FALSE) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0L, value, value * 0.01))
+    }
+    return(log(1L + exp(value)))
+}
+```
+
+* __fx_opencurly__: An open curly is on its own line
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = FALSE) 
+    {
+    if (leaky) 
+        {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0L, value, value * 0.01))
+    }
+    return(log(1L + exp(value)))
+}
+
+```
+
+* __fx_infix__: No spaces are added around infix operators.
+
+```{r eval=FALSE}
+softplusFunc<-function(value, leaky=FALSE) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value>0L, value, value*0.01))
+    }
+    return(log(1L+exp(value)))
+}
+```
+
+* __fx_integer__: Not explicitly type integers
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = FALSE) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0, value, value * 0.01))
+    }
+    return(log(1 + exp(value)))
+}
+```
+
+* __fx_singleq__: Use single quotation marks for strings
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = FALSE) {
+    if (leaky) {
+        warnings('using leaky RELU!')
+        return(ifelse(value > 0L, value, value * 0.01))
+    }
+    return(log(1L + exp(value)))
+}
+```
+
+* __fx_commas__: No spaces are added around commas
+
+```{r eval=FALSE}
+softplusFunc <- function(value,leaky = FALSE) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0L,value,value * 0.01))
+    }
+    return(log(1L + exp(value)))
+}
+```
+
+* __fx_semi__: Use semicolons to terminate lines
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = FALSE) {
+    if (leaky) {
+        warnings("using leaky RELU!");
+        return(ifelse(value > 0L, value, value * 0.01));
+    }
+    return(log(1L + exp(value)));
+}
+```
+
+* __fx_t_f__: Use T/F instead of TRUE / FALSE
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = F) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0L, value, value * 0.01))
+    }
+    return(log(1L + exp(value)))
+}
+```
+
+* __fx_closecurly__: An close curly is not on its own line.
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = F) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0L, value, value * 0.01)) }
+    return(log(1L + exp(value))) }
+```
+
+* __fx_tab__: Use tab to indent
+
+```{r eval=FALSE}
+softplusFunc <- function(value, leaky = FALSE) {
+    if (leaky) {
+        warnings("using leaky RELU!")
+        return(ifelse(value > 0L, value, value * 0.01))
+    }
+    return(log(1L + exp(value)))
+}
+```
+
+We have studied also the naming conventions of all included functions. Using the similar technique of [Bååth (2012)](https://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf), we classified function names into the following 7 categories:
+
+* __alllowercase__: softplusfunc
+* __ALLUPPERCASE__: SOFTPLUSFUNC
+* __UpperCamelCase__: SoftPlusFunc
+* __lowerCamelCase__: softPlusFunc
+* __snake_case__: soft_plus_func
+* __dotted.case__: soft.plus.func
+* __other__: sOfTPluSfunc
+
+The last style-element is the line-length. For each R file, we counted the distribution of line-length. In this analysis, the unit of it is line.
+
+By not considering line-length, we have studied 10 binary style-elements and one multinomial style-element with 7 categories. Therefore, the possible number of combinations based on these 11 style-elements is: 7 * 2^10 = 7168.
+
+### Community-specific variations
+
+On top of the overall patterns based on the analysis all functions, the community-specific variations are also studied. In this part of the study, we ask the question: do local patterns of PSV exist in programming communities? To this end, we constructed a dependency graph of CRAN packages by defining a package as a node and a import/suggest relationship as a directed edge. Communities in this dependency graph were extracted using the Walktrap Community Detection Algorithm (Pons & Latapy, 2005) provided by the [igraph package](https://igraph.org/r/). 
+
+The 18 largest communities were extracted to study local patterns in PSV.
+
+## Results
+
+We studied more than 94 Million lines of code from 15530 unique packages. In total, 1898142 exported functions were studied. Figure 1 displays the evolulation of the 10 binary style-elements from 1998 to 2008.
+
+
+```{r Figure 1, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Evolution in popularities of 10 binary style-elements from 1998 to 2018."}
+require(dbplyr)
+require(tidyverse)
+require(lintr)
+require(furrr)
+
+source('helpers.R')
+
+test <- readRDS('pkgs_functions_with_syntax_feature.RDS')
+
+ent_cal <- function(x) {
+    base <- length(x)
+    group <- c(sum(x) / base, sum(!x) / base)
+    group <- Filter(function(x) x != 0, group)
+    res <-  sum(sapply(group, function(x) x * log(x)))
+    return(-res)
+}
+
+ratio <- function(x) {
+    return(sum(x) / length(x))
+}
+
+cal_entro <- function(yr, data) {
+    data %>% filter(pub_year == yr) %>% pull(function_feat) %>% map("result") %>% Filter(Negate(is.null), .) %>% bind_rows() %>% summarise_at(vars(fx_assign:fx_tab), funs("entropy" = ent_cal, "ratio" = ratio)) %>% mutate(pub_year = yr)
+}
+map_dfr(1998:2018, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + 
+    theme(rect = element_rect(fill = "transparent")) +
+    theme(legend.position = "none")
+```
+
+
+## Discussion
+
+## About the authors
+
+## References
+
+Bååth, R. (2012). The state of naming conventions in R. The R journal, 4(2), 74-75.
+
+Pons, P., & Latapy, M. (2005, October). Computing communities in large networks using random walks. In International symposium on computer and information sciences (pp. 284-293). Springer, Berlin, Heidelberg.
 

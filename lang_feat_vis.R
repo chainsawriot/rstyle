@@ -20,11 +20,31 @@ ratio <- function(x) {
 }
 
 cal_entro <- function(yr, data) {
-    data %>% filter(pub_year == yr) %>% pull(function_feat) %>% map("result") %>% Filter(Negate(is.null), .) %>% bind_rows() %>% summarise_at(vars(fx_assign:fx_tab), funs("entropy" = ent_cal, "ratio" = ratio)) %>% mutate(pub_year = yr)
+    data %>% filter(pub_year == yr) %>% 
+        pull(function_feat) %>% map("result") %>% 
+        Filter(Negate(is.null), .) %>% bind_rows() %>% 
+        summarise_at(vars(fx_assign:fx_tab), 
+                     funs("entropy" = ent_cal, "ratio" = ratio)) %>% 
+        mutate(pub_year = yr)
 }
+
+cal_total <- function(yr, data) {
+    data %>% filter(pub_year == yr) %>% 
+        pull(function_feat) %>% map("result") %>% 
+        Filter(Negate(is.null), .) %>% bind_rows() %>% nrow() -> n
+    tibble(yr = yr, total = n)
+}
+
 
 res_entropy  <- map_dfr(1998:2018, cal_entro, data = test)
 
+
+res_total  <- map_dfr(1998:2018, cal_total, data = test)
+
+
+
+test %>% filter(pub_year <= 2018) %>% group_by(year) %>% 
+    mutate()
 res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "entropy$")) %>% ggplot(aes(x = pub_year, y = entropy)) + geom_line() + facet_wrap(~feature)
 ggsave('lang_feature.png')
 
@@ -39,6 +59,7 @@ res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter
     theme(rect = element_rect(fill = "transparent")) +
     theme(legend.position = "none") -> amsterdam
 ggsave('lang_amsterdam__ratio.png', amsterdam ,width = 6, height = 5, units = 'in', bg = "transparent")
+
 
 
 res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% filter(pub_year == 2018)
