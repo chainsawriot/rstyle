@@ -213,6 +213,8 @@ The evolution of line lengths is tricky to be visualised in 2-D space. We have p
 
 ### Communitiy-based variations
 
+Using the aforementioned community detection algorithm of the dependency graph, 19 large communities were extracted. These communities are named by their applications. Table 1 lists the details of these communities.
+
 Discussion
 ----------
 

@@ -3,10 +3,10 @@ title: "A Computational Analysis of the Dynamics of R Style Based on 94 Million 
 author: "Chia-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan"
 date: "04-07-2019"
 output: 
-    github_document: 
-        default
     pdf_document: 
         fig_caption: yes
+    github_document: 
+        default
 ---
 
 ```{r setup, include=FALSE}
@@ -275,13 +275,14 @@ comment_dist %>% mutate(comment = ifelse(comment == 1, "Yes", "No")) %>%  group_
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10))
 ```
 
-
 ### Communitiy-based variations
 
+Using the aforementioned community detection algorithm of the dependency graph, 19 large communities were extracted. These communities are named by their applications. Table 1 lists the details of these communities.
 
 ## Discussion
 
 ## About the authors
+
 
 ## References
 
