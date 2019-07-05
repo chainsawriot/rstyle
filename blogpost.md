@@ -19,7 +19,7 @@ Five-sentence Summary
 Introduction
 ------------
 
-R is flexible. For example, one can use *&lt;-* or *=* as the assignment operator. The following two functions can both be correctly evaluated by R.
+R is flexible. For example, one can use *&lt;-* or *=* as the assignment operator. The following two functions can both be correctly evaluated.
 
 ``` r
 sum_of_square <- function(x) {
@@ -33,9 +33,9 @@ sum_of_square = function(x) {
 }
 ```
 
-One area that can highlight this flexible is the naming conventions. According to the previous research by [Bååth (2012)](https://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf), there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on programe comprehension. Also, incompatibility between programming styles might also affect reuse, maintainability (Elish & Offutt, 2002) and open source collabration (Wang & Hahn, 2017).
+One area that can highlight this flexible is the naming conventions. According to the previous research by Bååth (2012), there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reuse, maintainability (Elish & Offutt, 2002) and open source collabration (Wang & Hahn, 2017).
 
-Various efforts to standardize the programming style (e.g. [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml), The [Tidyverse Style Guide](https://style.tidyverse.org/), [Bioconductor Coding Style](https://www.bioconductor.org/developers/how-to/coding-style/), etc.) are available. These style guides are based on normative assessment of code quality, e.g. style-elements that improve programe comprehension (Oman & Cook, 1990). However, we argue that we should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have better understanding on the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
+Various efforts to standardize the programming style (e.g. [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml), The [Tidyverse Style Guide](https://style.tidyverse.org/), [Bioconductor Coding Style](https://www.bioconductor.org/developers/how-to/coding-style/), etc.) are available. These style guides are based on normative assessment of code quality, e.g. style-elements that improve programe comprehension (Oman & Cook, 1990). However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have better understanding on the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
 
 Analysis
 --------
@@ -176,38 +176,38 @@ softplusFunc <- function(value, leaky = FALSE) {
 
 We have studied also the naming conventions of all included functions. Using the similar technique of [Bååth (2012)](https://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf), we classified function names into the following 7 categories:
 
--   **alllowercase**: softplusfunc
--   **ALLUPPERCASE**: SOFTPLUSFUNC
--   **UpperCamelCase**: SoftPlusFunc
--   **lowerCamelCase**: softPlusFunc
--   **snake\_case**: soft\_plus\_func
--   **dotted.case**: soft.plus.func
+-   **alllower**: softplusfunc
+-   **allupper**: SOFTPLUSFUNC
+-   **uppercamel**: SoftPlusFunc
+-   **lowercamel**: softPlusFunc
+-   **snake**: soft\_plus\_func
+-   **dotted**: soft.plus.func
 -   **other**: sOfTPluSfunc
 
-The last style-element is the line-length. For each R file, we counted the distribution of line-length. In this analysis, the unit of it is line.
+The last style-element is line-length. For each R file, we counted the distribution of line-length. In this analysis, the unit of analysis is line.
 
 By not considering line-length, we have studied 10 binary style-elements and one multinomial style-element with 7 categories. Therefore, the possible number of combinations based on these 11 style-elements is: 7 \* 2^10 = 7168.
 
 ### Community-specific variations
 
-On top of the overall patterns based on the analysis all functions, the community-specific variations are also studied. In this part of the study, we ask the question: do local patterns of PSV exist in programming communities? To this end, we constructed a dependency graph of CRAN packages by defining a package as a node and a import/suggest relationship as a directed edge. Communities in this dependency graph were extracted using the Walktrap Community Detection Algorithm (Pons & Latapy, 2005) provided by the [igraph package](https://igraph.org/r/).
+On top of the overall patterns based on the analysis of all functions, the community-specific variations are also studied. In this part of the study, we ask the question: do local patterns of PSV exist in various programming communities? To this end, we constructed a dependency graph of CRAN packages by defining a package as a node and a import/suggest relationship as a directed edge. Communities in this dependency graph were extracted using the Walktrap Community Detection Algorithm (Pons & Latapy, 2005) provided by the [igraph package](https://igraph.org/r/).
 
 The 18 largest communities were extracted to study local patterns in PSV.
 
 Results
 -------
 
-We studied more than 94 Million lines of code from 15530 unique packages. In total, 1898142 exported functions were studied. Figure 1 displays the evolution of the 10 binary style-elements from 1998 to 2008. Some style-elements have a very clear trends towards an majority-vs-minority pattern, e.g. fx\_closecurly, fx\_semi, fx\_t\_f and fx\_tab. Some styles-elements are instead trending towards a divergence from a previously majority-vs-minority pattern, e.g. fx\_assign, fx\_commas, fx\_infix, fx\_integer, fx\_opencurly and fx\_singleq. There are two style-elements that deserve specical scrutiny. Firstly, the variation in fx\_assign is a clear example illustrating the effect of introducing a new language element by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 (Chambers, 2001) conicides with the taking off in popularity of such style-element since 2001. Up to now, around 20% of exported functions use such style.
+We studied more than 94 Million lines of code from 15530 unique packages. In total, 1898142 exported functions were studied. Figure 1 displays the evolution of the 10 binary style-elements from 1998 to 2008. Some style-elements have a very clear trends towards a majority-vs-minority pattern, e.g. fx\_closecurly, fx\_semi, fx\_t\_f and fx\_tab. Some styles-elements are instead trending towards a divergence from a previous majority-vs-minority pattern, e.g. fx\_assign, fx\_commas, fx\_infix, fx\_integer, fx\_opencurly and fx\_singleq. There are two style-elements that deserve specical scrutiny. Firstly, the variation in fx\_assign is a clear example illustrating the effect of introducing a new language element by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 (Chambers, 2001) conicides with the taking off in popularity of such style-element since 2001. Up to now, around 20% of exported functions use such style.
 
 Secondly, the popularity of fx\_opencurly shows how a previously established majority style (~80% in late 90s) slowly reduced into a minority, but still very prominant, style (~30% in late 10s).
 
 ![Evolution in popularities of 10 binary style-elements from 1998 to 2018.](blogpost_files/figure-markdown_github/Figure%201-1.png)
 
-Similarly, the evolution of different naming conventions is shown in figure 2. This analysis can best be used to illustrate the effect of style-guides. According to Bååth(2012), dotted style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted style universially and thus a significant decline trend is observed. snake\_case and UpperCamelCase are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of snake\_case is relatively more impressive. To our surprise, lowerCamelCase, a style not endorsed by any style-guide, is currently the most popular naming convention (22.5% in 2018). However, its reign might soon be dethroned by snake\_case (21.5% in 2018) in the near future.
+Similarly, the evolution of different naming conventions is shown in figure 2. This analysis can best be used to illustrate the effect of style-guides. According to Bååth(2012), dotted style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted style universially and thus a significant declining trend is observed. Snake case and uppercamel case are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of snake case is relatively more impressive. To our surprise, lowercamel case, a style not endorsed by any style-guide, is currently the most popular naming convention (22.5% in 2018). However, its reign might soon be dethroned by snake case (21.5% in 2018) in the near future.
 
 ![Evolution in popularities of 7 naming conventions from 1998 to 2018.](blogpost_files/figure-markdown_github/Figure%202-1.png)
 
-The evolution of line lengths is tricky to be visualised in 2-D space. We have prepared an animation to visualise the change in line distribution over the span of 20 years. In this paper, figure 3 shows the snapshot of the change in line length distribution in the range of 40 characters to 100 characters. In general, the programmers of newer packages write with lesser number of characters per line. Similar to previous analyses with Python programs (VanderPlas, 2017), artificial peaks corresponding to recommendations from either style-guides, linters and editor settings are also observed in our analysis. In the most 2018, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as lintr) is more pronounced for lines with comments but not those with actual code.
+The evolution of line lengths is tricky to be visualised in a 2-D space. We have prepared an animation to visualise the change in line distribution over the span of 20 years. In this paper, figure 3 shows the snapshot of the change in line length distribution in the range of 40 characters to 100 characters. In general, the programmers of newer packages write with lesser number of characters per line. Similar to previous analyses with Python programs (e.g. VanderPlas, 2017), artificial peaks corresponding to recommendations from either style-guides, linters and editor settings are also observed in our analysis. In 2018, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as lintr) is more pronounced for lines with comments but not those with actual code.
 
 ![Change in line length distribution: 2003, 2008, 2013 and 2018.](blogpost_files/figure-markdown_github/Figure%203-1.png)
 
@@ -215,22 +215,22 @@ The evolution of line lengths is tricky to be visualised in 2-D space. We have p
 
 Using the aforementioned community detection algorithm of the dependency graph, 19 large communities were extracted. These communities are named by their applications. Table 1 lists the details of these communities.
 
-Using naming convention as an example, there are local patterns in PSV (Figure 4). For example, snake\_case is the most popular naming convention in the "RStudio-related" communitiy as expected because it is the naming convention endorsed by the Tidyverse Style-guide. However, no function exported by the packages from "Time, Date, and Money" community uses such convention.
+Using naming convention as an example, there are local patterns in PSV (Figure 4). For example, snake case is the most popular naming convention in the *"RStudio-related"* communitiy as expected because it is the naming convention endorsed by the Tidyverse Style-guide. However, no function exported by the packages from *"Time, Date, and Money"* community uses such convention.
 
 ![Community-specific distribution of naming conventions among 18 large communities](blogpost_files/figure-markdown_github/Figure%204-1.png)
 
-For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the "Java" and "Sparse Matrix" communities exceptional high level of tab-indentation usage, probably due to influence from Java or Matlab. Also, the exceptional high level in usage of open curly on its own line for the "Graphics" is interesting too.
+For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the *"Java"* and *"Sparse Matrix"* communities exceptional high use of tab indentation, probably due to influence from Java or Matlab. Also, the high level in usage of open curly on its own line for the *"Graphics"* is exceptional too.
 
 ![Community-specific distribution of naming conventions among 18 large communities](blogpost_files/figure-markdown_github/Figure%205-1.png)
 
 Discussion
 ----------
 
-In this study, we study the PSV in CRAN packages across two dimensions: 1) temporal variations: the longitudinal changes in popularities of various style-elements, and 2) community-based variations: the variations among communities of packages. From our analysis, we suggest three possible factors that might drive PSV: effect of style-guides (trending of naming conventions endorsed by RStudio and Google), effect of introducing a new language feature (trending of = usage as assignments) and effect of editors (the domainance of 80-character line limit).
+In this study, we study the PSV in 20-year of CRAN packages across two dimensions: 1) temporal variations: the longitudinal changes in popularities of various style-elements, and 2) community-based variations: the variations among communities of packages. From our analysis, we identify three possible factors that drive PSV: effect of style-guides (trending of naming conventions endorsed by RStudio and Google), effect of introducing a new language feature (trending of = usage as assignments) and effect of editors (the domainance of 80-character line limit).
 
-From a policy recommendation standpoint, our study provides important insight for the R Development Core Team and other stakeholders who care about PSV. Firstly, introduction of new language can have very longlasting effect on PSV. "Assignments with the = operator" is a feature that introduced by the R Development Core Team to *"increase compatibility with S-Plus (as well as with C, Java, and many other languages)."* (Chamber, 2001) This might be a good intention but it has an unintended consequence of introducing a very persistent PSV that two major style-guides (Tidyverse and Google) consider to be a bad style.
+From a policy recommendation standpoint, our study provides important insight for the R Development Core Team and other stakeholders to improve the current situation of PSV in R. Firstly, introduction of new language can have very longlasting effect on PSV. "Assignments with the = operator" is a feature that introduced by the R Development Core Team to *"increase compatibility with S-Plus (as well as with C, Java, and many other languages)."* (Chamber, 2001) This might be a good intention but it has an unintended consequence of introducing a very persistent PSV that two major style-guides (Tidyverse and Google) consider to be a bad style.
 
-Secondly, although style-guides, linters and editors are important homogenizers of PSV, we observe very strong path dependency in PSV. As indicated by the local patterns we found in some communities, some package developers are very resistent to these homogenizers and maintain their own styles. Having said so, we are not accusing those developers for not following the latest trends in programming styles. Instead, they follow one of the golden rules of programming: "if it ain't broke don't fix it". Again, from a policy recommendation standpoint, the existence of local patterns in PSV suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide owners may consider community outreach to promote their endorsed styles.
+Secondly, style-guides, linters and editors are important homogenizers of PSV. Nonetheless, we observe very strong PSV path dependency. As indicated by the local patterns we found in some communities, some package developers are very resistent to these homogenizers and maintain their own styles. Having said so, we are not accusing those developers for not following the latest trends in programming styles. Instead, they follow one of the golden rules of programming: *"if it ain't broke don't fix it"*. Again, from a policy recommendation standpoint, the existence of local patterns in PSV suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide owners may consider community outreach to promote their endorsed styles.
 
 Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 (van Rossum, et al. 2001) from Python Software Foundation? There are of course pros and cons of adopting such official style-guide. As written by Christiansen (1998), *"Style can easily become a religious issue."* It is not our intention to meddle in this "religious issue". If such an effort would be undertaken by someone else, we suggest the following **consensus-based style**. We must stress here that this **consensus-based style** is the most popular style from our analysis. It has no gurantee of improving clarity or comprehensibility. The following is an example of a function written in such consensus-based style.
 
