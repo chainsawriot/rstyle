@@ -4,7 +4,7 @@ author:
 - Chia-Yi Yen, University of Mannheim
 - Mia Huai-Wen Chang, Akelius Residential Property AB
 - Chung-hong Chan, University of Mannheim
-date: "05-07-2019"
+date: "06-07-2019"
 output: 
     pdf_document: 
         fig_caption: yes
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Please cite this draft as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) _A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years._ Paper presented at the useR! 2019 conference, Toulouse, France.
 
-The full paper is forthcoming.
+Full paper is forthcoming.
  
 ## Abstract
 
