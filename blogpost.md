@@ -1,6 +1,6 @@
 A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years
 ================
-Chia-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan
+Chia-Yi Yen, University of Mannheim
 04-07-2019
 
 Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) *A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years.* Paper presented at the useR! 2019 conference, Toulouse, France.
@@ -155,7 +155,7 @@ softplusFunc <- function(value, leaky = F) {
 -   **fx\_closecurly**: An close curly is not on its own line.
 
 ``` r
-softplusFunc <- function(value, leaky = F) {
+softplusFunc <- function(value, leaky = FALSE) {
     if (leaky) {
         warnings("using leaky RELU!")
         return(ifelse(value > 0L, value, value * 0.01)) }
@@ -219,7 +219,7 @@ Using naming convention as an example, there are local patterns in PSV (Figure 4
 
 ![Community-specific distribution of naming conventions among 18 large communities](blogpost_files/figure-markdown_github/Figure%204-1.png)
 
-For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the *"Java"* and *"Sparse Matrix"* communities exceptional high use of tab indentation, probably due to influence from Java or Matlab. Also, the high level in usage of open curly on its own line for the *"Graphics"* is exceptional too.
+For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the *"Java"* and *"Sparse Matrix"* communities exceptional high usage of tab indentation, probably due to influence from Java or Matlab. Also, the high level in usage of open curly on its own line for the *"Graphics"* is exceptional too.
 
 ![Community-specific distribution of naming conventions among 18 large communities](blogpost_files/figure-markdown_github/Figure%205-1.png)
 
