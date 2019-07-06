@@ -1,36 +1,33 @@
 ---
-title: A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines
-  of Code from All CRAN Packages in the Past 20 Years
-author: "Chia-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan"
-date: "04-07-2019"
-output:
-  html_document:
-    df_print: paged
-  github_document: default
-  pdf_document:
-    df_print: kable
-    fig_caption: yes
+title: "A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years"
+author: 
+- Chia-Yi Yen, University of Mannheim
+- Mia Huai-Wen Chang, Akelius Residential Property AB
+- Chung-hong Chan, University of Mannheim
+date: "05-07-2019"
+output: 
+    pdf_document: 
+        fig_caption: yes
+        df_print: kable
+    github_document: 
+        default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) _A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years._ Paper presented at the useR! 2019 conference, Toulouse, France.
+Please cite this draft as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) _A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years._ Paper presented at the useR! 2019 conference, Toulouse, France.
 
-The full paper is pending.
+The full paper is forthcoming.
  
-## Five-sentence Summary
+## Abstract
 
-* There are so many programming style variations. R is particularly problematic.
-* We have analyzed 94 million lines of R code and quantified the evolution in popularities of many style-elements.
-* We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features and effect of editors.
-* We have identified communitity-specific programming style variations. For example, there are communities which do not use snake_case at all!
-* A consensus in programming style is forming. We have summarised it into a __Consensus-based Style__.
+There are so many programming style variations in R. We have analyzed 94 Million Lines of R code and quantified the evolution in popularities of 12 style-elements from 1998 to 2018. We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features and effect of editors. We have identified communitity-specific programming style variations. For example, there are programming communities which do not use snake_case at all. A consensus in programming style is forming. We have summarised it into a _Consensus-based Style_.
 
 ## Introduction
 
-R is flexible. For example, one can use _<-_ or _=_ as the assignment operator. The following two functions can both be correctly evaluated.
+R is flexible. For example, one can use _<-_ or _=_ as assignment operators. The following two functions can both be correctly evaluated.
 
 ```{r eval=FALSE}
 sum_of_square <- function(x) {
@@ -45,7 +42,7 @@ sum_of_square = function(x) {
 }
 ```
 
-One area that can highlight this flexible is the naming conventions. According to the previous research by Bååth (2012), there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reuse, maintainability (Elish & Offutt, 2002) and open source collabration (Wang & Hahn, 2017). 
+One area that can highlight this flexible is naming conventions. According to the previous research by Bååth (2012), there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reuse, maintainability (Elish & Offutt, 2002) and open source collabration (Wang & Hahn, 2017). 
 
 Various efforts to standardize the programming style (e.g. [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml), The [Tidyverse Style Guide](https://style.tidyverse.org/), [Bioconductor Coding Style](https://www.bioconductor.org/developers/how-to/coding-style/), etc.) are available. These style guides are based on normative assessment of code quality, e.g. style-elements that improve programe comprehension (Oman & Cook, 1990). However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have better understanding on the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
 
@@ -166,7 +163,7 @@ softplusFunc <- function(value, leaky = F) {
 * __fx_closecurly__: An close curly is not on its own line.
 
 ```{r eval=FALSE}
-softplusFunc <- function(value, leaky = F) {
+softplusFunc <- function(value, leaky = FALSE) {
     if (leaky) {
         warnings("using leaky RELU!")
         return(ifelse(value > 0L, value, value * 0.01)) }
@@ -207,7 +204,8 @@ The 18 largest communities were extracted to study local patterns in PSV.
 
 ## Results
 
-We studied more than 94 million lines of code from 15530 unique packages. In total, 1898142 exported functions were studied. Figure 1 displays the evolution of the 10 binary style-elements from 1998 to 2018. Some style-elements have a very clear trends towards a majority-vs-minority pattern, e.g. fx_closecurly, fx_semi, fx_t_f and fx_tab. Some styles-elements are instead trending towards a divergence from a previous majority-vs-minority pattern, e.g. fx_assign, fx_commas, fx_infix, fx_integer, fx_opencurly and fx_singleq. There are two style-elements that deserve specical scrutiny. Firstly, the variation in fx_assign is a clear example illustrating the effect of introducing a new language element by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 (Chambers, 2001) conicides with the taking off in popularity of such style-element since 2001. Up to now, around 20% of exported functions use such style.
+
+We studied more than 94 million lines of code from 15530 unique packages. In total, 1898142 exported functions were studied. Figure 1 displays the evolution of the 10 binary style-elements from 1998 to 2008. Some style-elements have a very clear trends towards a majority-vs-minority pattern, e.g. fx_closecurly, fx_semi, fx_t_f and fx_tab. Some styles-elements are instead trending towards a divergence from a previous majority-vs-minority pattern, e.g. fx_assign, fx_commas, fx_infix, fx_integer, fx_opencurly and fx_singleq. There are two style-elements that deserve specical scrutiny. Firstly, the variation in fx_assign is a clear example illustrating the effect of introducing a new language element by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 (Chambers, 2001) has conicided with the taking off in popularity of such style-element since 2001. Up to now, around 20% of exported functions use such style.
 
 Secondly, the popularity of fx_opencurly shows how a previously established majority style (~80% in late 90s) slowly reduced into a minority, but still very prominant, style (~30% in late 10s).
 
@@ -241,7 +239,7 @@ map_dfr(1998:2018, cal_entro, data = test) %>% gather(key = 'feature', value = '
     theme(legend.position = "none")
 ```
 
-Similarly, the evolution of different naming conventions is shown in figure 2. This analysis can best be used to illustrate the effect of style-guides. According to Bååth(2012), dotted style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted style universially and thus a significant declining trend is observed. Snake case and uppercamel case are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of snake case is relatively more impressive. To our surprise, lowercamel case, a style not endorsed by any style-guide, is currently the most popular naming convention (22.5% in 2018). However, its reign might soon be dethroned by snake case (21.5% in 2018) in the near future.
+Similarly, the evolution of different naming conventions is shown in figure 2. This analysis can best be used to illustrate the effect of style-guides. According to Bååth(2012), dotted style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted style and thus a significant declining trend is observed. Snake case and uppercamel case are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of snake case is relatively more impressive. To our surprise, lowercamel case, a style not endorsed by any style-guide, is currently the most popular naming convention (22.5% in 2018). However, its reign might soon be dethroned by snake case (21.5% in 2018) in the near future.
 
 ```{r Figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Figure 2: Evolution in popularities of 7 naming conventions from 1998 to 2018."}
 require(tidyverse)
@@ -261,7 +259,7 @@ fx_style %>% mutate(alllower = alllower / total,
     theme(rect = element_rect(fill = "transparent"))
 ```
 
-The evolution of line lengths is tricky to be visualised in a 2-D space. We have prepared an animation to visualise the change in line distribution over the span of 20 years. In this paper, figure 3 shows the snapshot of the change in line length distribution in the range of 40 characters to 100 characters. In general, the programmers of newer packages write with lesser number of characters per line. Similar to previous analyses with Python programs (e.g. VanderPlas, 2017), artificial peaks corresponding to recommendations from either style-guides, linters and editor settings are also observed in our analysis. In 2018, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as lintr) is more pronounced for lines with comments but not those with actual code.
+The evolution of line lengths is tricky to be visualised on a 2-D surface. We have prepared an animation to visualise the change in line distribution over the span of 20 years. In this paper, figure 3 shows the snapshot of the change in line length distribution in the range of 40 characters to 100 characters. In general, the programmers of newer packages write with lesser number of characters per line. Similar to previous analyses with Python programs (e.g. VanderPlas, 2017), artificial peaks corresponding to recommendations from either style-guides, linters and editor settings are also observed in our analysis. In 2018, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as lintr) is more pronounced for lines with comments but not those with actual code.
 
 ```{r Figure 3, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Figure 3: Change in line length distribution: 2003, 2008, 2013 and 2018."}
 
@@ -335,7 +333,7 @@ ggplot(aes(y = percentage, x = community, fill = naming), data = df_naming_ratio
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10))
 ```
 
-For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the _"Java"_ and _"Sparse Matrix"_ communities exceptional high use of tab indentation, probably due to influence from Java or Matlab. Also, the high level in usage of open curly on its own line for the _"Graphics"_ is exceptional too.
+For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the _"Java"_ and _"Sparse Matrix"_ communities exceptional high usage of tab indentation, probably due to influence from Java or Matlab. Also, the high level in usage of open curly on its own line for the _"Graphics"_ is exceptional too.
 
 ```{r Figure 5, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Figure 5: Community-specific distribution of naming conventions among 18 large communities", fig.width=8, fig.height=11}
 df_ratio_total <- readRDS('community_df_ratio_total.RDS') %>% as.data.frame() %>% select(-`public health and Statistics`)
@@ -364,9 +362,9 @@ In this study, we study the PSV in 20-year of CRAN packages across two dimension
 
 From a policy recommendation standpoint, our study provides important insight for the R Development Core Team and other stakeholders to improve the current situation of PSV in R. Firstly, introduction of new language can have very longlasting effect on PSV. "Assignments with the = operator" is a feature that introduced by the R Development Core Team to _"increase compatibility with S-Plus (as well as with C, Java, and many other languages)."_ (Chamber, 2001) This might be a good intention but it has an unintended consequence of introducing a very persistent PSV that two major style-guides (Tidyverse and Google) consider to be a bad style.
 
-Secondly, style-guides, linters and editors are important homogenizers of PSV. Nonetheless, we observe very strong PSV path dependency. As indicated by the local patterns we found in some communities, some package developers are very resistent to these homogenizers and maintain their own styles. Having said so, we are not accusing those developers for not following the latest trends in programming styles. Instead, they follow one of the golden rules of programming: _"if it ain't broke don't fix it"_. Again, from a policy recommendation standpoint, the existence of local patterns in PSV suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide owners may consider community outreach to promote their endorsed styles.
+Secondly, style-guides, linters and editors are important standardizers of PSV. Nonetheless, we observe very strong path dependency in programming styles. As indicated by the local patterns of PSV we found in some communities, some package developers are very resistent to these standardizers and keep using their own styles. Having said so, we are not accusing those developers for not following the trendy programming styles. Instead, they follow one of the golden rules of programming: _"if it ain't broke don't fix it"_. Again, from a policy recommendation standpoint, the existence of local PSV patterns suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide's authors may consider community outreach to promote their endorsed styles, if they want other communities adopt their styles.
 
-Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 (van Rossum, et al. 2001) from Python Software Foundation? There are of course pros and cons of adopting such official style-guide. As written by Christiansen (1998), _"Style can easily become a religious issue."_ It is not our intention to meddle in this "religious issue". If such an effort would be undertaken by someone else, we suggest the following __consensus-based style__. We must stress here that this __consensus-based style__ is the most popular style from our analysis. It has no gurantee of improving clarity or comprehensibility. The following is an example of a function written in such consensus-based style.
+Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 of the Python Software Foundation (van Rossum, et al. 2001)? There are of course pros and cons of adopting such official style-guide. As written by Christiansen (1998), _"style can easily become a religious issue."_ It is not our intention to meddle in this "religious issue". If such an effort would be undertaken by someone else, we suggest the following _consensus-based style_. We must stress here that this _consensus-based style_ is only the most popular style based on our analysis, i.e. the _Zeitgeist_ (the spirit of the age). We have no gurantee that this style can improve clarity or comprehensibility. The following is an example of a function written in such _consensus-based style_.
 
 ```{r eval=FALSE}
 softplusFunc <- function(value, leaky = FALSE) {
@@ -383,16 +381,16 @@ In essense,
 * Use lowerCamel or snake case
 * Use <- to assign, don't use =
 * Add a space after commas
-* Don't use T / F, use TRUE / FALSE
+* Use TRUE / FALSE, don't use T / F
 * Put open curly bracket on same line then a newline
 * Use double quotation mark for strings
 * Add spaces around infix operators
 * Don't terminate lines with semicolon
 * Be liberal about typing integers
 * Put close curly bracket on its own line
-* Don't use tab to intend
+* Don't use tab to indent
 
-Although enforcing a consistent style can improve open source collaboration (Wang & Hahn, 2017), one must also bear in mind that these rules need to be adjusted sometimes. For example, using spaces instead of tabs for indentation can make code not assessible to visually impaired programmers (Mosal, 2019).
+As a final remark: although enforcing a consistent style can improve open source collaboration (Wang & Hahn, 2017), one must also bear in mind that these rules need to be adjusted sometimes to cater for programmers with special needs. For example, using spaces instead of tabs for indentation can make code not assessible to visually impaired programmers (Mosal, 2019).
 
 ## About the authors
 Ms __Chia-Yi Yen__ is currently a finance PhD student at the Mannheim Business School. Prior to her doctoral studies, she worked as a financial engineer in hedge fund industry and a data science consultant for financial institutions. Besides, she is also listed as one of the inventors of three Taiwanese patents (under review) of innovative Fintech applications, a translator of two children’s novels on computer science, the co-founder of R-Ladies Taipei — a local community helping women learn data science and R language — and one of the Microsoft Most Valuable Professionals from January 2017 to June 2019.
