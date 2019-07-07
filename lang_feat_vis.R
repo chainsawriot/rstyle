@@ -54,7 +54,8 @@ ggsave('lang_feature_ratio.png')
 
 res_entropy %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% 
     rename(share = 'entropy') %>% filter(feature == "fx_assign_ratio") %>% 
-    ggplot(aes(x = pub_year, y = share)) + geom_line() + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") + 
+    mutate(share = share * 100) %>%
+    ggplot(aes(x = pub_year, y = share)) + geom_line() + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions (%)") + 
     theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15), axis.title=element_text(size=14,face="bold")) + 
     theme(rect = element_rect(fill = "transparent")) +
     theme(legend.position = "none") -> amsterdam

@@ -82,9 +82,9 @@ selected_comm_feat %>%
                      yend = dist))  +
     labs(x = "", y = "distance") + 
     geom_hline(yintercept = mu_dist, color = "#E7298A", alpha = 0.4) + 
-    annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 1, ymax = mu_dist + sigma_dist * 2, alpha = 0.1, fill = "#E7298A") + 
-    annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 2, ymax = mu_dist + sigma_dist * 3, alpha = 0.2, fill = "#E7298A") +
-    annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 3, ymax = Inf, alpha = 0.4, fill = "#E7298A") +
+    annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 1, ymax = mu_dist + sigma_dist * 2, alpha = 0.2, fill = "#562457") + 
+    annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 2, ymax = mu_dist + sigma_dist * 3, alpha = 0.4, fill = "#562457") +
+    annotate("rect", xmin = -Inf, xmax = Inf, ymin = mu_dist + sigma_dist * 3, ymax = Inf, alpha = 0.7, fill = "#562457") +
     geom_text(aes(label = round(dist, 2)), position = position_dodge(width=0.9), hjust = -0.40) + 
     poster_theme + poster_scale_color + 
     theme(axis.text.x = element_blank(),

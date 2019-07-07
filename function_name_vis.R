@@ -11,6 +11,10 @@ fx_style %>% mutate(alllower = alllower / total,
     select(-total) %>% filter(pub_year == 2018)
 
 
+tibble(style = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
+       long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) ->
+    naming_conv
+
 fx_style %>% mutate(alllower = alllower / total,
                     allupper = allupper / total,
                     upcamel = upcamel / total,
@@ -20,8 +24,14 @@ fx_style %>% mutate(alllower = alllower / total,
                     other = other / total) %>%
     select(-total) %>% 
     gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2018) %>%
+    left_join(naming_conv, by = 'style') %>% 
     mutate(opacity = ifelse(style %in% c('dotted', 'snake', 'lowcamel', 'upcamel'), 0.8, 0.4)) %>%
-    ggplot(aes(x = pub_year, y = share, col = style, alpha = opacity)) + geom_line() + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") + 
+    mutate(long_name = fct_relevel(long_name, 
+                                   "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) %>%
+    mutate(percentage = share * 100) %>%
+    ggplot(aes(x = pub_year, y = percentage, col = long_name, alpha = opacity)) + 
+    geom_line() + scale_color_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
+    xlab("Year") + ylab("Share of all functions (%)") + 
     theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15), axis.title=element_text(size=14,face="bold")) + 
     theme(rect = element_rect(fill = "transparent")) +
     theme(legend.position = "none") -> prob_plot
