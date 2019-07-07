@@ -1,0 +1,170 @@
+require(tidyverse)
+require(igraph)
+require(rex)
+require(datasets)
+require(dplyr)
+require(purrr)
+require(stringr)
+require(iterators)
+
+pkgs <- readRDS("pkgs_functions_with_syntax_feature.RDS")
+comm <- readRDS("cran_community_20190518.RDS")
+
+style_regexes <- list(
+    "alllowercase"   = rex(start, one_or_more(rex(one_of(lower, digit))), end),
+    "ALLUPPERCASE"   = rex(start, one_or_more(rex(one_of(upper, digit))), end),
+    "UpperCamelCase" = rex(start, upper, zero_or_more(alnum), end),
+    "lowerCamelCase" = rex(start, lower, zero_or_more(alnum), end),
+    "snake_case"     = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more("_", one_or_more(rex(one_of(lower, digit)))), end),
+    "dotted.case"    = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more(dot, one_or_more(rex(one_of(lower, digit)))), end)
+)
+
+conv_style <- function(x, style_regexes) {
+    x <- x[!is.na(x) & !is.null(x)]
+    styles <- map_chr(x, match_function_style, style_regexes = style_regexes)
+}
+
+match_function_style <- function(x, style_regexes) {
+    res <- map_lgl(style_regexes, ~ str_detect(x, .))
+    if (sum(res) == 0) {
+        return("other")
+    }
+    names(style_regexes)[min(which(res))]
+}
+
+get_target_pkgs <- function(x) {
+    membership(comm)[membership(comm) == x] %>% names -> target_pkgs
+    return(target_pkgs)
+}
+
+
+ratio <- function(x) {
+    return(sum(x) / length(x))
+}
+
+get_feature_table_from_pkgs <- function(comm_id, return_res = FALSE) {
+    print(comm_id)
+    target_pkgs <- get_target_pkgs(comm_id)
+        pkgs %>% filter(pub_year <= 2018) %>% 
+        filter(pkg_name %in% target_pkgs) %>% 
+        group_by(pkg_name) %>% 
+        top_n(1, wt = pub_year) %>% 
+        ungroup %>% select(function_feat) %>%
+        pull %>% map("result") %>% Filter(Negate(is.null), .) %>%
+        bind_rows -> res
+    if (return_res) {
+        return(res)
+    }
+    res %>% summarise_at(vars(fx_assign:fx_tab), ratio) -> binratio
+    res %>% mutate(styles = map(fx_name, conv_style, style_regexes = style_regexes)) %>%
+        summarise(alllower = ratio(unlist(styles) == "alllowercase"),
+                  allupper = ratio(unlist(styles) == "ALLUPPERCASE"),
+                  upcamel = ratio(unlist(styles) == "UpperCamelCase"),
+                  lowcamel = ratio(unlist(styles) == "lowerCamelCase"),
+                  snake = ratio(unlist(styles) == "snake_case"),
+                  dotted = ratio(unlist(styles) == "dotted.case"),
+                  other = ratio(unlist(styles) == "other")) -> nameratio
+    bind_cols(tibble(comm_id = comm_id), binratio, nameratio)
+}
+
+# get_naming_feature_table_from_pkgs <- function(target_pkgs){
+#     pkgs %>% filter(pub_year <= 2018) %>% 
+#         filter(pkg_name %in% target_pkgs) %>% 
+#         group_by(pkg_name) %>% 
+#         top_n(1, wt = pub_year) %>% 
+#         ungroup %>% select(function_feat) %>%
+#         pull %>% map("result") %>% Filter(Negate(is.null), .) %>%
+#         bind_rows %>%
+#         mutate(styles = map(fx_name, conv_style, style_regexes = style_regexes)) %>%
+#         summarise(alllower = ratio(unlist(styles) == "alllowercase"),
+#                   allupper = ratio(unlist(styles) == "ALLUPPERCASE"),
+#                   upcamel = ratio(unlist(styles) == "UpperCamelCase"),
+#                   lowcamel = ratio(unlist(styles) == "lowerCamelCase"),
+#                   snake = ratio(unlist(styles) == "snake_case"),
+#                   dotted = ratio(unlist(styles) == "dotted.case"),
+#                   other = ratio(unlist(styles) == "other"))
+# }
+
+# require(testthat)
+# test_res <- get_feature_table_from_pkgs(20, TRUE)
+# test_res_x <- get_feature_table_from_pkgs(20, FALSE)
+# 
+# expect_equal(sum(test_res$fx_integer) / nrow(test_res), test_res_x$fx_integer)
+# 
+# test_res %>% mutate(styles = map(fx_name, conv_style, style_regexes = style_regexes)) %>% 
+#     pull(styles) %>% unlist
+
+
+### build two fx feature tables for all communities
+### df_total: counting
+### df_ratio_total: ratio
+
+community_ids <- c(15,9,4,60,14,35,1,36,25,39,23,19,31,8,64,73,18,20,120)
+
+res <- map_dfr(community_ids, get_feature_table_from_pkgs)
+comm_name <- c("RStudio-related", "base", "Image Plotting",
+                 "RCpp", "GPS and Geography", "Machine learning",
+                 "Public Health and Statistics",
+                 "Text Analysis", "Social Network Analysis", "Graphics", 
+                 "Graph data structure", "Genetics", "Finance", 
+                 "Insurance and Actuary", "Numerical Optimization", "Sparse Matrix", 
+                 "Java", "Time, Date, and Money", "Neuroscience")
+res$comm_name <- comm_name
+saveRDS(res, 'comm_lang_feature.RDS')
+
+##community_ids <- list(20,120)
+##iter_community_ids <- iter(community_ids)
+
+
+# column_name <- c(
+#     "Rstudio-related packages","base","image plotting",
+#     "RCpp","GPS and GEO","ML","public health and Statistics",
+#     "text analysis","social network analysis",
+#     "mix of graphics and anomaly detection",
+#     "graph and its visualization","genetics",
+#     "finance","insurance and actuary","numerical optimization",
+#     "sparse matrix","Java","time, date, and money","neuronal science")
+# column_name <- c(
+#     "time, date, and money","neuronal science")
+# 
+# i <- 0 
+# while (i < length(community_ids)) {
+#     target_pkgs <- nextElem(iter_community_ids) %>% get_target_pkgs
+#     
+#     feature_table <- target_pkgs %>% 
+#         get_feature_table_from_pkgs
+#     
+#     naming_features_table <- target_pkgs %>% 
+#         get_naming_feature_table_from_pkgs
+#     
+#     if (i==0){
+#         df_total <- feature_table
+#         df_ratio_total<- prop.table(feature_table)
+#         df_naming_total <- naming_features_table
+#         df_naming_ratio_total<- prop.table(naming_features_table)
+#     }
+#     else{
+#         df_total <- cbind(df_total, feature_table)
+#         df_ratio_total<- cbind(df_ratio_total, prop.table(feature_table))
+#         df_naming_total <- cbind(df_naming_total, naming_features_table)
+#         df_naming_ratio_total<- cbind(df_naming_ratio_total, prop.table(naming_features_table))
+#     }
+#     i=i+1 
+# } 
+# 
+# colnames(df_total) <- column_name
+# colnames(df_ratio_total) <- column_name
+# colnames(df_naming_total) <- column_name
+# colnames(df_naming_ratio_total) <- column_name
+# 
+# View(df_total)
+# View(df_ratio_total)
+# View(df_naming_total)
+# View(df_naming_ratio_total)
+# 
+# df_total %>% saveRDS('community_df_total.RDS')
+# df_ratio_total %>% saveRDS('community_df_ratio_total.RDS')
+# df_naming_total %>% saveRDS('community_df_naming_total.RDS')
+# df_naming_ratio_total %>% saveRDS('community_df_naming_ratio_total.RDS')
+
+###
