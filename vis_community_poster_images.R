@@ -109,7 +109,7 @@ comm_feat %>% select(alllower:comm_name) %>%
     geom_bar(stat="identity") + 
     labs(x = "", y = "%") + 
     theme(legend.title = element_blank()) +
-    coord_flip() + scale_fill_brewer(palette = 'Dark2') + 
+    coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
     poster_theme -> g_naming
 ggsave("visualization_community/naming_among_community2.png", plot = g_naming, width = 9, height = 6, units = "in", bg = "transparent")
 
@@ -158,6 +158,8 @@ wrapper <- function(x, ...)  {
     paste(strwrap(x, ...), collapse = "\n")
 }
 
+RColorBrewer::brewer.pal(7, 'Dark2')[c(1,5,3,7)]
+
 plot_target <- function(target_community = "Java", network_supple_data) {
     network_supple_data %>% filter(comm_name == target_community) %>% rowwise %>%
         mutate(subtitle = wrapper(sprintf("Top 3 / %s: %s", n_mem, top_pkg), width=60)) %>%
@@ -177,7 +179,7 @@ plot_target <- function(target_community = "Java", network_supple_data) {
         coord_flip() +
         geom_text(aes(label=sprintf("%s %s", round(percentage, 2), "%")), 
               position = position_dodge(width=0.9), hjust = -0.25) + 
-    scale_fill_brewer(palette = 'Dark2') + poster_theme -> g
+        scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')[c(1,3,6,7)])  + poster_theme -> g ##bruteforce fixing
 filename <- sprintf("visualization_community/New_naming_in_comm_%s.png", target_community)
 ggsave(filename, plot = g, width = 6, height = 4, units = "in", bg = "transparent")
 }
