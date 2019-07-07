@@ -49,7 +49,7 @@ Various efforts to standardize the programming style (e.g. [Google's R Style Gui
 ## Analysis
 ### Data Source
 
-In January 2019, we cloned a local mirror of CRAN using the rsync method suggested by the [CRAN Mirror HOWTO](https://cran.r-project.org/mirror-howto.html). In our local mirror, it contains all packages as tarball files (.tar.gz). By all packages, we mean packages actively listed online on the CRAN websites and packages delisted for whatever reasons e.g. no maintainer, etc. In this analysis, we include all packages, including those delisted.
+In January 2019, we cloned a local mirror of CRAN using the rsync method suggested by the [CRAN Mirror HOWTO](https://cran.r-project.org/mirror-howto.html) (Pausakerl, 2016). In our local mirror, it contains all packages as tarball files (.tar.gz). By all packages, we mean packages actively listed online on the CRAN websites and packages delisted for whatever reasons e.g. no maintainer, etc. In this analysis, we include all packages, including those delisted.
 
 In order to facilitate the analysis, we have developed the [baaugwo package](https://github.com/chainsawriot/baaugwo) to extract all R sourcecode and metadata from these tarballs. In this study, only the source code from the _/R_ directory of each tarball file is included. We have also archived the metadata from the _DESCRIPTION_ and _NAMESPACE_ files from the tarballs.
 
@@ -57,7 +57,7 @@ In order to cancel out the overrepresentation effect of multiple submissions in 
 
 ### Quantification of PSV
 
-Every function in our sample are parsed into a parse tree (or [expression](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expression.html)) using the [parser](https://github.com/jimhester/lintr/blob/master/R/get_source_expressions.R) from the [lintr package](https://github.com/jimhester/lintr).
+Every function in our sample are parsed into a parse tree (or [expression](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expression.html)) using the [parser](https://github.com/jimhester/lintr/blob/master/R/get_source_expressions.R) from the [lintr package](https://github.com/jimhester/lintr) (Hester & Angly, 2019).
 
 These parse trees were then filtered for lines with function definition and then linted them using the linters from the lintr package to detect for various style-elements. Style-elements considered in this study are:
 
@@ -185,11 +185,11 @@ softplusFunc <- function(value, leaky = FALSE) {
 We have studied also the naming conventions of all included functions. Using the similar technique of [Bååth (2012)](https://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf), we classified function names into the following 7 categories:
 
 * __alllower__: softplusfunc
-* __allupper__: SOFTPLUSFUNC
-* __uppercamel__: SoftPlusFunc
-* __lowercamel__: softPlusFunc
-* __snake__: soft_plus_func
-* __dotted__: soft.plus.func
+* __ALLUPPER__: SOFTPLUSFUNC
+* __UpperCamel__: SoftPlusFunc
+* __lowerCamel__: softPlusFunc
+* __lower_snake__: soft_plus_func
+* __dotted.func__: soft.plus.func
 * __other__: sOfTPluSfunc
 
 The last style-element is line-length. For each R file, we counted the distribution of line-length. In this analysis, the unit of analysis is line.
@@ -203,7 +203,6 @@ On top of the overall patterns based on the analysis of all functions, the commu
 The 18 largest communities were extracted to study local patterns in PSV.
 
 ## Results
-
 
 We studied more than 94 million lines of code from 15530 unique packages. In total, 1898142 exported functions were studied. Figure 1 displays the popularities of the 10 binary style-elements from 1998 to 2008. Some style-elements have a very clear trends towards a majority-vs-minority pattern, e.g. fx_closecurly, fx_semi, fx_t_f and fx_tab. Some styles-elements are instead trending towards a divergence from a previous majority-vs-minority pattern, e.g. fx_assign, fx_commas, fx_infix, fx_integer, fx_opencurly and fx_singleq. There are two style-elements that deserve special scrutiny. Firstly, the variation in fx_assign is a clear example illustrating the effect of introducing a new language element by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 (Chambers, 2001) has coincided with the taking off in popularity of such style-element since 2001. Up to now, around 20% of exported functions use such style.
 
@@ -227,6 +226,14 @@ ent_cal <- function(x) {
     return(-res)
 }
 
+ent_cal <- function(x) {
+    base <- length(x)
+    group <- c(sum(x) / base, sum(!x) / base)
+    group <- Filter(function(x) x != 0, group)
+    res <-  sum(sapply(group, function(x) x * log(x)))
+    return(-res)
+}
+
 ratio <- function(x) {
     return(sum(x) / length(x))
 }
@@ -234,17 +241,23 @@ ratio <- function(x) {
 cal_entro <- function(yr, data) {
     data %>% filter(pub_year == yr) %>% pull(function_feat) %>% map("result") %>% Filter(Negate(is.null), .) %>% bind_rows() %>% summarise_at(vars(fx_assign:fx_tab), funs("entropy" = ent_cal, "ratio" = ratio)) %>% mutate(pub_year = yr)
 }
+
 map_dfr(1998:2018, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + 
     theme(rect = element_rect(fill = "transparent")) +
     theme(legend.position = "none")
 ```
 
-Similarly, the evolution of different naming conventions is shown in figure 2. This analysis can best be used to illustrate the effect of style-guides. According to Bååth(2012), dotted style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted style and thus a significant declining trend is observed. Snake case and uppercamel case are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of snake case is relatively more impressive. To our surprise, lowercamel case, a style endorsed by no style-guide, is currently the most popular naming convention (22.5% in 2018). However, its reign might soon be dethroned by snake case (21.5% in 2018) in the near future.
+Similarly, the evolution of different naming conventions is shown in figure 2. This analysis can best be used to illustrate the effect of style-guides. According to Bååth(2012), dotted.func style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted.func style and thus a significant declining trend is observed. lower_snake and UpperCamel are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of lower_snake is relatively more impressive. To our surprise, lowerCamel case, a style endorsed by no style-guide, is currently the most popular naming convention (22.5% in 2018). However, its reign might soon be dethroned by lower_snake (21.5% in 2018) in the near future.
 
 ```{r Figure 2, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Evolution in popularities of 7 naming conventions from 1998 to 2018."}
 require(tidyverse)
 
 fx_style <- readRDS('fx_style_by_year.RDS')
+
+tibble(style = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
+       long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) ->
+    naming_conv
+
 fx_style %>% mutate(alllower = alllower / total,
                     allupper = allupper / total,
                     upcamel = upcamel / total,
@@ -254,12 +267,20 @@ fx_style %>% mutate(alllower = alllower / total,
                     other = other / total) %>%
     select(-total) %>% 
     gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2018) %>%
-    ggplot(aes(x = pub_year, y = share, col = style)) + geom_line(alpha = 0.8) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all exported functions") + 
-    theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15), axis.title=element_text(size=14)) + 
-    theme(rect = element_rect(fill = "transparent"))
+    left_join(naming_conv, by = 'style') %>% 
+    mutate(opacity = ifelse(style %in% c('dotted', 'snake', 'lowcamel', 'upcamel'), 0.8, 0.4)) %>%
+    mutate(long_name = fct_relevel(long_name, 
+                                   "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) %>%
+    rename("Naming" = long_name) %>%
+    mutate(percentage = share * 100) %>%
+    ggplot(aes(x = pub_year, y = share, col = Naming)) + 
+    geom_line() + scale_color_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
+    xlab("Year") + ylab("Share of all functions") + 
+    theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + 
+    theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10))
 ```
 
-The evolution of line lengths is tricky to be visualized on a 2-D surface. We have prepared an animation to visualize the change in line distribution over the span of 20 years. In this paper, figure 3 shows the snapshot of the change in line length distribution in the range of 40 characters to 100 characters. In general, developers of newer packages write with lesser number of characters per line. Similar to previous analyses with Python programs (e.g. VanderPlas, 2017), artificial peaks corresponding to recommendations from either style-guides, linters, and editor settings are also observed in our analysis. In 2018, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as lintr) is more pronounced for lines with comments but not those with actual code.
+The evolution of line lengths is tricky to be visualized on a 2-D surface. We have prepared [an animation](https://github.com/chainsawriot/rstyle/blob/master/file60f331694ef5.gif) to visualize the change in line distribution over the span of 20 years. In this paper, figure 3 shows the snapshot of the change in line length distribution in the range of 40 characters to 100 characters. In general, developers of newer packages write with lesser number of characters per line. Similar to previous analyses with Python programs (e.g. VanderPlas, 2017), artificial peaks corresponding to recommendations from either style-guides, linters, and editor settings are also observed in our analysis. In 2018, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as lintr) is more pronounced for lines with comments but not those with actual code.
 
 ```{r Figure 3, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Change in line length distribution: 2003, 2008, 2013 and 2018."}
 
@@ -307,53 +328,44 @@ node_info %>% filter(cran_wc %in% comm_lab$community_ids) %>% left_join(comm_lab
 Using naming convention as an example, there are local patterns in PSV (Figure 4). For example, snake case is the most popular naming convention in the _"RStudio-related"_ communitiy as expected because it is the naming convention endorsed by the Tidyverse Style-guide. However, none of the functions exported by the packages from _"Time, Date, and Money"_ community uses such convention.
 
 ```{r Figure 4, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Community-specific distribution of naming conventions among 18 large communities"}
-wide_to_long <- function(df, id_var, key_var, val_var, sort_by){
-    df %>% t() %>% as.data.frame() %>% 
-        rownames_to_column(id_var) %>% 
-        arrange(!!sort_by) %>% 
-        gather(!!key_var, !!val_var, -(!!id_var)) 
-}
-levels_naming <- c("dotted", "allupper", "uppercamel", "other", "alllower", "lowercamel", "snake")
+comm_feat <- readRDS('comm_lang_feature.RDS') %>% filter(comm_id != 1)
+tibble(comm_id = membership(read_rds("cran_community_20190518.RDS"))) %>% 
+    group_by(comm_id) %>% summarise(n_mem = n()) %>% ungroup -> n_member
+comm_feat %>% left_join(n_member, by = 'comm_id') -> comm_feat
+tibble(feature = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
+       long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) ->
+    naming_conv
 
-df_naming_ratio_total <- readRDS('community_df_naming_ratio_total.RDS') %>% select(-`public health and Statistics`)
-colnames(df_naming_ratio_total) <- comm_lab$cols
-rownames(df_naming_ratio_total) <- c("alllower", "allupper", "uppercamel", "lowercamel", "snake", "dotted", "other")
-
-df_naming_ratio_long <- df_naming_ratio_total %>% 
-    wide_to_long(id_var = 'community', key_var = 'naming', val_var = 'ratio', sort_by = quo(snake)) %>% 
-    mutate(percentage = ratio*100, 
-           community=factor(community, levels = unique(community)),
-           naming=factor(naming, levels = levels_naming)) 
-ggplot(aes(y = percentage, x = community, fill = naming), data = df_naming_ratio_long) + 
+comm_feat %>% select(alllower:comm_name) %>% 
+    mutate(snake2 = snake) %>%
+    gather("feature", "proportion", -comm_name, 
+           -snake2) %>% left_join(naming_conv, by = 'feature') %>% 
+    mutate(comm_name = fct_reorder(comm_name, snake2)) %>%
+    mutate(long_name = fct_relevel(long_name, 
+                                   "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) %>%
+    mutate(percentage = proportion * 100) %>%
+    ggplot(aes(y = proportion, x = comm_name, fill = long_name)) + 
     geom_bar(stat="identity") + 
-    labs(x = "", y = "Share of all exported functions") + 
+    labs(x = "", y = "Share of all functions") + 
     theme(legend.title = element_blank()) +
-    coord_flip() +
-    theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + scale_fill_brewer(palette = 'Dark2') +
+    coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
+    theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + 
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10))
 ```
 
 For the binary style-elements, local patterns are also observed (Figure 5). The most salient pattern is the _"Java"_ and _"Sparse Matrix"_ communities exceptional high usage of tab indentation, probably due to influences from Java or Matlab. Also, the high level in usage of open curly on its own line for the _"Graphics"_ is also exceptional.
 
 ```{r Figure 5, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Community-specific distribution of naming conventions among 18 large communities", fig.width=8, fig.height=11}
-df_ratio_total <- readRDS('community_df_ratio_total.RDS') %>% as.data.frame() %>% select(-`public health and Statistics`)
-colnames(df_ratio_total) <- comm_lab$cols
-levels_feature <- apply(df_ratio_total, 1, max) %>% sort(decreasing = TRUE) %>% names()
-
-df_ratio_long <- df_ratio_total %>% 
-    wide_to_long(id_var = 'community', key_var = 'feature', val_var = 'ratio', sort_by = quo(fx_opencurly)) %>% 
-    mutate(percentage = ratio*100, 
-           community= factor(community, levels = unique(community)),
-           feature = factor(feature, levels_feature)) 
-
-ggplot(aes(y = percentage, x = community), data = df_ratio_long) +
-    geom_bar(stat="identity", position="dodge") +
-    labs(x = "") +
+comm_feat %>% select(comm_name, fx_assign:fx_tab) %>% 
+    mutate(fx_opencurly2 = fx_opencurly) %>%
+    gather('feature', 'proportion', -comm_name, -fx_opencurly2) %>%
+    mutate(comm_name = fct_reorder(comm_name, fx_opencurly2)) %>%
+    mutate(feature = fct_relevel(feature, "fx_opencurly")) %>%
+    ggplot(aes(x = comm_name, y = proportion)) + geom_bar(stat = 'identity') +
     facet_grid(feature ~ ., switch="y", scales="free") +
-    scale_y_continuous("percentage", position="right") +
     theme(axis.text.x = element_text(angle = 90, hjust = 1),
-          strip.text.y=element_text(angle=180))
-##ggplot(aes(x = percentage, y = feature, color = community), data = df_ratio_long) + geom_point() + scale_x_log10() + scale_colour_brewer(palette = 'Dark2')
+          strip.text.y=element_text(angle=180)) + labs(x = "") + 
+    scale_y_continuous("Share of all functions", position="right") 
 ```
 
 ## Discussion
@@ -412,7 +424,7 @@ Christiansen, T. (1998). Perl Style: Everyone Has an Opinion.
 
 Csardi, G., & Nepusz, T. (2006). The igraph software package for complex network research. InterJournal, Complex Systems, 1695(5), 1-9.
 
-Elish, M. O., & Offutt, J. (2002). The adherence of open source java programmers to standard coding practices.
+Elish, M. O., & Offutt, J. (2002). The adherence of open source java programmers to standard coding practices. https://pdfs.semanticscholar.org/bf08/9bc9897253f5d92202a5986669365ee5e9bc.pdf
 
 Google's R Style Guide. https://google.github.io/styleguide/Rguide.xml
 
@@ -422,6 +434,8 @@ Mosal, C. (2019). Nobody talks about the real reason to use Tabs over Spaces. ht
 
 Oman, P. W., & Cook, C. R. (1990). A taxonomy for programming style. Proceedings of the 1990 ACM Annual Conference on Cooperation - CSC ’90. doi:10.1145/100348.100385
 
+Pausakerl, P. (2016). CRAN Mirror HOWTO/FAQ. https://cran.r-project.org/mirror-howto.html
+
 Pons, P., & Latapy, M. (2005, October). Computing communities in large networks using random walks. In International symposium on computer and information sciences (pp. 284-293). Springer, Berlin, Heidelberg.
 
 Wickham, H. (2017). The tidyverse style guide. https://style.tidyverse.org/
@@ -430,4 +444,4 @@ van Rossum, G., Warsaw, B., Coghlan, N. (2001). PEP 8 -- Style Guide for Python 
 
 VanderPlas, J. (2017). Exploring Line Lengths in Python Packages. https://jakevdp.github.io/blog/2017/11/09/exploring-line-lengths-in-python-packages/
 
-Wang, Z., & Hahn, J. (2017). The Effects of Programming Style on Open Source Collaboration.
+Wang, Z., & Hahn, J. (2017). The Effects of Programming Style on Open Source Collaboration. http://repository.ittelkom-pwt.ac.id/2872/1/The%20Effects%20of%20Programming%20Style%20on%20Open%20Source%20Collaboration.pdf
