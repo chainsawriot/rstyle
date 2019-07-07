@@ -1,16 +1,18 @@
 ---
-title: "A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years"
-author: 
+title: A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines
+  of Code from All CRAN Packages in the Past 20 Years
+author:
 - Chia-Yi Yen, University of Mannheim
 - Mia Huai-Wen Chang, Akelius Residential Property AB
 - Chung-hong Chan, University of Mannheim
 date: "07-07-2019"
-output: 
-    pdf_document: 
-        fig_caption: yes
-        df_print: kable
-    github_document: 
-        default
+output:
+  html_document:
+    df_print: paged
+  github_document: default
+  pdf_document:
+    df_print: kable
+    fig_caption: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +25,7 @@ Full paper is forthcoming.
  
 ## Abstract
 
-There are so many programming style variations in R. We have analyzed 94 million lines of R code and quantified the evolution in popularities of 12 style-elements from 1998 to 2018. We attribute 3 main factors that drive changes in programming style: effect of style-guides, the effect of introducing new features and effect of editors. We have identified community-specific programming style variations. For example, there are programming communities which do not use snake_case at all. A consensus in programming style is forming. We have summarised it into a _Consensus-based Style_.
+There are so many programming style variations in R. We have analyzed 94 million lines of R code and quantified the evolution in popularities of 12 style-elements from 1998 to 2018. We attribute 3 main factors that drive changes in programming style: effect of style-guides, the effect of introducing new features, and effect of editors. We have identified community-specific programming style variations. For example, there are programming communities which do not use snake_case at all. A consensus in programming style is forming. We have summarised it into a _Consensus-based Style_.
 
 ## Introduction
 
@@ -44,7 +46,7 @@ sum_of_square = function(x) {
 
 One area that can highlight this flexible is naming conventions. According to the previous research by Bååth (2012), there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have the freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reuse, maintainability (Elish & Offutt, 2002) and open source collabration (Wang & Hahn, 2017). 
 
-Various efforts to standardize the programming style, e.g. [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml), The [Tidyverse Style Guide](https://style.tidyverse.org/) (Wickham, 2017), [Bioconductor Coding Style](https://www.bioconductor.org/developers/how-to/coding-style/) (Bioconductor, 2015), etc. are available. These style guides are based on the normative assessment of code quality, e.g. style-elements that improve programe comprehension (Oman & Cook, 1990). However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have a better understanding of the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
+Various efforts to standardize the programming style, e.g. [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml), The [Tidyverse Style Guide](https://style.tidyverse.org/) (Wickham, 2017), [Bioconductor Coding Style](https://www.bioconductor.org/developers/how-to/coding-style/) (Bioconductor, 2015), etc. are available. These style guides are based on the normative assessment of code quality, e.g. style-elements that improve program comprehension (Oman & Cook, 1990). However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have a better understanding of the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
 
 ## Analysis
 ### Data Source
@@ -398,18 +400,18 @@ In essense,
 * Use double quotation mark for strings
 * Add spaces around infix operators
 * Don't terminate lines with semicolon
-* Be liberal about typing integers
+* Don’t explicitly type integers (i.e. 1L)
 * Put close curly bracket on its own line
 * Don't use tab to indent
 
 As a final remark: although enforcing a consistent style can improve open source collaboration (Wang & Hahn, 2017), one must also bear in mind that these rules might need to be adjusted sometimes to cater for programmers with special needs. For example, using spaces instead of tabs for indentation can make code not assessible to visually impaired programmers (Mosal, 2019).
 
 ## About the authors
-Ms __Chia-Yi Yen__ is currently a finance PhD student at the Mannheim Business School. Prior to her doctoral studies, she worked as a financial engineer in hedge fund industry and a data science consultant for financial institutions. Besides, she is also listed as one of the inventors of three Taiwanese patents (under review) of innovative Fintech applications, a translator of two children’s novels on computer science, the co-founder of R-Ladies Taipei — a local community helping women learn data science and R language — and one of the Microsoft Most Valuable Professionals from January 2017 to June 2019.
+Ms. __Chia-Yi Yen__ is currently a finance PhD student at the Mannheim Business School. Prior to her doctoral studies, she worked as a financial engineer in hedge fund industry and a data science consultant for financial institutions. Besides, she is also listed as one of the inventors of three Taiwanese patents (under review) of innovative Fintech applications, a translator of two children’s novels on computer science, the co-founder of R-Ladies Taipei — a local community helping women learn data science and R language — and one of the Microsoft Most Valuable Professionals from January 2017 to June 2019.
 
-Ms __Huai-Wen Chang__ works as a data scientist in Berlin. She has a formal background in computer science and mathematics. She has worked in the AI area for years: starting from conducting AI research in computer games and customer services analysis in e-commerce, creating computer vision solutions for start-ups, to innovating new data science solutions for a real estate company. With her technical expertise in theory of computer games, computer vision, and deep learning, she has been recognized as Microsoft Most Valuable Professional since 2017.
+Ms. __Huai-Wen Chang__ works as a data scientist in Berlin. She has a formal background in computer science and mathematics. She has worked in the AI area for years: starting from conducting AI research in computer games and customer services analysis in e-commerce, creating computer vision solutions for start-ups, to innovating new data science solutions for a real estate company. With her technical expertise in theory of computer games, computer vision, and deep learning, she has been recognized as Microsoft Most Valuable Professional since 2017.
 
-Dr __Chung-hong Chan__ is a research associate at the Institue of Media and Communication Studies and project staff at the Mannheim Center for European Social Research, the University of Mannheim. He earned his doctorate in communication studies at the University of Hong Kong and studied biostatistics and epidemiology at the Chinese University of Hong Kong. Previously, he has worked in a hospital as a biostatistician for 10 years. His research interests are cyberbalkanization, polarization, platform interventions (e.g. online censorship), text mining, social network analysis and meta-analysis/metaregression. He is the corresponding author of this article. E-mail him at: [chung-hong.chan@mzes.uni-mannheim.de](mailto:chung-hong.chan@mzes.uni-mannheim.de)
+Dr. __Chung-hong Chan__ is a research associate at the Institue of Media and Communication Studies and project staff at the Mannheim Center for European Social Research, the University of Mannheim. He earned his doctorate in communication studies at the University of Hong Kong and studied biostatistics and epidemiology at the Chinese University of Hong Kong. Previously, he has worked in a hospital as a biostatistician for 10 years. His research interests are cyberbalkanization, polarization, platform interventions (e.g. online censorship), text mining, social network analysis and meta-analysis/metaregression. He is the corresponding author of this article. E-mail him at: [chung-hong.chan@mzes.uni-mannheim.de](mailto:chung-hong.chan@mzes.uni-mannheim.de)
 
 ## References
 
