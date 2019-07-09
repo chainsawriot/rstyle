@@ -1,6 +1,12 @@
-# RSTYLE
+# rstyle
 
-Assumptions
+![line-dist](file60f331694ef5.gif)
+
+Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) *A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years.* Paper presented at the useR! 2019 conference, Toulouse, France. doi:10.31235/osf.io/ts2wq
+
+Preprint of this paper is available [here](https://osf.io/preprints/socarxiv/ts2wq/).
+
+## Assumptions
 
 1. Clone the entire CRAN into `./cran` subdirectory. [^1]
 
@@ -10,15 +16,15 @@ rsync -rtlzv --delete cran.r-project.org::CRAN ./cran
 
 2. Create the code.db using the Makefile (Don't do that if you already have `code.db`)
 
-# Files and dependencies
+## Files and dependencies
 
-Key RDS files:
+### Key RDS files:
 
 1. target_meta.RDS - packages, one (randomly-selected) submission per year.
 
 2. pkgs_functions_with_syntax_feature.R - package information with syntatic features.
 
-R files:
+### R files:
 
 1. **extract_metadata.R** (requires: Cloned CRAN mirror): extract meta data from tarballs. Generates *target_meta.RDS* and *final_meta.RDS*.
 
