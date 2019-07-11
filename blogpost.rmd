@@ -25,7 +25,7 @@ Full paper is forthcoming.
  
 ## Abstract
 
-There are so many programming style variations in R. We have analyzed 94 million lines of R code and quantified the evolution in popularity of 12 style-elements from 1998 to 2018. We attribute 3 main factors that drive changes in programming style: effect of style-guides, the effect of introducing new features, and effect of editors. We have identified community-specific programming style variations. For example, there are programming communities which do not use snake_case at all. A consensus in programming style is forming. We have summarised it into a _Consensus-based Style_.
+There are so many programming style variations in R. We have analyzed 94 million lines of R code and quantified the evolution in popularity of 12 style-elements from 1998 to 2018. We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features, and effect of editors. We have identified community-specific programming style variations. For example, there are programming communities which do not use snake_case at all. A consensus in programming style is forming. We have summarised it into a _Consensus-based Style_.
 
 ## Introduction
 
