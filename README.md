@@ -1,6 +1,11 @@
 # rstyle
 
-![line-dist](file60f331694ef5.gif)
+<img src="file60f331694ef5.gif" align="left" />
+<a href="user2019_poster.pdf"><img src="user2019_poster.png" align="left" /></a>
+<br>
+
+
+## Citation
 
 Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) *A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years.* Paper presented at the useR! 2019 conference, Toulouse, France. doi:10.31235/osf.io/ts2wq
 
