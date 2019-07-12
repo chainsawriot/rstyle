@@ -1,9 +1,7 @@
 # rstyle
 
-<img src="file60f331694ef5.gif" align="left" />
-<a href="user2019_poster.pdf"><img src="user2019_poster.png" align="left" /></a>
-<br>
-
+<img src="file60f331694ef5.gif">
+<a href="user2019_poster.pdf"><img src="user2019_poster.png"></a><br>
 
 ## Citation
 
