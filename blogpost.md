@@ -211,7 +211,7 @@ The evolution of line lengths is tricky to be visualised in a 2-D space. We have
 
 ![Change in line length distribution: 2003, 2008, 2013 and 2018.](blogpost_files/figure-markdown_github/Figure%203-1.png)
 
-### Communitiy-based variations
+### Community-based variations
 
 Using the aforementioned community detection algorithm of the dependency graph, 19 large communities were extracted. These communities are named by their applications. Table 1 lists the details of these communities.
 
