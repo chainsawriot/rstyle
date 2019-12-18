@@ -1,0 +1,97 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[B{\aa}{\aa}th(2012)]{baaaath}
+R.~B{\aa}{\aa}th.
+\newblock The state of naming conventions in r.
+\newblock \emph{The R journal}, 4\penalty0 (2):\penalty0 74--75, 2012.
+
+\bibitem[Bioconductor(2015)]{bioconductor}
+Bioconductor.
+\newblock \emph{Coding style}, 2015.
+\newblock URL
+  \url{https://www.bioconductor.org/developers/how-to/coding-style/}.
+
+\bibitem[Chambers(2001)]{chambers}
+J.~Chambers.
+\newblock \emph{Assignments with the = Operator.}, 2001.
+\newblock URL \url{http://developer.r-project.org/equalAssign.html}.
+
+\bibitem[Christiansen(1998)]{christiansen}
+T.~Christiansen.
+\newblock \emph{Perl Style: Everyone Has an Opinion}, 1998.
+\newblock URL \url{https://www.perl.com/doc/FMTEYEWTK/style/slide1.html/}.
+
+\bibitem[CRAN(2019)]{cranminihowto}
+CRAN.
+\newblock \emph{CRAN Mirror HOWTO/FAQ}, 2019.
+\newblock URL \url{https://cran.r-project.org/mirror-howto.html}.
+
+\bibitem[Csardi and Nepusz(2006)]{csardi}
+G.~Csardi and T.~Nepusz.
+\newblock The igraph software package for complex network research.
+\newblock \emph{InterJournal}, Complex Systems:\penalty0 1695, 2006.
+\newblock URL \url{http://igraph.org}.
+
+\bibitem[Elish and Offutt(2002)]{elish}
+M.~O. Elish and J.~Offutt.
+\newblock The adherence of open source java programmers to standard coding
+  practices.
+\newblock 2002.
+
+\bibitem[Google(2019)]{google}
+Google.
+\newblock \emph{Google's R Style Guide}, 2019.
+\newblock URL \url{https://google.github.io/styleguide/Rguide.html}.
+
+\bibitem[Hester and Angly(2019)]{lintr}
+J.~Hester and F.~Angly.
+\newblock \emph{lintr: A 'Linter' for R Code}, 2019.
+\newblock URL \url{https://CRAN.R-project.org/package=lintr}.
+\newblock R package version 2.0.0.
+
+\bibitem[Mosal(2019)]{mosal}
+C.~Mosal.
+\newblock \emph{Nobody talks about the real reason to use Tabs over Spaces.},
+  2019.
+\newblock URL
+  \url{https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/}.
+
+\bibitem[Oman and Cook(1991)]{oman}
+P.~W. Oman and C.~R. Cook.
+\newblock A programming style taxonomy.
+\newblock \emph{Journal of Systems and Software}, 15\penalty0 (3):\penalty0
+  287--301, 1991.
+
+\bibitem[Pons and Latapy(2005)]{pons}
+P.~Pons and M.~Latapy.
+\newblock Computing communities in large networks using random walks.
+\newblock In \emph{International symposium on computer and information
+  sciences}, pages 284--293. Springer, 2005.
+
+\bibitem[Van~Rossum et~al.(2001)Van~Rossum, Warsaw, and Coghlan]{vanrossum}
+G.~Van~Rossum, B.~Warsaw, and N.~Coghlan.
+\newblock Pep 8: style guide for python code.
+\newblock \emph{Python. org}, 1565, 2001.
+
+\bibitem[Vanderplas(2017)]{vanderplas}
+J.~Vanderplas.
+\newblock \emph{Exploring Line Lengths in Python Packages}, 2017.
+\newblock URL
+  \url{https://jakevdp.github.io/blog/2017/11/09/exploring-line-lengths-in-python-packages/}.
+
+\bibitem[Wang and Hahn(2017)]{wang}
+Z.~Wang and J.~Hahn.
+\newblock The effects of programming style on open source collaboration.
+\newblock 2017.
+
+\bibitem[Wickham(2017)]{tidyverse}
+H.~Wickham.
+\newblock \emph{The tidyverse style guide}, 2017.
+\newblock URL \url{https://style.tidyverse.org/}.
+
+\end{thebibliography}
