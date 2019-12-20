@@ -3,6 +3,8 @@ require(tidyverse)
 require(lintr)
 require(furrr)
 
+read.csv('tab1.csv', header = TRUE) %>% knitr::kable(format = 'latex', caption = 'Three major style-guides: Google, Tidyverse and Bioconductor')
+
 source('../helpers.R')
 
 test <- readRDS('../pkgs_functions_with_syntax_feature.RDS')

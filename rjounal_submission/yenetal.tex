@@ -26,7 +26,41 @@ sum_of_square = function(x) {
 
 One area that can highlight this flexible is naming conventions. According to the previous research by \citet{baaaath}, there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have the freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reuse, maintainability \citep{elish} and open source collaboration \citep{wang}. 
 
-Various efforts to standardize the programming style, e.g. Google's R Style Guide \citep{google}, The Tidyverse Style Guide \citep{tidyverse}, Bioconductor Coding Style \citep{bioconductor} etc. are available. These style guides are based on the normative assessment of code quality, e.g. style-elements that improve program comprehension \citep{oman}. However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have a better understanding of the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
+Various efforts to standardize the programming style, e.g. Google's R Style Guide \citep{google}, The Tidyverse Style Guide \citep{tidyverse}, Bioconductor Coding Style \citep{bioconductor} etc.,  are available (Table~\ref{tab:table1}). These style guides are based on the normative assessment of code quality, e.g. style-elements that improve program comprehension \citep{oman}. However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R community can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have a better understanding of the factors driving increase and decrease in PSV historically, such that more effective efforts can be formulated.
+
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
+
+\begin{table}
+
+\caption{\label{tab:table1}Three major style-guides: Google, Tidyverse and Bioconductor}
+\centering
+\begin{tabular}[t]{L|L|L|L}
+\hline
+Feature & Google & Tidyverse & Bioconductor\\
+\hline
+Function name & UpperCamel & snake\_case & lowerCamel\\
+\hline
+Assignment & Discourage = & Discourage = & Discourage =\\
+\hline
+Line length & “limit your code to 80 characters per line” & “limit your code to 80 characters per line” & $\leqslant$ 80\\
+\hline
+Space after a comma & Yes & Yes & Yes\\
+\hline
+Space around infix operators & Yes & Yes & Yes\\
+\hline
+Indentation & 2 spaces & 2 spaces & 4 spaces\\
+\hline
+Quotes & Double & Double & Not specified\\
+\hline
+Boolean values & Use TRUE / FALSE & Use TRUE / FALSE & Not specified\\
+\hline
+Terminate a line with a semicolon & No & No & Not specified\\
+\hline
+Curly braces & \{ same line, then a newline, \} on its own line & \{ same line, then a newline, \} on its own line & Not specified\\
+\hline
+\end{tabular}
+\end{table}
+
 
 \section{Analysis}
 \subsection{Data Source}
@@ -219,7 +253,7 @@ We studied more than 94 million lines of code from 15530 unique packages. In tot
 
 Secondly, the popularity of fx\_opencurly shows how a previously established majority style (~80\% in late 90s) slowly reduced into a minority but still very prominent style (~30\% in late 10s).
 
-Similarly, the evolution of different naming conventions is shown in Figure~\ref{figure:fig1}. This analysis can best be used to illustrate the effect of style-guides. According to \citet{baaaath}, dotted.func style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted.func style and thus a significant declining trend is observed. lower\_snake and UpperCamel are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of lower\_snake is relatively more impressive. To our surprise, lowerCamel case, a style endorsed by no style-guide, is currently the most popular naming convention (22.5\% in 2018). However, its reign might soon be dethroned by lower\_snake (21.5\% in 2018) in the near future.
+Similarly, the evolution of different naming conventions is shown in Figure~\ref{figure:fig1}. This analysis can best be used to illustrate the effect of style-guides. According to \citet{baaaath}, dotted.func style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted.func style and thus a significant declining trend is observed. lower\_snake and UpperCamel are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide respectively. These two styles see an increasing trend since the 10s, although the growth of lower\_snake is relatively more impressive. To our surprise, lowerCamel case, a style endorsed by Bioconductor, is currently the most popular naming convention (22.5\% in 2018). However, its reign might soon be dethroned by lower\_snake (21.5\% in 2018) in the near future.
 
 
 \begin{figure}[htbp]
@@ -242,13 +276,13 @@ The evolution of line lengths is tricky to be visualized on a 2-D surface. We ha
 
 \subsection{Community-based variations}
 
-Using the aforementioned community detection algorithm of the dependency graph, 18 large communities were extracted. These communities are named by their applications. Table~\ref{tab:table1} lists the details of these communities.
+Using the aforementioned community detection algorithm of the dependency graph, 18 large communities were extracted. These communities are named by their applications. Table~\ref{tab:table2} lists the details of these communities.
 
 Using the naming convention as an example, there are local patterns in PSV (Figure~\ref{figure:fig4}). For example, snake case is the most popular naming convention in the "RStudio-related" community as expected because it is the naming convention endorsed by the Tidyverse Style-guide. However, none of the functions exported by the packages from "Time, Date, and Money" community uses such convention.
 
 \begin{table}
 
-\caption{\label{tab:table1}The largest 18 communities and their top 3 packages according to eigenvector centrality}
+\caption{\label{tab:table2}The largest 18 communities and their top 3 packages according to eigenvector centrality}
 \centering
 \begin{tabular}[t]{l|r|l}
 \hline
@@ -349,7 +383,7 @@ As a final remark: although enforcing a consistent style can improve open source
 
 \section{Reproducibility}
 
-The data and script to reproduce the analysis in this paper are available at \url{https://github.com/chainsawriot/rstyle}.
+The data and scripts to reproduce the analysis in this paper are available at \url{https://github.com/chainsawriot/rstyle}.
 
 \bibliography{RJreferences}
 
