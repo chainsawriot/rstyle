@@ -14,7 +14,7 @@ cran_code <- tbl(con, "cran_code")
 ## NAMESPACE was introduced in R version 1.7.0 (Jan 2003)
 ## https://developer.r-project.org/170update.txt
 
-cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(filename, "NAMESPACE"))) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> all_pkgs
+cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(filename == "NAMESPACE")) %>% ungroup %>% mutate(has_ns = NS != 0) %>% collect -> all_pkgs
 
 ### Benchmark
 
@@ -29,10 +29,26 @@ cran_code %>% group_by(pkg_name, pub_year) %>% summarize(NS = sum(str_detect(fil
 
 ## 39 secs versus 122.79 -> about 3-fold reduction...
 
+
+
 plan(multiprocess)
 
-all_pkgs %>% mutate(functions = future_map2(pkg_name, pub_year, extract_exported_functions, dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> all_pkgs
-saveRDS(all_pkgs, "pkgs_functions.RDS")
+all_pkgs %>% filter(pub_year < 2020) %>% mutate(yr = pub_year) %>% group_by(yr) %>% dplyr::group_nest() -> all_pkgs_nest
+
+##all_pkgs_nest$data
+
+extract_fx <- function(pkgsdata) {
+    pkgsdata %>% mutate(functions = map2(pkg_name, pub_year, extract_exported_functions, dbname = 'code.db', verbose = FALSE)) -> res
+    yr <- unique(pkgsdata$pub_year)
+    saveRDS(res, paste0("fx_data_yr", yr, ".RDS"))
+    return(yr)
+}
+
+all_pkgs_nest$data %>% future_map(extract_fx, .progress = TRUE)
+
+
+## all_pkgs %>% mutate(functions = future_map2(pkg_name, pub_year, extract_exported_functions, dbname = 'code.db', verbose = FALSE, .progress = TRUE)) -> all_pkgs
+## saveRDS(all_pkgs, "pkgs_functions.RDS")
 
 ## inlinedocs 2013
 ## uniah 2015

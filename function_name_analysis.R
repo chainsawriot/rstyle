@@ -12,6 +12,9 @@ match_function_style <- function(x, style_regexes) {
 }
 
 pkg_functions <- readRDS('pkgs_functions.RDS')
+## pkg_functions <- readRDS('pkgs_functions_with_syntax_feature.RDS')
+
+## pkg_functions %>% mutate(functions = map(function_feat, ~.$result$fx_name)) -> pkg_functions
 
 conv_style <- function(x, style_regexes) {
     x <- x[!is.na(x) & !is.null(x)]

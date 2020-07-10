@@ -125,16 +125,16 @@ extract_pkg_fx_features <- function(target_pkg_name, target_pub_year, dbname = '
     return(map_dfr(fx_expr, extract_features))
 }
 
-pkg_functions <- readRDS('pkgs_functions.RDS')
+###pkg_functions <- readRDS('pkgs_functions.RDS')
 
-
+pkg_functions <- readRDS('target_meta.RDS')
 plan(multiprocess)
 
-pkg_functions %>% 
-  mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), 
-                                      dbname = 'code.db', .progress = TRUE)) -> pkg_functions
+pkg_functions %>% rename(pub_year = 'year') %>% ungroup %>% mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db', .progress = TRUE)) -> pkg_functions
 
 saveRDS(pkg_functions, "pkgs_functions_with_syntax_feature.RDS")
+
+
 
 # ##saveRDS(test, "lang_feat_test.RDS")
 
