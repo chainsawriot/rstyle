@@ -1,7 +1,7 @@
 require(tidyverse)
 require(stingr)
 require(rex)
-
+require(fs)
 
 match_function_style <- function(x, style_regexes) {
     res <- map_lgl(style_regexes, ~ str_detect(x, .))
@@ -11,7 +11,11 @@ match_function_style <- function(x, style_regexes) {
     names(style_regexes)[min(which(res))]
 }
 
-pkg_functions <- readRDS('pkgs_functions.RDS')
+fx_data_rds <- dir_ls(glob = "fx_data_yr*")
+
+pkg_functions <- purrr::map_dfr(fx_data_rds, ~ readRDS(.))
+
+##pkg_functions <- readRDS('pkgs_functions.RDS')
 ## pkg_functions <- readRDS('pkgs_functions_with_syntax_feature.RDS')
 
 ## pkg_functions %>% mutate(functions = map(function_feat, ~.$result$fx_name)) -> pkg_functions
