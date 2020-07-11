@@ -16,6 +16,8 @@ Preprint of this paper is available [here](https://osf.io/preprints/socarxiv/ts2
 rsync -rtlzv --delete cran.r-project.org::CRAN ./cran
 ```
 
+It takes 220G of disk space.
+
 2. Create the code.db using the Makefile (Don't do that if you already have `code.db`)
 
 ## Files and dependencies
@@ -32,17 +34,17 @@ rsync -rtlzv --delete cran.r-project.org::CRAN ./cran
 
 2. **cat code.sql | sqlite3 code.db** : generate the schema of the SQLITE database - code.db. Generates *code.db* without data.
 
-3. **dump.R** (requires: Cloned CRAN mirror, target_meta.RDS): dump the source code, NAMESPACEs and DESCRIPTIONs into code.db. Generates *code.db* with data.
+3. **dump.R** (requires: Cloned CRAN mirror, target_meta.RDS): dump the source code, NAMESPACEs and DESCRIPTIONs into code.db. Generates *code.db* with data. It is very large (> 20G).
 
 4. **extract_desc.R** (requires: Cloned CRAN mirror, target_meta.RDS): add the text description also into target_meta.RDS as a column *desc*. Generates *target_meta.RDS* (overwrite).
 
-5. **extract_function_name.R** (requires: code.db): extract names of all exported function from each package. Generates *pkgs_functions.RDS*.
+5. **extract_function_name.R** (requires: code.db): extract names of all exported function from each package. Generates multiple *fx_data_yr...RDS* files.
 
-6. **function_name_analysis** (requires: pkgs_functions.RDS, code.db): analyse the style in function names by year. Generates *fx_style_by_year.RDS*.
+6. **function_name_analysis.R** (requires: *fx_data_yr...RDS* files): analyse the style in function names by year. Generates *fx_style_by_year.RDS*.
 
-7. **function_name_vis.R** (requires: fx_style_by_year.RDS): visualize the time trends of styles in function names. Generates images(END) and *entropy_fx_name.RDS*.
+7. **function_name_vis.R** (requires: *fx_style_by_year.RDS*): visualize the time trends of styles in function names. Generates images(END) and *entropy_fx_name.RDS*.
 
-8. **extract_syntax_features.R** (requires: pkgs_functions.RDS, code.db): extract syntactic features. It takes a long time. Generates *pkgs_functions_with_syntax_feature.RDS*.
+8. **extract_syntax_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. It takes a long time. Generates *pkgs_functions_with_syntax_feature.RDS*.
 
 9. **lang_feat_vis.R** (requires: pkgs_functions_with_syntax_feature.RDS): visualize the time trends of syntactic features. Generates images. (END)
 
