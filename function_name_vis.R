@@ -8,7 +8,7 @@ fx_style %>% mutate(alllower = alllower / total,
                     snake = snake / total,
                     dotted = dotted / total,
                     other = other / total) %>%
-    select(-total) %>% filter(pub_year == 2018)
+    select(-total) %>% filter(pub_year == 2019)
 
 
 tibble(style = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
@@ -23,7 +23,7 @@ fx_style %>% mutate(alllower = alllower / total,
                     dotted = dotted / total,
                     other = other / total) %>%
     select(-total) %>% 
-    gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2018) %>%
+    gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2019) %>%
     left_join(naming_conv, by = 'style') %>% 
     mutate(opacity = ifelse(style %in% c('dotted', 'snake', 'lowcamel', 'upcamel'), 0.8, 0.4)) %>%
     mutate(long_name = fct_relevel(long_name, 
