@@ -82,19 +82,5 @@ write_rds(cran_graph, "cran_graph.RDS")
 
 
 
-# ###############
-# # trial: ggplot2
-# pkg_source <- 'ggplot2'
-# df <- get_neibor_graph_given_depth(dependency, pkg_source, max_depth=10) 
-# 
-# df_imports <- df %>% filter(neibor_type=="imports") 
-# df_suggests <- df %>% filter(neibor_type=="suggests")
-# 
-# graph_imports <- graph.data.frame(df_imports, directed = TRUE)
-# graph_suggests <- graph.data.frame(df_suggests, directed = TRUE)
-# 
-# plot(graph_imports)
-# plot(graph_suggests)
-
 
 

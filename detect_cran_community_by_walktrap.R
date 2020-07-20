@@ -1,51 +1,40 @@
 require(igraph)
 require(tidyverse)
 
-set.seed(42)
+get_community <- function(cran_graph, seed){
+    set.seed(seed)
+    cran_wc <- walktrap.community(cran_graph, steps = 4)
+    cran_event <- evcent(cran_graph, direct = TRUE)
+    return(list(cran_wc=cran_wc, cran_event=cran_event))
+}
+
+view_community_influential_member <- function(comm, id_community){
+    tibble(pkg = V(cran_graph)$name, id_comm = comm$cran_wc$membership, evcent = comm$cran_event$vector) %>% 
+        filter(id_comm == id_community) %>% arrange(desc(evcent))
+}
+
+# main
+seed <- 42
+
 cran_graph <- read_rds("cran_graph.RDS")
-cran_wc <- walktrap.community(cran_graph, steps = 4)
-cran_event <- evcent(cran_graph, direct = TRUE)
-
-tibble(pkg = V(cran_graph), comm = cran_wc$membership) %>% group_by(comm) %>% summarize(n = n()) %>% arrange(desc(n))
-tibble(pkg = V(cran_graph)$name, comm = cran_wc$membership, evcent = cran_event$vector) %>% 
-    filter(comm == 60) %>% arrange(desc(evcent))
-
+comm <- get_community(cran_graph, seed)
 write_rds(cran_wc, "cran_community.RDS")
 
 
-# # ##########################################################################################
-# # ref: 
-# #   - Finding communities in networks with R and igraph (https://www.sixhat.net/finding-communities-in-networks-with-r-and-igraph.html)
-# #   - Community strucure via short random walks(https://igraph.org/r/doc/cluster_walktrap.html)
-# #  configure
-# steps <- 10
-# type_dependency = 'latest'
-# 
-# ###############
-# test <- readRDS("dependency_graph.RDS") %>% filter(type_dependency==type_dependency)
-# 
-# # df <- readRDS("dependency_graph.RDS") %>% filter(type_dependency==type_dependency)
-# 
-# df_imports <- df %>% filter(neibor_type=="imports")
-# df_suggests <- df %>% filter(neibor_type=="suggests")
-# 
-# graph_imports <- graph.data.frame(df_imports, directed = TRUE)
-# graph_suggests <- graph.data.frame(df_suggests, directed = TRUE)
-# 
-# #TODO: wierd elements
-# plot(graph_imports)
-# 
-# # TODO: suggests
-# community <- cluster_walktrap(graph_imports,steps = steps)
-# member <- tibble(
-#     pkg_name=community$name,
-#     membership=community$membership,
-#     modularity= community$modularity
-# )
-# 
-# df_res <- member %>% 
-#     group_by(membership) %>% 
-#     summarise(repr=paste(pkg_name, collapse=', '))
-# 
-# df_res
-# View(df_res)
+
+# View: Table 1 
+overview <- tibble(pkg = V(cran_graph)$name, id_comm = comm$cran_wc$membership, evcent = comm$cran_event$vector) %>% 
+    arrange(desc(evcent)) %>%  
+    group_by(id_comm) %>% 
+    summarize(n = n(), top3 = paste(head(pkg, 3), collapse = ', ')) %>% 
+    arrange(desc(n)) %>% 
+    mutate(rank = row_number(), seed = seed) %>% 
+    head(20)
+overview
+
+# View: see each community
+id_community <- 3
+view_community_influential_member(comm, id_community)
+
+# TODO: compute correlation between random seeds
+# TODO: compare the boundary of communites over time
