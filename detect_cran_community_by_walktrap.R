@@ -28,8 +28,9 @@ overview <- tibble(pkg = V(cran_graph)$name, id_comm = comm$cran_wc$membership, 
     group_by(id_comm) %>% 
     summarize(n = n(), top3 = paste(head(pkg, 3), collapse = ', ')) %>% 
     arrange(desc(n)) %>% 
-    mutate(rank = row_number(), seed = seed) %>% 
-    head(20)
+    mutate(rank = row_number(), seed = seed) #%>% 
+    # head(20)
+write.csv(overview,'visualization_community/table1_community_top3_pkgs.csv', row.names = FALSE)
 overview
 
 # View: see each community
