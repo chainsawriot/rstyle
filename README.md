@@ -65,8 +65,11 @@ It takes 220G of disk space.
 
 # How to lunch docker in remote server?
 - Build docker file
+    - it is way faster if we build the docker image inside the director **docker** since it copies least data in this way. 
 ```sh
-docker build -t rstudio/rstyle -f docker/Dockerfile . 
+cd docker/ ;
+docker build -t rstudio/rstyle -f Dockerfile . ;
+cd ../ ;
 ```
 - By default, docker launches rstudio server and mounts folders by using root user, which makes user **rstudio** not able to write files due to lack of previledge. 
 - One of the solution of this problem is to ask docker to launch rstudio server by using current UID
