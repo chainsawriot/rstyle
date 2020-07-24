@@ -6,6 +6,7 @@ require(ggthemes)
 cfg <- modules::use("config.R")
 
 ### local variables
+pkgs <- readRDS(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)
 cran_graph <- read_rds(cfg$PATH_CRAN_GRAPH)
 comm <- read_rds(cfg$PATH_COMM)
 comm_size <- read_rds(cfg$PATH_COMM_SIZE)
@@ -16,7 +17,6 @@ poster_theme <- theme(plot.title = element_text(size = 24, face = "bold"),
                       axis.text = element_text(size = 15), 
                       axis.title=element_text(size=14,face="bold")) +  
     theme(rect = element_rect(fill = "transparent")) 
-
 
 
 ### main
@@ -113,8 +113,25 @@ g_naming <- comm_feat %>% select(alllower:comm_name) %>%
     poster_theme 
 ggsave("visualization_community/naming_among_community2.png", plot = g_naming, width = 9, height = 6, units = "in", bg = "transparent")
 
+
+
 #############
-# Fig. 4
+# poster: network graph
+selected_comm_id <- c(27, 447, 79)
+V(cran_graph)$comm <- membership(comm)
+pkgs_to_extract <- names(membership(comm)[membership(comm) %in% selected_comm_id])
+cran_sub_graph <- induced_subgraph(cran_graph, which(V(cran_graph)$name %in% pkgs_to_extract))
+
+set.seed(168979208)
+plot(cran_sub_graph, vertex.color = V(cran_sub_graph)$comm, vertex.size = page_rank(cran_sub_graph)$vector * 200, 
+     edge.arrow.size = 0, vertex.label = ifelse(V(cran_sub_graph)$name %in% c("randomForest", "sna", "tm", "rJava"), V(cran_sub_graph)$name, ""), 
+     vertex.label.cex = 3, edge.color = "gray80", vertex.frame.color = "gray80", vertex.label.color = "#000000")
+
+tibble(pkg_name = V(cran_sub_graph)$name, var = page.rank(cran_sub_graph)$vector * 100, comm = V(cran_sub_graph)$comm) %>% group_by(comm) %>% top_n(n = 1, wt = var)
+
+
+#############
+# poster: variation within communities
 ### Network supplement figures
 cran_wc <- membership(comm)
 cran_event <- evcent(cran_graph, direct = TRUE)$vector
@@ -152,20 +169,20 @@ plot_target <- function(target_community_abbr = "Java", network_supple_data) {
         head(1) %>% pull(subtitle) 
     g <- network_supple_data %>% filter(comm_name == target_community) %>%
         mutate(long_name = fct_relevel(long_name, 
-                                   "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", 
-                                   "lowerCamel", "lower_snake")) %>%
+                                       "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", 
+                                       "lowerCamel", "lower_snake")) %>%
         filter(feature %in% c('snake', 'lowcamel', 'upcamel', 'dotted')) %>% 
         ggplot(aes(y = percentage, x = long_name, fill = long_name)) + 
-            geom_bar(stat="identity") + ylim(0, 100) +         
-            labs(title = target_community, subtitle = subtitle, x = "", y = "") + 
-            theme_hc() +
+        geom_bar(stat="identity") + ylim(0, 100) +         
+        labs(title = target_community, subtitle = subtitle, x = "", y = "") + 
+        theme_hc() +
         theme(legend.position = "none", 
-                       panel.grid.major.y = element_blank(), 
-                       axis.text.x = element_blank(), 
-                       axis.ticks.x = element_blank()) +
+              panel.grid.major.y = element_blank(), 
+              axis.text.x = element_blank(), 
+              axis.ticks.x = element_blank()) +
         coord_flip() +
         geom_text(aes(label=sprintf("%s %s", round(percentage, 2), "%")), 
-              position = position_dodge(width=0.9), hjust = -0.25) + 
+                  position = position_dodge(width=0.9), hjust = -0.25) + 
         scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')[c(1,3,6,7)])  + poster_theme##bruteforce fixing
     filename <- sprintf("visualization_community/New_naming_in_comm_%s.png", target_community_abbr)
     ggsave(filename, plot = g, width = 12, height = 8, units = "in", bg = "transparent")
