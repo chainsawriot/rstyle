@@ -57,6 +57,7 @@ parse_pkgname <-  function(content){
 desc <- extract_description(path_db = cfg$PATH_CODE_DB)
 #TODO: warning
 dependency <- desc %>% 
+    filter(pub_year <= cfg$END_YEAR) %>% 
     mutate(imports=map_chr(description, parse_field, field='Imports'),
            suggests=map_chr(description, parse_field, field='Suggests')) %>% 
     gather(field, content, imports:suggests) %>% 

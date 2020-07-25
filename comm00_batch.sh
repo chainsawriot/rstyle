@@ -1,0 +1,6 @@
+#!/bin/bash
+Rscript comm01_extract_cran_dependency.R 
+Rscript comm02_build_cran_graph.R
+Rscript comm03_detect_cran_community_by_walktrap.R
+Rscript comm04_community_based_features_correction.R 
+Rscript comm05_vis_community_poster_images.R
