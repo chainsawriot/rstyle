@@ -1,20 +1,26 @@
 ---
-title: Capitalized Title Here
+title: A computational analysis of R programming style variations in the last 20 years based on 94 million lines of code from all CRAN packages
 author:
-  - name: Author One
-    affiliation: Affiliation
+  - name: Chung-hong Chan
+    affiliation: Mannheimer Zentrum für Europäische Sozialforschung
     address:
     - line 1
     - line 2
-    email:  author1@work
-  - name: Author Two
-    affiliation: Affiliation
+    email:  chung-hong.chan@mzes.uni-mannheim.de
+  - name: Chia-Yi Yen
+    affiliation: Graduate School of Economic and Social Sciences, Universität Mannheim, Germany
+    address:
+    - line 1
+    - line 2
+    email:  author2@work
+  - name: Mia Huai-Wen Chang
+    affiliation: Akelius Residential Property AB, Berlin, Germany
     address:
     - line 1
     - line 2
     email:  author2@work
 abstract: >
-  An abstract of less than 150 words.
+  The coexistence of multiple programming styles confuses new users and makes enforcing best practice difficult. This problem is aggravated by the lack of a universally accepted style guide in the R community. To investigate that, we quantified the programming style variation (PSV) in all CRAN packages and observed an emerging consensus in style since 2016, as indicated by the dampened increasing trend in PSV. It seems that a new consensus-based best practice is forming, which is a mixture of various R style guides. Concretely, we summarized the “ins & outs” of different styles based on popularity across years (e.g., rapid rise of underscore_fun_name and fall of dotted.fun.name since 2013) and pointed out the least agreed style elements (e.g., -> v.s. =, space after a comma). Moreover, we identified a source of PSV (the “Naughty, Naughty!”) by looking into the style differences between clusters of related packages (e.g., Finance v.s. Biostatistics). Our analysis raises an open question to all stakeholders of the R community, i.e., the R Foundation, opinion leaders, package developers, and ordinary users: should we adopt an official R style guide as in the case of Python's PEP8? The findings from this study validate the R community’s effort in reducing PSV and suggest future directions.
 output:
   rticles::rjournal_article:
     includes:
@@ -43,11 +49,27 @@ This section may contain a figure such as Figure \ref{figure:rlogo}.
 
 In Jaunary 2019, a static snapshot of CRAN was archived using the **rsync** method outlined in the CRAN mirror HOWTO/FAQ guide. All CRAN submissions from 1998 to 2018, including active, archived and delisted packages were included for analysis.
 
-The H1 of this study is to analyze the time-related changes in programming style. To this end, we cannot analyze all submissions from our static snapshot. If doing so the analysis would biased towards packages with many submissions. In order to balance the broadness of inclusion and bias, we sampled CRAN submissions using the "one submission per year" approach. For a package, if it has multiple CRAN submissions in a given year, only one submission is randomly selected.
+The H1 of this study is to analyze the time-related changes in programming style. To this end, we cannot analyze all submissions from our static snapshot. If doing so the analysis would be biased towards packages with multiple submissions. In order to balance the broadness of inclusion and the aforementioned bias, we sampled CRAN submissions using the "one submission per year" approach. For a package, if it has multiple CRAN submissions in a given year, only one submission is randomly selected from these submissions.
 
-The year of publication of a package is determined by the file time stamp of the package's tarball. This information was extracted with the **fs** package.
+The year of publication of a package is determined by the file time stamp of the package's tarball. This information was extracted by the **fs** package.
 
-### Language feature extraction
+### Style feature extraction
+
+The following style features were extracted. All features, except the line length, were determined by functions exported by included packages. For all included packages, the functions exported by the package were determined from both NAMESPACE file (if available) and the source code in the **/R** directory.
+
+#### Function naming conventions
+
+The names of all extracted functions were analyzed similar to the method outlined in Bååth (2012). Function names were classified into the following 5 conventions. Please refer to Bååth (2012) for details. These features were determined by a set of regression expressions:
+
+1. alllowercase
+2. period.seperated
+3. underscore_seperated
+4. lowerCamelCase
+5. UpperCamelCase
+
+#### Syntax features
+
+Other sytactic features
 
 ## Summary
 
