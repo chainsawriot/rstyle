@@ -128,11 +128,46 @@ extract_pkg_fx_features <- function(target_pkg_name, target_pub_year, dbname = '
 ###pkg_functions <- readRDS('pkgs_functions.RDS')
 
 pkg_functions <- readRDS('target_meta.RDS')
+pkg_functions  %>% filter(year < 2020) %>% mutate(pub_year = year) %>% group_by(year) %>% dplyr::group_nest() -> all_pkgs_nest
+
+extract_features_pkgsdata <- function(pkgsdata) {
+    pkgsdata %>% mutate(function_feat  = map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db')) -> res
+    yr <- unique(pkgsdata$pub_year)
+    saveRDS(res, paste0("syntax_feature_yr", yr, ".RDS"))
+    return(yr)
+}
+
+extract_features_pkgsdata2 <- function(pkgsdata) {
+    pkgsdata %>% mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db', .progress = TRUE)) -> res
+    yr <- unique(pkgsdata$pub_year)
+    saveRDS(res, paste0("syntax_feature_yr", yr, ".RDS"))
+    return(yr)
+}
+
+
 plan(multiprocess)
+require(fs)
 
-pkg_functions %>% rename(pub_year = 'year') %>% ungroup %>% mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db', .progress = TRUE)) -> pkg_functions
+## all_pkgs_nest %>% dplyr::filter(!year %in% as.numeric(str_extract(dir_ls(regexp="syntax_feature_yr"), "[0-9]{4}")))
 
-saveRDS(pkg_functions, "pkgs_functions_with_syntax_feature.RDS")
+
+## %>% pull(data) %>% future_map(extract_features_pkgsdata, .progress = TRUE)
+
+args <- commandArgs(trailingOnly=TRUE)
+
+year_arg <- as.numeric(args[1])
+print(year_arg)
+
+all_pkgs_nest %>% filter(year == year_arg) %>% pull(data) -> data_to_extract
+
+extract_features_pkgsdata2(data_to_extract[[1]])
+
+## pkg_functions %>% rename(pub_year = 'year') %>% ungroup %>% sample_n(5) %>% mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db', .progress = TRUE)) -> test
+
+
+## pkg_functions %>% rename(pub_year = 'year') %>% ungroup %>% mutate(function_feat  = future_map2(pkg_name, pub_year, safely(extract_pkg_fx_features), dbname = 'code.db', .progress = TRUE)) -> pkg_functions
+
+## saveRDS(pkg_functions, "pkgs_functions_with_syntax_feature.RDS")
 
 
 
