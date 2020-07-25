@@ -2,6 +2,11 @@ require(tidyverse)
 require(stingr)
 require(rex)
 require(fs)
+require(modules)
+require(furrr)
+
+cfg <- modules::use("config.R")
+
 
 match_function_style <- function(x, style_regexes) {
     res <- map_lgl(style_regexes, ~ str_detect(x, .))
@@ -11,14 +16,10 @@ match_function_style <- function(x, style_regexes) {
     names(style_regexes)[min(which(res))]
 }
 
-fx_data_rds <- dir_ls(glob = "fx_data_yr*")
+dir_ls("data") %>% str_subset(cfg$FX_DATA_PREFIX) -> fx_data_rds
 
-pkg_functions <- purrr::map_dfr(fx_data_rds, ~ readRDS(.))
 
-##pkg_functions <- readRDS('pkgs_functions.RDS')
-## pkg_functions <- readRDS('pkgs_functions_with_syntax_feature.RDS')
-
-## pkg_functions %>% mutate(functions = map(function_feat, ~.$result$fx_name)) -> pkg_functions
+pkg_functions <- purrr::map_dfr(fx_data_rds[str_extract(fx_data_rds, "[0-9]{4}") %in% 1998:cfg$INCLUDE_YR], ~ readRDS(.))
 
 conv_style <- function(x, style_regexes) {
     x <- x[!is.na(x) & !is.null(x)]
@@ -36,10 +37,12 @@ style_regexes <- list(
     "snake_case"     = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more("_", one_or_more(rex(one_of(lower, digit)))), end),
     "dotted.case"    = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more(dot, one_or_more(rex(one_of(lower, digit)))), end)
 )
+plan(multiprocess)
+
 
 ### R IS SLOW!!!!
 pkg_functions %>% group_by(pub_year) %>%
-    mutate(styles = map(functions, conv_style, style_regexes = style_regexes)) %>%
+    mutate(styles = future_map(functions, conv_style, style_regexes = style_regexes, .progress = TRUE)) %>%
     summarise(total = length(unlist(styles)),
               alllower = sum(unlist(styles) == "alllowercase"),
               allupper = sum(unlist(styles) == "ALLUPPERCASE"),
@@ -48,4 +51,5 @@ pkg_functions %>% group_by(pub_year) %>%
               snake = sum(unlist(styles) == "snake_case"),
               dotted = sum(unlist(styles) == "dotted.case"),
               other = sum(unlist(styles) == "other")) -> style_by_year
-saveRDS(style_by_year, 'fx_style_by_year.RDS')
+
+saveRDS(style_by_year, cfg$PATH_FX_STYLE_BY_YEAR)

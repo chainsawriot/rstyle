@@ -1,15 +1,9 @@
 require(tidyverse)
+require(modules)
 
-fx_style <- readRDS('fx_style_by_year.RDS')
-fx_style %>% mutate(alllower = alllower / total,
-                    allupper = allupper / total,
-                    upcamel = upcamel / total,
-                    lowcamel = lowcamel / total,
-                    snake = snake / total,
-                    dotted = dotted / total,
-                    other = other / total) %>%
-    select(-total) %>% filter(pub_year >= 2018)
+cfg <- modules::use("config.R")
 
+fx_style <- readRDS(cfg$PATH_FX_STYLE_BY_YEAR)
 
 tibble(style = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
        long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) ->
@@ -35,7 +29,7 @@ fx_style %>% mutate(alllower = alllower / total,
     theme(plot.title = element_text(size = 24, face = "bold"), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 15), axis.title=element_text(size=14,face="bold")) + 
     theme(rect = element_rect(fill = "transparent")) +
     theme(legend.position = "none") -> prob_plot
-ggsave('func_prob_plot.png', prob_plot, width = 6, height = 5, units = 'in', bg = "transparent") 
+ggsave('visualization_fun/func_prob_plot.png', prob_plot, width = 6, height = 5, units = 'in', bg = "transparent") 
 
 
 
@@ -57,7 +51,7 @@ fx_style %>% mutate(alllower = alllower / total,
                                         other * log(other))) %>% 
   ggplot(aes(x = pub_year, y = entropy)) + geom_line() -> entropy_plot
 
-ggsave('func_entropy_plot.png', entropy_plot)
+ggsave('visualization_fun/func_entropy_plot.png', entropy_plot)
 
 fx_style %>% mutate(alllower = alllower / total,
                     allupper = allupper / total,
@@ -73,4 +67,4 @@ fx_style %>% mutate(alllower = alllower / total,
                                         lowcamel * log(lowcamel) +
                                         ifelse(snake != 0, snake * log(snake), 0) +
                                         dotted * log(dotted) +
-                                        other * log(other))) %>% mutate(type = "function_name_style") %>%  select(pub_year, entropy, type) %>% saveRDS('entropy_fx_name.RDS')
+                                        other * log(other))) %>% mutate(type = "function_name_style") %>%  select(pub_year, entropy, type) %>% saveRDS('visualization_fun/entropy_fx_name.RDS')
