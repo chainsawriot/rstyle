@@ -1,4 +1,3 @@
-rm(list=ls())
 require(RSQLite)
 require(tidyverse)
 cfg <- modules::use("config.R")

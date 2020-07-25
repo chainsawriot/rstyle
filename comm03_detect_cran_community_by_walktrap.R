@@ -1,4 +1,3 @@
-rm(list=ls())
 require(igraph)
 require(tidyverse)
 cfg <- modules::use("config.R")

@@ -1,4 +1,3 @@
-rm(list=ls())
 require(tidyverse)
 require(ggthemes)
 require(igraph)
@@ -36,8 +35,31 @@ selected_comm_feat <- comm_feat %>%
 )%>%
     select(comm_name, fx_opencurly, fx_integer, fx_infix, fx_assign, dist, n_mem) 
 
+
 #############
-# simplied Fig. 5
+# poster: Fig. 4 in paper
+naming_conv <- tibble(
+    feature = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
+    long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) 
+
+g_naming <- comm_feat %>% select(alllower:comm_name) %>% 
+    mutate(snake2 = snake) %>%
+    gather("feature", "proportion", -comm_name, 
+           -snake2) %>% left_join(naming_conv, by = 'feature') %>% 
+    mutate(comm_name = fct_reorder(comm_name, snake2)) %>%
+    mutate(long_name = fct_relevel(long_name, 
+                                   "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) %>%
+    mutate(percentage = proportion * 100) %>%
+    ggplot(aes(y = percentage, x = comm_name, fill = long_name)) + 
+    geom_bar(stat="identity") + 
+    labs(x = "", y = "%") + 
+    theme(legend.title = element_blank()) +
+    coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
+    poster_theme 
+ggsave("visualization_community/naming_among_community2.png", plot = g_naming, width = 9, height = 6, units = "in", bg = "transparent")
+
+#############
+# poster: simplied Fig. 5
 g_features <- selected_comm_feat %>% 
     gather("feature", "proportion", -comm_name, -dist, -n_mem) %>% 
     mutate(percentage = proportion * 100, avg = (comm_name == "Average")) %>% 
@@ -61,6 +83,7 @@ g_features <- selected_comm_feat %>%
     scale_fill_brewer(palette = 'Dark2') 
 
 ggsave("visualization_community/features_among_community2.png", plot = g_features, width = 12, height = 6, units = "in", bg = "transparent")
+
 
 #############
 # poster: distance-to-average  
@@ -90,30 +113,6 @@ g_dist <- selected_comm_feat %>%
     coord_flip() 
 
 ggsave("visualization_community/feature_distance2.png", plot = g_dist, width = 8, height = 6, units = "in", bg = "transparent")
-
-#############
-# Fig. 4
-naming_conv <- tibble(
-    feature = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
-    long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) 
-
-g_naming <- comm_feat %>% select(alllower:comm_name) %>% 
-    mutate(snake2 = snake) %>%
-    gather("feature", "proportion", -comm_name, 
-           -snake2) %>% left_join(naming_conv, by = 'feature') %>% 
-    mutate(comm_name = fct_reorder(comm_name, snake2)) %>%
-    mutate(long_name = fct_relevel(long_name, 
-                                   "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) %>%
-    mutate(percentage = proportion * 100) %>%
-    ggplot(aes(y = percentage, x = comm_name, fill = long_name)) + 
-    geom_bar(stat="identity") + 
-    labs(x = "", y = "%") + 
-    theme(legend.title = element_blank()) +
-    coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
-    poster_theme 
-ggsave("visualization_community/naming_among_community2.png", plot = g_naming, width = 9, height = 6, units = "in", bg = "transparent")
-
-
 
 #############
 # poster: network graph

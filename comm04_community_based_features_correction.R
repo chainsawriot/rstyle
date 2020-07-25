@@ -1,4 +1,3 @@
-rm(list=ls())
 require(tidyverse)
 require(igraph)
 require(rex)
