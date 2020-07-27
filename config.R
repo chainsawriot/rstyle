@@ -18,3 +18,7 @@ PATH_COMM_LANG_FEATURES <- "data/comm_lang_feature.RDS"
 FX_DATA_PREFIX <- "data/fx_data_yr"
 FX_DATA_SUFFIX <- ".RDS"
 PATH_FX_STYLE_BY_YEAR <- "data/fx_style_by_year.RDS"
+
+## syntax0* - related parameters
+SYNTAX_DATA_PREFIX <- "data/syntax_feature_yr"
+SYNTAX_DATA_SUFFIX <- ".RDS"
