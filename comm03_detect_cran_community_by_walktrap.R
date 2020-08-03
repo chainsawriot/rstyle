@@ -43,5 +43,41 @@ comm_size %>% head(cfg$MAX_NUM_COMM_TO_ANALYZE) %>% write.csv(path_table1, row.n
 comm_id <- 3
 view_community_influential_member(comm, comm_id)
 
+#####################
 # TODO: compute correlation between random seeds
-# TODO: compare the boundary of communites over time
+
+get_pkgs_from_largest_community <- function(seed, fraction, n_largest, cran_graph){
+    comm <- get_community(cran_graph, seed)
+    pkgs <- tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_event$vector) %>% 
+        arrange(desc(evcent)) %>%  
+        group_by(comm_id) %>%
+        summarize(n_mem = n(), top = list(head(pkg, round(n()*0.1)))) %>%
+        arrange(desc(n_mem)) %>%
+        head(n_largest) %>% pull(top)
+    pkgs <- map(pkgs, sets::as.set)
+    return(pkgs)
+}
+
+get_avg_jacc_corr <- function(pkgs_compare, pkgs_base){
+    avg_jacc_corr <- map_dbl(1:n_largest, function(idx) sets::set_similarity(pkgs_base[[idx]], pkgs_compare[[idx]], method="Jaccard")) %>% mean()
+    return(avg_jacc_corr)
+}
+
+
+seed <- 42
+n_sample <- 100
+n_largest <- 20
+fraction <- 0.1
+# get the most important packages within each community from the base community with random seed 42
+pkgs_base <- get_pkgs_from_largest_community(seed, fraction, n_largest, cran_graph)
+
+# generate communities to be compared with different seeds
+seed_candidates <- round(seq(1, 10^5, length=n_sample))
+pkgs_community <- map(seed_candidates, function(seed) get_pkgs_from_largest_community(seed, fraction, n_largest, cran_graph))
+names(pkgs_community) <- seed_candidates
+
+# compute Jaccard correlation
+comm_corr <- map(pkgs_community, function(pkgs_compare) get_avg_jacc_corr(pkgs_compare, pkgs_base))
+
+
+
