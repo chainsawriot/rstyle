@@ -1,0 +1,21 @@
+"comm_id","n_mem","top","rank","seed"
+23,3431,"methods, rgl, highr",1,42
+1,3360,"knitr, testthat, rmarkdown",2,42
+2,1462,"multcomp, nlme, pkgKitten",3,42
+25,671,"Rcpp, inline, pinp",4,42
+13,464,"maps, deldir, sp",5,42
+32,338,"rpart, nnet, randomForest",6,42
+4,207,"survival, coin, rms",7,42
+28,73,"graph, scagnostics, RBGL",8,42
+9,65,"rsp, globals, listenv",9,42
+7,60,"texreg, network, ergm",10,42
+36,55,"Biobase, limma, sma",11,42
+40,40,"AhoCorasickTrie, BinQuasi, biofiles",12,42
+56,38,"apt, beadarrayMSV, BioIDMapper",13,42
+64,36,"pbivnorm, randtoolbox, rgenoud",14,42
+44,34,"RUnit, RcppCCTZ, CFL",15,42
+52,30,"slam, registry, Rsymphony",16,42
+31,27,"tis, setRNG, CDNmoney",17,42
+129,26,"rJava, RWekajars, AWR",18,42
+34,25,"ff, ffbase, biglm",19,42
+15,24,"pso, soma, AUC",20,42

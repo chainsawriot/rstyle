@@ -7,9 +7,8 @@ PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE <- "pkgs_functions_with_syntax_feature.RDS"
 PATH_TARGET_META <- "target_meta.RDS"
 
 # community-related parameters
-END_YEAR <- 2020
 MAX_NUM_COMM_TO_ANALYZE <- 20
-
+FOLDER_COMM_OUPUT <- "visualization_community/"
 PATH_CRAN_DEPENDENCY <- "data/cran_dependency.RDS"
 PATH_CRAN_GRAPH <- "data/cran_graph.RDS"
 PATH_COMM <-"data/comm_walktrap.RDS"
