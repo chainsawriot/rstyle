@@ -32,35 +32,35 @@ It takes 220G of disk space.
 
 #### prep - collecting data and sampling
 
-1. **extract_metadata.R** (requires: Cloned CRAN mirror): extract meta data from tarballs. Generates *target_meta.RDS* and *final_meta.RDS*.
+1. **extract_metadata.R** (requires: Cloned CRAN mirror): extract meta data from tarballs. Generate *target_meta.RDS* and *final_meta.RDS*.
 
-2. **cat code.sql | sqlite3 code.db** : generate the schema of the SQLITE database - code.db. Generates *code.db* without data.
+2. **cat code.sql | sqlite3 code.db** : generate the schema of the SQLITE database - code.db. Generate *code.db* without data.
 
-3. **dump.R** (requires: Cloned CRAN mirror, target_meta.RDS): dump the source code, NAMESPACEs and DESCRIPTIONs into code.db. Generates *code.db* with data. It is very large (> 20G).
+3. **dump.R** (requires: Cloned CRAN mirror, target_meta.RDS): dump the source code, NAMESPACEs and DESCRIPTIONs into code.db. Generate *code.db* with data. It is very large (> 20G).
 
-4. **extract_desc.R** (requires: Cloned CRAN mirror, target_meta.RDS): add the text description also into target_meta.RDS as a column *desc*. Generates *target_meta.RDS* (overwrite).
+4. **extract_desc.R** (requires: Cloned CRAN mirror, target_meta.RDS): add the text description also into target_meta.RDS as a column *desc*. Generate *target_meta.RDS* (overwrite).
 
 #### fun - Analysis of function names
 
-1. **fun01_extract_function_name.R** (requires: code.db): extract names of all exported function from each package. Generates multiple *fx_data_yr...RDS* files in `data` directory.
+1. **fun01_extract_function_name.R** (requires: code.db): extract names of all exported function from each package. Generate multiple *fx_data_yr...RDS* files in `data` directory.
 
-2. **fun02_function_name_analysis.R** (requires: *fx_data_yr...RDS* files): analyse the style in function names by year. Generates *fx_style_by_year.RDS* in `data` directory.
+2. **fun02_function_name_analysis.R** (requires: *fx_data_yr...RDS* files): analyse the style in function names by year. Generate *fx_style_by_year.RDS* in `data` directory.
 
-3. **fun03_function_name_vis.R** (requires: *fx_style_by_year.RDS*): visualize the time trends of styles in function names. Generates images(END)
+3. **fun03_function_name_vis.R** (requires: *fx_style_by_year.RDS*): visualize the time trends of styles in function names. Generate images(END)
 
 #### syntax - Analysis of style elements
 
-1. **syntax01_extract_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. It takes a long time. Generates *syntax_feature_yr...RDS* files in `data` directory.
+1. **syntax01_extract_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. It takes a long time. Generate *syntax_feature_yr...RDS* files in `data` directory.
 
-2. **syntax02_gen_pkgs_functions_with_syntax_feature.R** (requires: *syntax_feature_yr...RDS* files): combine all .RDS files into one. Generates pkgs_functions_with_syntax_feature.RDS.
+2. **syntax02_gen_pkgs_functions_with_syntax_feature.R** (requires: *syntax_feature_yr...RDS* files): combine all .RDS files into one. Generate pkgs_functions_with_syntax_feature.RDS.
 
-2. **syntax03_vis.R** (requires: pkgs_functions_with_syntax_feature.RDS): Visualize the time trends of syntactic features. Generates images. (END)
+3. **syntax03_vis.R** (requires: pkgs_functions_with_syntax_feature.RDS): Visualize the time trends of syntactic features. Generate images. (END)
 
 #### line
 
-10. **analyse_line_length.R** (requires: code.db): visualize the change in line length as an animation. Generates **entropy_linelength.RDS**.
+1. **line01_extraction.R** (requires: code.db):  generate **comment_dist.RDS**.
 
-11. **analyse_master_entropy.R** (requires: entropy_fx_name.RDS, entropy_linelength.RDS): visualize the information entropy values of line length and function name's styles. Generates images. (END)
+2. **line02_animation.R** (requires: comment_dist.RDS): generate shiny app.
 
 #### comm
 
