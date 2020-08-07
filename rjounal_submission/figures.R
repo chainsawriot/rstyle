@@ -80,6 +80,9 @@ ggsave(here::here("rjounal_submission", "fig2.pdf"), fig2, width = 5, height = 4
 
 comment_dist <- readRDS(here::here(cfg$PATH_COMMENT_DIST))
 
+### Number of lines analyzed by this project
+comment_dist %>% filter(pub_year <= cfg$INCLUDE_YR) %>% ungroup %>% summarise(sum(n))
+
 comment_dist %>% mutate(comment = ifelse(comment == 0, "Yes", "No")) %>%  group_by(pub_year, comment) %>% mutate(totalline = sum(n), prob = (n / totalline)) %>% 
     select(pub_year, n_chars, prob, comment) %>%
     filter(n_chars > 40 & n_chars < 100 & pub_year %in% c(2003, 2008, 2013, 2019)) %>% mutate(prob = prob * 100) %>%
