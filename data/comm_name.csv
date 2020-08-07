@@ -1,0 +1,21 @@
+comm_id,comm_name
+6,base
+4,Rstudio
+28,Rcpp
+3,Statistical Analysis
+9,Machine Learning
+16,Geography 1
+15,Geography 2
+25,Bioconductor: Graph
+49,Text Analysis
+42,GUI
+13,Infrastructure 1
+17,Numerical Optimization
+40,Bioconductor: Genomics
+77,RUnit
+24,Survival Analysis
+2,Sparse Matrix
+44,Infrastructure 2
+75,Bioinformatics
+37,IO
+45,rJava

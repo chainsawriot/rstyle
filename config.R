@@ -14,6 +14,8 @@ PATH_CRAN_GRAPH <- "data/cran_graph.RDS"
 PATH_COMM <-"data/comm_walktrap.RDS"
 PATH_COMM_EVCENT <- "data/comm_evcent.RDS"
 PATH_COMM_SIZE <- "data/comm_size.RDS"
+PATH_COMM_NAME <- "data/comm_name.csv"
+PATH_NAMING_CONVENTION <- "data/naming_convention.csv"
 PATH_COMM_LARGEST_FEATURES <- "data/comm_largest_feature.RDS"
 
 ## fun0* -related parameters

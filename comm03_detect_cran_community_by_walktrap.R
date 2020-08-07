@@ -9,18 +9,18 @@ seed <- 42
 get_community <- function(cran_graph, seed){
     set.seed(seed)
     cran_wc <- walktrap.community(cran_graph, steps = 4)
-    cran_event <- evcent(cran_graph, direct = TRUE)
-    return(list(cran_wc = cran_wc, cran_event = cran_event))
+    cran_evcent <- evcent(cran_graph, direct = TRUE)
+    return(list(cran_wc = cran_wc, cran_evcent = cran_evcent))
 }
 
 view_community_influential_member <- function(comm, id_community){
-    tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_event$vector) %>% 
+    tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_evcent$vector) %>% 
         filter(comm_id == id_community) %>% arrange(desc(evcent))
 }
 
 get_pkgs_from_largest_community <- function(seed, fraction, n_largest, cran_graph){
     comm <- get_community(cran_graph, seed)
-    pkgs <- tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_event$vector) %>% 
+    pkgs <- tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_evcent$vector) %>% 
         arrange(desc(evcent)) %>%  
         group_by(comm_id) %>%
         summarize(n_mem = n(), top = list(head(pkg, round(n()*0.1)))) %>%
@@ -40,6 +40,7 @@ get_jacc_corr_for_largest_comm <- function(seed_base, n_sample, n_largest, fract
     pkgs_base <- get_pkgs_from_largest_community(seed_base, fraction, n_largest, cran_graph)
     
     # generate communities to be compared with different seeds
+    seed_candidates <- seq(1, 10^5, n_sample)
     pkgs_community <- map(seed_candidates, function(seed) get_pkgs_from_largest_community(seed, fraction, n_largest, cran_graph)) %>% set_names(seed_candidates) 
     
     # compute Jaccard correlation
@@ -57,7 +58,7 @@ cran_graph <- read_rds(cfg$PATH_CRAN_GRAPH)
 #####################
 ### main
 comm <- get_community(cran_graph, seed)
-comm_size <- tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_event$vector) %>% 
+comm_size <- tibble(pkg = V(cran_graph)$name, comm_id = comm$cran_wc$membership, evcent = comm$cran_evcent$vector) %>% 
     arrange(desc(evcent)) %>%  
     group_by(comm_id) %>% 
     summarize(n_mem = n(), top = paste(head(pkg, 3), collapse = ', ')) %>% 

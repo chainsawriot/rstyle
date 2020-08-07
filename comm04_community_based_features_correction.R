@@ -12,6 +12,7 @@ cfg <- modules::use("config.R")
 pkgs <- readRDS(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)
 comm <- readRDS(cfg$PATH_COMM)
 comm_size <- read_rds(cfg$PATH_COMM_SIZE)
+comm_name <- read.csv(cfg$PATH_COMM_NAME, stringsAsFactors = FALSE)
 style_regexes <- list(
     "alllowercase"   = rex(start, one_or_more(rex(one_of(lower, digit))), end),
     "ALLUPPERCASE"   = rex(start, one_or_more(rex(one_of(upper, digit))), end),
@@ -81,7 +82,10 @@ get_feature_table_from_pkgs <- function(comm_id, return_res = FALSE) {
 
 largest_comm <- comm_size %>% filter(rank <= cfg$MAX_NUM_COMM_TO_ANALYZE)
 
-res <- map_dfr(largest_comm$comm_id, get_feature_table_from_pkgs)
-res$comm_name <- largest_comm$top
-res$n_mem <- largest_comm$n_mem
-saveRDS(res, cfg$PATH_COMM_LARGEST_FEATURES)
+comm_feat <- map_dfr(largest_comm$comm_id, get_feature_table_from_pkgs) %>% 
+    left_join(comm_name, by = "comm_id") %>% 
+    mutate(n_mem = largest_comm$n_mem)
+saveRDS(comm_feat, cfg$PATH_COMM_LARGEST_FEATURES)
+
+
+
