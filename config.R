@@ -24,3 +24,6 @@ PATH_FX_STYLE_BY_YEAR <- "data/fx_style_by_year.RDS"
 ## syntax0* - related parameters
 SYNTAX_DATA_PREFIX <- "data/syntax_feature_yr"
 SYNTAX_DATA_SUFFIX <- ".RDS"
+
+## line0* - related parameters
+PATH_COMMENT_DIST <- "data/comment_dist.RDS"
