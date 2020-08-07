@@ -2,12 +2,16 @@ require(dbplyr)
 require(tidyverse)
 require(lintr)
 require(furrr)
+require(here)
+require(modules)
 
-read.csv('tab1.csv', header = TRUE) %>% knitr::kable(format = 'latex', caption = 'Three major style-guides: Google, Tidyverse and Bioconductor')
+cfg <- modules::use(here::here("config.R"))
 
-source('../helpers.R')
+read.csv(here::here("rjounal_submission", "tab1.csv"), header = TRUE) %>% knitr::kable(format = 'latex', caption = 'Three major style-guides: Google, Tidyverse and Bioconductor')
 
-test <- readRDS('../pkgs_functions_with_syntax_feature.RDS')
+source(here::here('helpers.R'))
+
+test <- readRDS(here::here(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE))
 
 ent_cal <- function(x) {
     base <- length(x)
@@ -33,17 +37,17 @@ cal_entro <- function(yr, data) {
     data %>% filter(pub_year == yr) %>% pull(function_feat) %>% map("result") %>% Filter(Negate(is.null), .) %>% bind_rows() %>% summarise_at(vars(fx_assign:fx_tab), funs("entropy" = ent_cal, "ratio" = ratio)) %>% mutate(pub_year = yr)
 }
 
-map_dfr(1998:2018, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + 
+map_dfr(1998:cfg$INCLUDE_YR, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + 
     theme(rect = element_rect(fill = "transparent")) +
     theme(legend.position = "none") -> figure1
 
-ggsave('fig1.pdf', figure1, width = 5, height = 5)
+ggsave(here::here("rjounal_submission", "fig1.pdf"), figure1, width = 5, height = 5)
 
 ######################
 
 require(tidyverse)
 
-fx_style <- readRDS('../fx_style_by_year.RDS')
+fx_style <- readRDS(here::here(cfg$PATH_FX_STYLE_BY_YEAR))
 
 tibble(style = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
        long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) ->
@@ -57,7 +61,7 @@ fx_style %>% mutate(alllower = alllower / total,
                     dotted = dotted / total,
                     other = other / total) %>%
     select(-total) %>% 
-    gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= 2018) %>%
+    gather(key = 'style', value = 'share', -pub_year) %>% filter(pub_year <= cfg$INCLUDE_YR) %>%
     left_join(naming_conv, by = 'style') %>% 
     mutate(opacity = ifelse(style %in% c('dotted', 'snake', 'lowcamel', 'upcamel'), 0.8, 0.4)) %>%
     mutate(long_name = fct_relevel(long_name, 
@@ -70,7 +74,7 @@ fx_style %>% mutate(alllower = alllower / total,
     theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + 
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10)) -> fig2
 
-ggsave('fig2.pdf', fig2, width = 5, height = 4)
+ggsave(here::here("rjounal_submission", "fig2.pdf"), fig2, width = 5, height = 4)
 
 ####
 
