@@ -78,19 +78,19 @@ ggsave(here::here("rjounal_submission", "fig2.pdf"), fig2, width = 5, height = 4
 
 ####
 
-comment_dist <- readRDS('../comment_dist.RDS')
+comment_dist <- readRDS(here::here(cfg$PATH_COMMENT_DIST))
 
-comment_dist %>% mutate(comment = ifelse(comment == 1, "Yes", "No")) %>%  group_by(pub_year, comment) %>% mutate(totalline = sum(n), prob = (n / totalline)) %>% 
+comment_dist %>% mutate(comment = ifelse(comment == 0, "Yes", "No")) %>%  group_by(pub_year, comment) %>% mutate(totalline = sum(n), prob = (n / totalline)) %>% 
     select(pub_year, n_chars, prob, comment) %>%
-    filter(n_chars > 40 & n_chars < 100 & pub_year %in% c(2003, 2008, 2013, 2018)) %>%
+    filter(n_chars > 40 & n_chars < 100 & pub_year %in% c(2003, 2008, 2013, 2019)) %>% mutate(prob = prob * 100) %>%
     ggplot(aes(x = n_chars, y = prob, color = comment)) + 
     geom_line(stat = 'identity') +
     geom_vline(xintercept = 80, alpha = 0.3) + facet_wrap(~ pub_year, ncol = 2) +
-    xlab('Number of characters') + ylab('Share of all lines') + scale_color_brewer(palette="Dark2") +
+    xlab('Number of characters') + ylab('Share of all lines (%)') + scale_color_brewer(palette="Dark2") +
     theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + 
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10)) -> fig3
 
-ggsave('fig3.pdf', fig3, width = 5, height = 4)
+ggsave(here::here("rjounal_submission", "fig3.pdf"), fig3, width = 5, height = 4)
 
 #####
 
