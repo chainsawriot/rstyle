@@ -14,7 +14,7 @@ PATH_CRAN_GRAPH <- "data/cran_graph.RDS"
 PATH_COMM <-"data/comm_walktrap.RDS"
 PATH_COMM_EVCENT <- "data/comm_evcent.RDS"
 PATH_COMM_SIZE <- "data/comm_size.RDS"
-PATH_COMM_LANG_FEATURES <- "data/comm_lang_feature.RDS"
+PATH_COMM_LARGEST_FEATURES <- "data/comm_largest_feature.RDS"
 
 ## fun0* -related parameters
 FX_DATA_PREFIX <- "data/fx_data_yr"

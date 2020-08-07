@@ -84,4 +84,4 @@ largest_comm <- comm_size %>% filter(rank <= cfg$MAX_NUM_COMM_TO_ANALYZE)
 res <- map_dfr(largest_comm$comm_id, get_feature_table_from_pkgs)
 res$comm_name <- largest_comm$top
 res$n_mem <- largest_comm$n_mem
-saveRDS(res, cfg$PATH_COMM_LANG_FEATURES)
+saveRDS(res, cfg$PATH_COMM_LARGEST_FEATURES)
