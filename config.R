@@ -2,7 +2,7 @@
 INCLUDE_YR <- 2019
 
 PATH_CODE_DB <- 'code.db'
-PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE <- "pkgs_functions_with_syntax_feature.RDS"
+PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE <- "data/pkgs_functions_with_syntax_feature.RDS"
 
 PATH_TARGET_META <- "target_meta.RDS"
 
