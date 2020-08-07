@@ -1,0 +1,11 @@
+,Google *,Tidyverse,Bioconductor
+Function name,UpperCamel,snake_case,lowerCamel
+Assignment,Discourage =,Discourage =,Discourage =
+Line length,“limit your code to 80 characters per line”,“limit your code to 80 characters per line”,>= 80
+Space after a comma,Yes,Yes,Yes
+Space around infix operators,Yes,Yes,Yes
+Indentation,2 spaces,2 spaces,4 spaces
+Quotes,Double,Double,Not specified
+Boolean values,Use TRUE / FALSE,Use TRUE / FALSE,Not specified
+Terminate a line with a semicolon,No,No,Not specified
+Curly braces,"{ same line, then a newline, } on its own line","{ same line, then a newline, } on its own line",Not specified
