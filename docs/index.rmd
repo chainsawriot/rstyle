@@ -84,24 +84,24 @@ We analyzed 108 million lines of code from CRAN and studied the evolution of how
 
 ```{r, echo = FALSE, message = FALSE, out.width = "60%", fig.align = "center"}
 require(magick)
-x <- image_read_pdf(here::here("rjournal_submission", "fig2.pdf"), density = 150) %>% image_convert(format = "png") %>% image_write(here::here("prez", "fig2.png"))
-knitr::include_graphics(here::here("prez", "fig2.png"))
+x <- image_read_pdf(here::here("rjournal_submission", "fig2.pdf"), density = 150) %>% image_convert(format = "png") %>% image_write(here::here("docs", "fig2.png"))
+knitr::include_graphics("fig2.png")
 ```
 
 ---
 # And community-specific conventions
 
 ```{r, echo = FALSE, message = FALSE, out.width = "60%", fig.align = "center"}
-x <- image_read_pdf(here::here("rjournal_submission", "fig4.pdf"), density = 150) %>% image_convert(format = "png") %>% image_write(here::here("prez", "fig4.png"))
-knitr::include_graphics(here::here("prez", "fig4.png"))
+x <- image_read_pdf(here::here("rjournal_submission", "fig4.pdf"), density = 150) %>% image_convert(format = "png") %>% image_write(here::here("docs", "fig4.png"))
+knitr::include_graphics("fig4.png")
 ```
 
 ---
 # and more...
 
 ```{r, echo = FALSE, message = FALSE, out.width = "60%", fig.align = "center"}
-x <- image_read_pdf(here::here("rjournal_submission", "fig1.pdf"), density = 150) %>% image_convert(format = "png") %>% image_write(here::here("prez", "fig1.png"))
-knitr::include_graphics(here::here("prez", "fig1.png"))
+x <- image_read_pdf(here::here("rjournal_submission", "fig1.pdf"), density = 150) %>% image_convert(format = "png") %>% image_write(here::here("docs", "fig1.png"))
+knitr::include_graphics("fig1.png")
 ```
 
 ---
