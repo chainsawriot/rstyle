@@ -6,7 +6,6 @@ cfg <- modules::use("config.R")
 
 ###################################################
 ### local variables
-pkgs <- readRDS(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)
 cran_graph <- read_rds(cfg$PATH_CRAN_GRAPH)
 comm <- read_rds(cfg$PATH_COMM)
 comm_size <- read_rds(cfg$PATH_COMM_SIZE)
