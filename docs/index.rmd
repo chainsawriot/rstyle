@@ -1,7 +1,7 @@
 ---
 title: "Mining 108 million lines of R code from CRAN"
 subtitle: "1998-2019"
-author: "Chai-yi Yen, Mia Huai-Wen Chang, Chung-hong Chan"
+author: "Chai-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan"
 date: "`r Sys.Date()`"
 params:
   animation: "fade"
@@ -32,7 +32,7 @@ mzesalike::use_footer(params)
 <td><img src = "yen.jpg" width = "300" height = "300"><br>
 
 .large[
-**Chai-yi Yen**<br>
+**Chai-Yi Yen**<br>
 ]
 .small[
 `r fontawesome::fa("github")` exilespacer
