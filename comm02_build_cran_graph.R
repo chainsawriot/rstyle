@@ -77,7 +77,7 @@ get_neibor <- function(pkg_name, dependency) {
 
 ### main
 dependency <- get_dependency_snapshot(type=type_dependency)
-dependency$pkg_name %>% map_dfr(get_neibor, dependency = dependency) -> dependency_edgelist
+dependency_edgelist <- dependency$pkg_name %>% map_dfr(get_neibor, dependency = dependency) 
 
 cran_graph <- graph.data.frame(dependency_edgelist, direct = TRUE)
 write_rds(cran_graph, cfg$PATH_CRAN_GRAPH)

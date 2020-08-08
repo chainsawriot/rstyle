@@ -1,0 +1,8 @@
+feature,long_name
+dotted,dotted.func
+allupper,ALLUPPER 
+upcamel,UpperCamel 
+other,other 
+alllower,alllower 
+lowcamel,lowerCamel 
+snake,lower_snake
