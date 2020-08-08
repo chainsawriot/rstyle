@@ -1,0 +1,26 @@
+/* Add maven for code font (keep other xaringan defaults */
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+@import url(https://fonts.googleapis.com/css?family=Helvetica);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
+
+body {
+    font-family: 'Helvetica';
+    font-size: 1em;
+}
+
+h1, h2, h3 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+}
+
+.remark-code, .remark-inline-code {
+    font-family: 'Fira Code', monospace;
+    font-size: 1em;
+}
+
+.remark-code-line-highlighted {
+    background-color: #ffff88;
+}

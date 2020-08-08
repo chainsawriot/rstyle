@@ -1,0 +1,97 @@
+.inverse {
+    background-color: #282D35
+}
+
+.title-slide {
+  background-image: url(img/mzes_dots.png), url(img/mzes_logo.png), url(img/unima_logo.png);
+  background-position: 0% 10%, 10% 98%, 90% 100%;
+  background-size: 530px, 320px, 270px;
+  background-color: #ffffff;
+}
+
+.title-slide h1 {
+  color: #00597E;
+  padding-top: 180px;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: left;
+  text-shadow: none;
+  padding-bottom: 0px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+
+.title-slide h2 {
+  color: #b98b44;
+  font-size: 40px;
+  text-align: left;
+  text-shadow: none;
+  padding-top: 0px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+
+.title-slide h3 {
+  font-size: 30px;
+  font-weight: normal;
+  color: #8c8e8e;
+  text-align: left;
+  text-shadow: none;
+  padding: 0px;
+  margin: 0px;
+  line-height: 1;
+  margin-left: 50px;
+}
+
+h1 {
+  color: #00597E;
+}
+
+strong {
+  color: #00597E;
+}
+
+a {
+    color: #b98b44
+}
+
+.imagelab {
+    font-size: 50px;
+    color: #00597E;
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+.remark-slide-content {
+  font-size: 28px;
+}
+
+.extralarge {
+    font-size: 200%
+}
+
+.large {
+    font-size: 130%
+}
+
+.small {
+    font-size: 70%
+}
+
+.extrasmall {
+    font-size: 50%
+}
+
+div.my-footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+
+div.my-footer span {
+    color: #8c8e8e;
+    position: absolute;
+    left: 30px;
+    bottom: 12px;
+}
