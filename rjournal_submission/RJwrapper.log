@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.2)  9 AUG 2020 10:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.2)  9 AUG 2020 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -936,31 +936,31 @@ LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 }
 
 ] [2] [3] [4]
-<fig1.pdf, id=131, 361.35pt x 361.35pt>
+<fig1.pdf, id=137, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
 Package pdftex.def Info: fig1.pdf  used on input line 252.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig2.pdf, id=136, 361.35pt x 289.08pt>
+ [5 <./fig1.pdf>]
+<fig2.pdf, id=160, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
-Package pdftex.def Info: fig2.pdf  used on input line 265.
+Package pdftex.def Info: fig2.pdf  used on input line 264.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
- [5 <./fig1.pdf>]
-<fig3.pdf, id=156, 361.35pt x 289.08pt>
+<fig3.pdf, id=166, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
-Package pdftex.def Info: fig3.pdf  used on input line 275.
+Package pdftex.def Info: fig3.pdf  used on input line 274.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
-<fig4.pdf, id=159, 361.35pt x 361.35pt>
+<fig4.pdf, id=169, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
-Package pdftex.def Info: fig4.pdf  used on input line 336.
+Package pdftex.def Info: fig4.pdf  used on input line 335.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=161, 361.35pt x 505.89pt>
+<fig5.pdf, id=171, 361.35pt x 505.89pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
-Package pdftex.def Info: fig5.pdf  used on input line 345.
+Package pdftex.def Info: fig5.pdf  used on input line 344.
 (pdftex.def)             Requested size: 361.34912pt x 505.88875pt.
  [6 <./fig2.pdf>] [7 <./fig3.pdf>] [8 <./fig4.pdf>] [9 <./fig5.pdf>] (./RJwrapp
 er.bbl (./RJwrapper.brf)
@@ -982,10 +982,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--63
 ) [11]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 400.
+(Font)              using `T1/zi4/m/n' instead on input line 399.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 9.18004pt on input line 413.
+(Font)              scaled to size 9.18004pt on input line 412.
 )
 ! Undefined control sequence.
 \endarticle ->\FloatBarrier 
@@ -1002,7 +1002,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
 (rerunfilecheck)             Checksum: 64CA5D762122E92E57528675FFF304C6;753.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: 651EF0A44B4A94C06404403965C62A83;1093.
+(rerunfilecheck)             Checksum: CA422A827FB2027219203739744C0DDF;1175.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1010,41 +1010,42 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 20240 strings out of 482419
- 371253 string characters out of 5946910
- 622732 words of memory out of 5000000
- 35537 multiletter control sequences out of 15000+600000
- 550845 words of font info for 68 fonts, out of 8000000 for 9000
+ 20243 strings out of 482419
+ 371284 string characters out of 5946910
+ 623732 words of memory out of 5000000
+ 35538 multiletter control sequences out of 15000+600000
+ 551625 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,11n,100p,1320b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
- </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0
+ 68i,11n,100p,1832b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb0
 800.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/
-ec/tcrm0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecrb0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecti0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/chainsaw/Library/TinyTeX/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk>{/Users/chainsaw/Library/Tiny
-TeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </Users/chainsaw/Librar
-y/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/chainsa
-w/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </Users
-/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk>
- </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx090
+ec/ecti0800.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/j
+knappen/ec/tcrm0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecrb0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/chainsaw/Library/TinyTeX/tex
+mf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/chainsaw/Library/Tin
+yTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk>{/Users/chainsaw/Libr
+ary/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </Users/chainsa
+w/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users
+/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk>
+ </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm090
 0.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecti1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ecbx2074.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/lj
-four/jknappen/ec/ecrm1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fon
-ts/pk/ljfour/jknappen/ec/eccc1000.600pk></Users/chainsaw/Library/TinyTeX/texmf-
-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/chainsaw/Libra
-ry/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/chainsaw
-/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/cha
-insaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></User
-s/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-</Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols
-/msam10.pfb>
-Output written on RJwrapper.pdf (12 pages, 260732 bytes).
+/ecbx0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecti1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecbx2074.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf
+-var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk></Users/chainsaw/Library/TinyTe
+X/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/chains
+aw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/
+chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></U
+sers/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pf
+b></Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy9.pfb></Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts
+/symbols/msam10.pfb>
+Output written on RJwrapper.pdf (12 pages, 266970 bytes).
 PDF statistics:
- 830 PDF objects out of 1000 (max. 8388607)
- 333 compressed objects within 4 object streams
- 50 named destinations out of 1000 (max. 500000)
+ 862 PDF objects out of 1000 (max. 8388607)
+ 346 compressed objects within 4 object streams
+ 51 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 

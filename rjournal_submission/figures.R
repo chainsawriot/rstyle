@@ -7,7 +7,7 @@ require(modules)
 
 cfg <- modules::use(here::here("config.R"))
 
-read.csv(here::here("rjounal_submission", "tab1.csv"), header = TRUE) %>% knitr::kable(format = 'latex', caption = 'Three major style-guides: Google, Tidyverse and Bioconductor')
+read.csv(here::here("rjournal_submission", "tab1.csv"), header = TRUE) %>% knitr::kable(format = 'latex', caption = 'Three major style-guides: Google, Tidyverse and Bioconductor')
 
 source(here::here('helpers.R'))
 
@@ -39,7 +39,7 @@ cal_entro <- function(yr, data) {
 
 fx_name_trans <- tibble(fx_name = c("fx_assign_ratio", "fx_opencurly_ratio", "fx_infix_ratio",  "fx_integer_ratio", "fx_singleq_ratio", "fx_commas_ratio", "fx_semi_ratio", "fx_t_f_ratio", "fx_closecurly_ratio", "fx_tab_ratio"), full_name = c("= as assignment", "{ on own line", "Infix no spaces", "Not type integers", "' for strings", "No space after ,", "; to terminate lines", "Use T/F", "} not on own line", "Tab to indent"))
 
-map_dfr(1998:cfg$INCLUDE_YR, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% left_join(fx_name_trans, by = c('feature' = 'fx_name')) %>% select(-feature) %>% rename(feature = "full_name") %>% mutate(share = share * 100) %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions (%)") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + theme(rect = element_rect(fill = "transparent")) + theme(legend.position = "none") -> figure1
+map_dfr(1998:cfg$INCLUDE_YR, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% left_join(fx_name_trans, by = c('feature' = 'fx_name')) %>% mutate(full_name = paste0(str_replace(feature, "_ratio$", ""), ": ", full_name)) %>% select(-feature) %>% rename(feature = "full_name") %>% mutate(share = share * 100) %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature, ncol = 2) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions (%)") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + theme(rect = element_rect(fill = "transparent")) + theme(legend.position = "none") -> figure1
 
 ggsave(here::here("rjournal_submission", "fig1.pdf"), figure1, width = 5, height = 5)
 
@@ -97,6 +97,15 @@ fx_style <- readRDS(here::here(cfg$PATH_FX_STYLE_BY_YEAR))
 tibble(style = c('dotted', 'allupper', 'upcamel', 'other', 'alllower', 'lowcamel', 'snake'), 
        long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) ->
     naming_conv
+
+fx_style %>% mutate(alllower = alllower / total,
+                    allupper = allupper / total,
+                    upcamel = upcamel / total,
+                    lowcamel = lowcamel / total,
+                    snake = snake / total,
+                    dotted = dotted / total,
+                    other = other / total) %>%
+    select(-total) %>% filter(pub_year == cfg$INCLUDE_YR)
 
 fx_style %>% mutate(alllower = alllower / total,
                     allupper = allupper / total,
