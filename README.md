@@ -64,11 +64,17 @@ It takes 220G of disk space.
 
 #### comm
 
-12. **extract_cran_dependency.R** (requires: code.db): extract dependencies of packages. Generate **cran_dependency.RDS** (END)
+1. **comm01_extract_cran_dependency.R** (requires: code.db): extract dependencies of packages from CRAN. Generate **cran_dependency.RDS** (END)
 
-13. **build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS** (END)
+12. **comm02_build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS**(END)
 
-14. **detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **cran_community.RDS** (END)
+13. **comm03_detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **comm_walktrap.RDS** and **comm_size.RDS**. In addition, it examines the robustness of identified communities with respect to the choice of random seeds(END)
+
+14. **comm04_community_based_features_correction.R** (requires: pkgs_functions_with_syntax_feature.RDS, comm_walktrap.RDS, comm_size.RDS, comm_name.csv): assign community labels to each package, such that package-level summary of syntax features and naming features can be usage for analyzing the style variations among communites. Only apply to the largest 20 communites. Generate **comm_largest_feature.RDS** (END)
+
+15. **comm05_vis_community_poster_images.R** (requires: comm_largest_feature.RDS, cran_graph.RDS, comm_walktrap.RDS, comm_size.RDS, naming_convention.csv): visualize community-related analysis (END)
+
+
 
 # Related projects
 
@@ -101,30 +107,31 @@ PATH_RSTYLE=/c/Users/{YOUR_USERNAME}/{PATH_TO_RSTYLE}/rstyle bash dev-tmux.sh
 ```
  
 
-# Notes regarding the result from Walktrap clustering
-- **cran_community_20190518.RDS** is the result generated at 2019-M5-18, and the clustered communities makes much sense while we cannot replicate because we forgot to set a random seed.
+# Label the names of identified communities by walktrap algorithm
+We manually assigned a name to the largest identified communities by their 3 most important package members. We priorized importance of packages within a community by the algorithm PageRank. 
 
-|community id   | field   | 
-|---|---|
-| 15  | Rstudio-related packages  |
-| 9  | base   |
-| 4  | image plotting   |
-| 60  | RCpp   |
-| 14  | GPS and GEO   |
-| 35  | ML   |
-| 1  | public health and Statistics   |
-| 36  | text analysis    |
-| 25  | social network analysis   |
-| 39  | mix of graphics and anomaly detection   |
-| 23  | graph and its visualization   |
-| 19  | genetics   |
-| 31  | finance   |
-| 8  | insurance and actuary   |
-| 64  | numerical optimization    |
-| 73  | sparse matrix   |
-| 18  | Java   |
-| 20  | time, date, and money   |
-| 120  | neuronal science   |
+| comm_id|comm_name              |top                                 |
+|-------:|:----------------------|:-----------------------------------|
+|       6|base                   |methods, stats, MASS                |
+|       4|Rstudio                |testthat, knitr, rmarkdown          |
+|      28|Rcpp                   |Rcpp, tinytest, pinp                |
+|       3|Statistical Analysis   |survival, Formula, sandwich         |
+|       9|Machine Learning       |nnet, rpart, randomForest           |
+|      16|Geography 1            |sp, rgdal, maptools                 |
+|      15|GNU                    |gsl, expint, mnormt                 |
+|      25|Bioconductor: Graph    |graph, Rgraphviz, bnlearn           |
+|      49|Text Analysis          |tm, SnowballC, NLP                  |
+|      42|GUI                    |tcltk, tkrplot, tcltk2              |
+|      13|Infrastructure 1       |rsp, listenv, globals               |
+|      17|Numerical Optimization |polynom, magic, numbers             |
+|      40|Bioconductor: Genomics |Biostrings, IRanges, S4Vectors      |
+|      77|RUnit                  |RUnit, ADGofTest, fAsianOptions     |
+|      24|Survival Analysis      |kinship2, CompQuadForm, coxme       |
+|       2|Sparse Matrix          |slam, ROI, registry                 |
+|      44|Infrastructure 2       |RGtk2, gWidgetstcltk, gWidgetsRGtk2 |
+|      75|Bioinformatics         |limma, affy, marray                 |
+|      37|IO                     |RJSONIO, Rook, base64               |
+|      45|rJava                  |rJava, xlsxjars, openNLP            |
 
 ----
 [^1]: [CRAN mirror HOWTO/FAQ](https://cran.r-project.org/mirror-howto.html)
