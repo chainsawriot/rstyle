@@ -41,7 +41,7 @@ fx_name_trans <- tibble(fx_name = c("fx_assign_ratio", "fx_opencurly_ratio", "fx
 
 map_dfr(1998:cfg$INCLUDE_YR, cal_entro, data = test) %>% gather(key = 'feature', value = 'entropy', -pub_year) %>% filter(str_detect(feature, "ratio$")) %>% rename(share = 'entropy') %>% left_join(fx_name_trans, by = c('feature' = 'fx_name')) %>% select(-feature) %>% rename(feature = "full_name") %>% mutate(share = share * 100) %>% ggplot(aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions (%)") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + theme(rect = element_rect(fill = "transparent")) + theme(legend.position = "none") -> figure1
 
-ggsave(here::here("rjounal_submission", "fig1.pdf"), figure1, width = 5, height = 5)
+ggsave(here::here("rjournal_submission", "fig1.pdf"), figure1, width = 5, height = 5)
 
 ######################
 
@@ -62,8 +62,8 @@ match_function_style <- function(x, style_regexes) {
 
 dir_ls(here::here("data")) %>% str_subset(cfg$FX_DATA_PREFIX) -> fx_data_rds
 
-
-pkg_functions <- purrr::map_dfr(fx_data_rds[str_extract(fx_data_rds, "[0-9]{4}") %in% 1998:cfg$INCLUDE_YR], ~ readRDS(.))
+set.seed(42)
+pkg_functions <- purrr::map_dfr(fx_data_rds[str_extract(fx_data_rds, "[0-9]{4}") %in% 1998:cfg$INCLUDE_YR], ~ readRDS(.)) %>% sample_n(150)
 
 conv_style <- function(x, style_regexes) {
     x <- x[!is.na(x) & !is.null(x)]
@@ -83,10 +83,14 @@ style_regexes <- list(
 )
 plan(multiprocess)
 
-
-pkg_functions %>% group_by(pub_year) %>%
+pkg_functions %>%
     mutate(styles = future_map(functions, conv_style, style_regexes = style_regexes, .progress = TRUE)) -> pkg_functions
 
+pkg_functions %>% mutate(fxl = map_int(styles, length)) %>% filter(fxl > 0) -> pkg_sample
+
+tibble(fun_name = unlist(pkg_sample$functions), fun_style = unlist(pkg_sample$styles)) %>% filter(fun_style == "other") %>% sample_n(10) %>% pull(fun_name) %>% paste(collapse = ", ")
+
+###
 
 fx_style <- readRDS(here::here(cfg$PATH_FX_STYLE_BY_YEAR))
 

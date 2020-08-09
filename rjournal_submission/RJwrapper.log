@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.2)  7 AUG 2020 14:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.2)  9 AUG 2020 10:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -941,23 +941,23 @@ File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
 Package pdftex.def Info: fig1.pdf  used on input line 252.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig2.pdf, id=135, 361.35pt x 289.08pt>
+<fig2.pdf, id=136, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
 Package pdftex.def Info: fig2.pdf  used on input line 265.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
  [5 <./fig1.pdf>]
-<fig3.pdf, id=153, 361.35pt x 289.08pt>
+<fig3.pdf, id=156, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
 Package pdftex.def Info: fig3.pdf  used on input line 275.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
-<fig4.pdf, id=156, 361.35pt x 361.35pt>
+<fig4.pdf, id=159, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
 Package pdftex.def Info: fig4.pdf  used on input line 336.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=158, 361.35pt x 505.89pt>
+<fig5.pdf, id=161, 361.35pt x 505.89pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
 Package pdftex.def Info: fig5.pdf  used on input line 345.
@@ -999,62 +999,52 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
  (./RJwrapper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
+Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
+(rerunfilecheck)             Checksum: 64CA5D762122E92E57528675FFF304C6;753.
+Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
+(rerunfilecheck)             Checksum: 651EF0A44B4A94C06404403965C62A83;1093.
 
-
-Package rerunfilecheck Warning: File `RJwrapper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `RJwrapper.out':
-(rerunfilecheck)             Before: 098328060EA0270DB73309F1755B8D56;752
-(rerunfilecheck)             After:  64CA5D762122E92E57528675FFF304C6;753.
-
-Package rerunfilecheck Warning: File `RJwrapper.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `RJwrapper.brf':
-(rerunfilecheck)             Before: 437DE88645B69BA3E6F5DF1310FE00B0;1093
-(rerunfilecheck)             After:  D29ED3754FF885BE6FBB48A25EBF61ED;1091.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 20237 strings out of 482419
- 371221 string characters out of 5946910
+ 20240 strings out of 482419
+ 371253 string characters out of 5946910
  622732 words of memory out of 5000000
- 35536 multiletter control sequences out of 15000+600000
- 550159 words of font info for 67 fonts, out of 8000000 for 9000
+ 35537 multiletter control sequences out of 15000+600000
+ 550845 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,11n,100p,1056b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
- </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0
-900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecrb0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecti0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecbx1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecrm0800.600pk>{/Users/chainsaw/Library/TinyTeX/texm
-f-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </Users/chainsaw/Library/TinyTe
-X/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/chainsaw/Librar
-y/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </Users/chainsa
-w/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users
-/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0900.600pk>
- </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti100
+ 68i,11n,100p,1320b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0
+800.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/
+ec/tcrm0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecrb0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecti0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/chainsaw/Library/TinyTeX/tex
+mf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk>{/Users/chainsaw/Library/Tiny
+TeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </Users/chainsaw/Librar
+y/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/chainsa
+w/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </Users
+/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk>
+ </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx090
 0.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecbx2074.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ecrm1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/lj
-four/jknappen/ec/eccc1000.600pk></Users/chainsaw/Library/TinyTeX/texmf-dist/fon
-ts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/chainsaw/Library/TinyT
-eX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/chainsaw/Library
-/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/chainsaw/Li
-brary/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/chains
-aw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></Users/
-chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.
-pfb>
-Output written on RJwrapper.pdf (12 pages, 246821 bytes).
+/ecti1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecbx2074.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecrm1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/eccc1000.600pk></Users/chainsaw/Library/TinyTeX/texmf-
+dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/chainsaw/Libra
+ry/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/chainsaw
+/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/cha
+insaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></User
+s/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+</Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols
+/msam10.pfb>
+Output written on RJwrapper.pdf (12 pages, 260732 bytes).
 PDF statistics:
- 776 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 49 named destinations out of 1000 (max. 500000)
+ 830 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 50 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 
