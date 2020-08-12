@@ -1,25 +1,25 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.2)  10 AUG 2020 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.11)  11 AUG 2020 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **RJwrapper.tex
 (./RJwrapper.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-06-18>
+L3 programming layer <2020-08-07>
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
-\c@part=\count167
-\c@chapter=\count168
-\c@section=\count169
-\c@subsection=\count170
-\c@subsubsection=\count171
-\c@paragraph=\count172
-\c@subparagraph=\count173
-\c@figure=\count174
-\c@table=\count175
+\c@part=\count168
+\c@chapter=\count169
+\c@section=\count170
+\c@subsection=\count171
+\c@subsubsection=\count172
+\c@paragraph=\count173
+\c@subparagraph=\count174
+\c@figure=\count175
+\c@table=\count176
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
@@ -110,14 +110,14 @@ ltered.code.tex
 \pgf@yd=\dimen148
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count176
-\c@pgf@countb=\count177
-\c@pgf@countc=\count178
-\c@pgf@countd=\count179
+\c@pgf@counta=\count177
+\c@pgf@countb=\count178
+\c@pgf@countc=\count179
+\c@pgf@countd=\count180
 \t@pgf@toka=\toks22
 \t@pgf@tokb=\toks23
 \t@pgf@tokc=\toks24
-\pgf@sys@id@count=\count180
+\pgf@sys@id@count=\count181
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/01/08 v3.1.5b (3.1.5b)
@@ -135,8 +135,8 @@ File: pgfsys-common-pdf.def 2020/01/08 v3.1.5b (3.1.5b)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyss
 oftpath.code.tex
 File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfsyssoftpath@smallbuffer@items=\count181
-\pgfsyssoftpath@bigbuffer@items=\count182
+\pgfsyssoftpath@smallbuffer@items=\count182
+\pgfsyssoftpath@bigbuffer@items=\count183
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysp
 rotocol.code.tex
@@ -172,7 +172,7 @@ de.tex)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.
 code.tex
 \pgfmath@dimen=\dimen149
-\pgfmath@count=\count183
+\pgfmath@count=\count184
 \pgfmath@box=\box46
 \pgfmath@toks=\toks25
 \pgfmath@stack@operand=\toks26
@@ -198,7 +198,7 @@ ns.misc.code.tex)
 ns.integerarithmetics.code.tex)))
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.c
 ode.tex
-\c@pgfmathroundto@lastzeros=\count184
+\c@pgfmathroundto@lastzeros=\count185
 ))
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.te
 x)
@@ -238,7 +238,7 @@ File: pgfcorescopes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgfpic=\box47
 \pgf@hbox=\box48
 \pgf@layerbox@main=\box49
-\pgf@picture@serial@count=\count185
+\pgf@picture@serial@count=\count186
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreg
 raphicstate.code.tex
@@ -273,8 +273,8 @@ File: pgfcorearrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 hade.code.tex
 File: pgfcoreshade.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@max=\dimen173
-\pgf@sys@shading@range@num=\count186
-\pgf@shadingcount=\count187
+\pgf@sys@shading@range@num=\count187
+\pgf@shadingcount=\count188
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorei
 mage.code.tex
@@ -346,7 +346,7 @@ Package: tikz 2020/01/08 v3.1.5b (3.1.5b)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibrar
 yplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@plot@mark@count=\count188
+\pgf@plot@mark@count=\count189
 \pgfplotmarksize=\dimen178
 )
 \tikz@lastx=\dimen179
@@ -361,19 +361,19 @@ File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \tikz@figbox@bg=\box53
 \tikz@tempbox=\box54
 \tikz@tempbox@bg=\box55
-\tikztreelevel=\count189
-\tikznumberofchildren=\count190
-\tikznumberofcurrentchild=\count191
-\tikz@fig@count=\count192
+\tikztreelevel=\count190
+\tikznumberofchildren=\count191
+\tikznumberofcurrentchild=\count192
+\tikz@fig@count=\count193
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulema
 trix.code.tex
 File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfmatrixcurrentrow=\count193
-\pgfmatrixcurrentcolumn=\count194
-\pgf@matrix@numberofcolumns=\count195
+\pgfmatrixcurrentrow=\count194
+\pgfmatrixcurrentcolumn=\count195
+\pgf@matrix@numberofcolumns=\count196
 )
-\tikz@expandcount=\count196
+\tikz@expandcount=\count197
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/
 libraries/tikzlibrarytopaths.code.tex
@@ -388,9 +388,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count197
-\Gm@cntv=\count198
-\c@Gm@tempcnt=\count199
+\Gm@cnth=\count198
+\Gm@cntv=\count199
+\c@Gm@tempcnt=\count266
 \Gm@bindingoffset=\dimen187
 \Gm@wd@mp=\dimen188
 \Gm@odd@mp=\dimen189
@@ -414,45 +414,37 @@ s
 \f@nch@O@olf=\skip56
 \f@nch@O@orf=\skip57
 )
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
+\MT@toks=\toks31
+\MT@count=\count267
+LaTeX Info: Redefining \textls on input line 790.
+\MT@outer@kern=\dimen195
+LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
+\MT@listname@count=\count268
 
-! LaTeX Error: File `microtype.sty' not found.
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdfte
+x.def
+File: microtype-pdftex.def 2019/11/18 v2.7d Definitions specific to pdftex (RS)
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
+LaTeX Info: Redefining \lsstyle on input line 914.
+LaTeX Info: Redefining \lslig on input line 914.
+\MT@outer@space=\skip58
+)
+Package microtype Info: Loading configuration file microtype.cfg.
 
-Enter file name: 
-
-! LaTeX Error: File `helvet.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-
-! LaTeX Error: Unknown option `scaled=0.92' for package `helvet'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.45 \RequirePackage
-                    {palatino,mathpazo}
-? 
-
-! LaTeX Error: File `palatino.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-
-! LaTeX Error: File `mathpazo.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
+)) (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
+)
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/palatino.sty
+Package: palatino 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/mathpazo.sty
+Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
+\symupright=\mathgroup4
+)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/inconsolata.s
 ty
 Package: inconsolata 2019/05/17 v1.12
@@ -465,16 +457,21 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks31
-\XKV@tempa@toks=\toks32
+\XKV@toks=\toks32
+\XKV@tempa@toks=\toks33
 )
-\XKV@depth=\count266
+\XKV@depth=\count269
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\zifour@ocount=\count267
+\zifour@ocount=\count270
 ) (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 11
+2.
+
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ppl.fd
+File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
+))
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -518,9 +515,9 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
-\@linkdim=\dimen195
-\Hy@linkcounter=\count268
-\Hy@pagecounter=\count269
+\@linkdim=\dimen196
+\Hy@linkcounter=\count271
+\Hy@pagecounter=\count272
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
@@ -533,7 +530,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count270
+\Hy@SavedSpaceFactor=\count273
 Package hyperref Info: Hyper figures OFF on input line 4464.
 Package hyperref Info: Link nesting OFF on input line 4469.
 Package hyperref Info: Hyper index ON on input line 4472.
@@ -565,16 +562,16 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 ))
-\c@Hy@tempcnt=\count271
+\c@Hy@tempcnt=\count274
 LaTeX Info: Redefining \url on input line 5076.
-\XeTeXLinkMargin=\dimen196
+\XeTeXLinkMargin=\dimen197
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 )
-\Fld@menulength=\count272
-\Field@Width=\dimen197
-\Fld@charsize=\dimen198
+\Fld@menulength=\count275
+\Field@Width=\dimen198
+\Fld@charsize=\dimen199
 Package hyperref Info: Hyper figures OFF on input line 6347.
 Package hyperref Info: Link nesting OFF on input line 6352.
 Package hyperref Info: Hyper index ON on input line 6355.
@@ -588,79 +585,55 @@ LaTeX Info: Redefining \pageref on input line 6421.
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count273
-\c@Item=\count274
-\c@Hfootnote=\count275
+\Hy@abspage=\count276
+\c@Item=\count277
+\c@Hfootnote=\count278
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
-\Fld@listcount=\count276
-\c@bookmark@seq@number=\count277
-\Hy@SectionHShift=\skip58
+\Fld@listcount=\count279
+\c@bookmark@seq@number=\count280
+\Hy@SectionHShift=\skip59
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 62.
 
-
-! LaTeX Error: File `setspace.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Undefined control sequence.
-<recently read> \setstretch 
-                            
-l.67 \setstretch
-                {1.05}
-? 
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.67 \setstretch{1
-                  .05}
-? 
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2019/10/16 v2.13 Sectioning titles
 \ttl@box=\box56
-\beforetitleunit=\skip59
-\aftertitleunit=\skip60
-\ttl@plus=\dimen199
-\ttl@minus=\dimen256
-\ttl@toksa=\toks33
-\titlewidth=\dimen257
-\titlewidthlast=\dimen258
-\titlewidthfirst=\dimen259
+\beforetitleunit=\skip60
+\aftertitleunit=\skip61
+\ttl@plus=\dimen256
+\ttl@minus=\dimen257
+\ttl@toksa=\toks34
+\titlewidth=\dimen258
+\titlewidthlast=\dimen259
+\titlewidthfirst=\dimen260
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2019/10/16 v2.13 TOC entries
-\ttl@leftsep=\dimen260
+\ttl@leftsep=\dimen261
 )
-
-! LaTeX Error: File `placeins.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip61
-\bibsep=\skip62
+\bibhang=\skip62
+\bibsep=\skip63
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count278
+\c@NAT@ctr=\count281
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count279
+\FV@CodeLineNo=\count282
 \FV@InFile=\read3
 \FV@TabBox=\box57
-\c@FancyVerbLine=\count280
-\FV@StepNumber=\count281
+\c@FancyVerbLine=\count283
+\FV@StepNumber=\count284
 \FV@OutFile=\write4
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty
@@ -668,9 +641,9 @@ Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks34
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
+\@emptytoks=\toks35
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
@@ -679,19 +652,19 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: caption 2020/05/30 v3.4k Customizing captions (AR)
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/05/30 v1.12 caption3 kernel (AR)
+Package: caption3 2020/07/20 v1.12b caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 61.
-\captionmargin=\dimen261
-\captionmargin@=\dimen262
-\captionwidth=\dimen263
-\caption@tempdima=\dimen264
-\caption@indent=\dimen265
-\caption@parindent=\dimen266
-\caption@hangindent=\dimen267
+\captionmargin=\dimen262
+\captionmargin@=\dimen263
+\captionwidth=\dimen264
+\caption@tempdima=\dimen265
+\caption@indent=\dimen266
+\caption@parindent=\dimen267
+\caption@hangindent=\dimen268
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count282
-\c@continuedfloat=\count283
+\c@caption@flags=\count285
+\c@continuedfloat=\count286
 Package caption Info: hyperref package is loaded.
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/environ/environ.sty
@@ -700,10 +673,10 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
-\@envbody=\toks35
+\@envbody=\toks36
 )) (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/01/20 v2.17e AMS math features
-\@mathmargin=\skip63
+\@mathmargin=\skip64
 
 For additional information on amsmath, use the `?' option.
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -711,52 +684,52 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks36
-\ex@=\dimen268
+\@emptytoks=\toks37
+\ex@=\dimen269
 ))
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen269
+\pmbraise@=\dimen270
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 LaTeX Info: Redefining \operatorname on input line 43.
 )
-\inf@bad=\count284
+\inf@bad=\count287
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count285
-\leftroot@=\count286
+\uproot@=\count288
+\leftroot@=\count289
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count287
-\DOTSCASE@=\count288
+\classnum@=\count290
+\DOTSCASE@=\count291
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
 \Mathstrutbox@=\box58
 \strutbox@=\box59
-\big@size=\dimen270
+\big@size=\dimen271
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count289
-\c@MaxMatrixCols=\count290
+\macc@depth=\count292
+\c@MaxMatrixCols=\count293
 \dotsspace@=\muskip17
-\c@parentequation=\count291
-\dspbrk@lvl=\count292
-\tag@help=\toks37
-\row@=\count293
-\column@=\count294
-\maxfields@=\count295
-\andhelp@=\toks38
-\eqnshift@=\dimen271
-\alignsep@=\dimen272
-\tagshift@=\dimen273
-\tagwidth@=\dimen274
-\totwidth@=\dimen275
-\lineht@=\dimen276
-\@envbody=\toks39
-\multlinegap=\skip64
-\multlinetaggap=\skip65
-\mathdisplay@stack=\toks40
+\c@parentequation=\count294
+\dspbrk@lvl=\count295
+\tag@help=\toks38
+\row@=\count296
+\column@=\count297
+\maxfields@=\count298
+\andhelp@=\toks39
+\eqnshift@=\dimen272
+\alignsep@=\dimen273
+\tagshift@=\dimen274
+\tagwidth@=\dimen275
+\totwidth@=\dimen276
+\lineht@=\dimen277
+\@envbody=\toks40
+\multlinegap=\skip65
+\multlinetaggap=\skip66
+\mathdisplay@stack=\toks41
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
@@ -765,38 +738,38 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
-\col@sep=\dimen277
+\col@sep=\dimen278
 \ar@mcellbox=\box60
-\extrarowheight=\dimen278
-\NC@list=\toks41
-\extratabsurround=\skip66
-\backup@length=\skip67
+\extrarowheight=\dimen279
+\NC@list=\toks42
+\extratabsurround=\skip67
+\backup@length=\skip68
 \ar@cellbox=\box61
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen279
-\lightrulewidth=\dimen280
-\cmidrulewidth=\dimen281
-\belowrulesep=\dimen282
-\belowbottomsep=\dimen283
-\aboverulesep=\dimen284
-\abovetopsep=\dimen285
-\cmidrulesep=\dimen286
-\cmidrulekern=\dimen287
-\defaultaddspace=\dimen288
-\@cmidla=\count296
-\@cmidlb=\count297
-\@aboverulesep=\dimen289
-\@belowrulesep=\dimen290
-\@thisruleclass=\count298
-\@lastruleclass=\count299
-\@thisrulewidth=\dimen291
+\heavyrulewidth=\dimen280
+\lightrulewidth=\dimen281
+\cmidrulewidth=\dimen282
+\belowrulesep=\dimen283
+\belowbottomsep=\dimen284
+\aboverulesep=\dimen285
+\abovetopsep=\dimen286
+\cmidrulesep=\dimen287
+\cmidrulekern=\dimen288
+\defaultaddspace=\dimen289
+\@cmidla=\count299
+\@cmidlb=\count300
+\@aboverulesep=\dimen290
+\@belowrulesep=\dimen291
+\@thisruleclass=\count301
+\@lastruleclass=\count302
+\@thisrulewidth=\dimen292
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfmo
 de.def
-File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count300
+File: l3backend-pdfmode.def 2020-08-07 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count303
 \l__pdf_internal_box=\box62
 ) (./RJwrapper.aux)
 \openout1 = `RJwrapper.aux'.
@@ -865,16 +838,28 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-! LaTeX Error: File `upquote.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
+LaTeX Info: Redefining \microtypecontext on input line 10.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `basictext'.
+LaTeX Info: Redefining \showhyphens on input line 10.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-ppl.cfg
+File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
+)
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
 Package backref Info: ** backref set up for natbib ** on input line 10.
 \AtBeginShipoutBox=\box63
 Package hyperref Info: Link coloring ON on input line 10.
+
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -885,7 +870,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 string.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count301
+\c@section@level=\count304
 )
 LaTeX Info: Redefining \ref on input line 10.
 LaTeX Info: Redefining \pageref on input line 10.
@@ -896,31 +881,69 @@ LaTeX Info: Redefining \nameref on input line 10.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+ (./yenetal.tex
+LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 1
+3.
 
-! Undefined control sequence.
-\article ... {}\title {}\subtitle {}\FloatBarrier 
-                                                  
-l.20 \begin{article}
-                    
-? 
-(./yenetal.tex
-! Undefined control sequence.
-\abstract #1->\setstretch 
-                          {1}\noindent \small \textbf {Abstract} #1 
-l.13 }
-      
-? 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
-
-(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ppl.fd
+File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
+13.
 
-
-(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlzplm.fd
+File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
+LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
+13.
+
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omszplm.fd
+File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
+13.
+
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omxzplm.fd
+File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+)
+LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
+13.
+
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `zplm' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 13.
+
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 13.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 13.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 13.
+
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 13.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 13.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 13.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 13.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 13.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 13.
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 13
 .
 
@@ -929,57 +952,198 @@ File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 8.16003pt on input line 13.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `zi4' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.18004pt on input line 17.
+
+
+Package natbib Warning: Citation `baaaath' on page 1 undefined on input line 31
+.
+
+
+Package natbib Warning: Citation `elish' on page 1 undefined on input line 31.
+
+
+Package natbib Warning: Citation `wang' on page 1 undefined on input line 31.
+
+
+Package natbib Warning: Citation `google' on page 1 undefined on input line 33.
+
+
+
+Package natbib Warning: Citation `tidyverse' on page 1 undefined on input line 
+33.
+
+
+Package natbib Warning: Citation `bioconductor' on page 1 undefined on input li
+ne 33.
+
+
+LaTeX Warning: Reference `tab:table1' on page 1 undefined on input line 33.
+
+
+Package natbib Warning: Citation `baaaath' on page 1 undefined on input line 33
+.
+
+
+Package natbib Warning: Citation `oman' on page 1 undefined on input line 33.
+
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 41.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 41.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 41.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 41.
+
+Package natbib Warning: Citation `cranminihowto' on page 1 undefined on input l
+ine 72.
 
 [1{/Users/chainsaw/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 }
 
-] [2] [3] [4]
-<fig1.pdf, id=149, 361.35pt x 361.35pt>
+]
+
+Package natbib Warning: Citation `lintr' on page 2 undefined on input line 80.
+
+[2]
+LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 1
+49.
+ (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
+File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
+(Font)              scaled to size 9.18004pt on input line 149.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `zi4' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [3]
+
+Package natbib Warning: Citation `baaaath' on page 4 undefined on input line 22
+4.
+
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
+27.
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+
+Package natbib Warning: Citation `pons' on page 4 undefined on input line 242.
+
+
+Package natbib Warning: Citation `csardi' on page 4 undefined on input line 242
+.
+
+
+LaTeX Warning: Reference `figure:fig1' on page 4 undefined on input line 248.
+
+
+Package natbib Warning: Citation `chambers' on page 4 undefined on input line 2
+48.
+
+[4]
+<fig1.pdf, id=62, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
 Package pdftex.def Info: fig1.pdf  used on input line 252.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
- [5 <./fig1.pdf>]
-<fig2.pdf, id=172, 361.35pt x 289.08pt>
+
+
+LaTeX Warning: Reference `figure:fig2' on page 5 undefined on input line 260.
+
+
+Package natbib Warning: Citation `baaaath' on page 5 undefined on input line 26
+0.
+
+
+Package natbib Warning: Citation `baaaath' on page 5 undefined on input line 26
+0.
+
+[5 <./fig1.pdf>]
+<fig2.pdf, id=76, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
 Package pdftex.def Info: fig2.pdf  used on input line 264.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
-<fig3.pdf, id=178, 361.35pt x 289.08pt>
+
+
+LaTeX Warning: Reference `figure:fig3' on page 6 undefined on input line 269.
+
+
+Package natbib Warning: Citation `vanderplas' on page 6 undefined on input line
+ 269.
+
+<fig3.pdf, id=79, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
 Package pdftex.def Info: fig3.pdf  used on input line 274.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
-<fig4.pdf, id=181, 361.35pt x 361.35pt>
+
+LaTeX Warning: Reference `tab:table2' on page 6 undefined on input line 282.
+
+
+LaTeX Warning: Reference `figure:fig4' on page 6 undefined on input line 284.
+
+<fig4.pdf, id=80, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
 Package pdftex.def Info: fig4.pdf  used on input line 335.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=183, 361.35pt x 505.89pt>
+
+LaTeX Warning: Reference `figure:fig5' on page 6 undefined on input line 340.
+
+<fig5.pdf, id=81, 361.35pt x 505.89pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
 Package pdftex.def Info: fig5.pdf  used on input line 344.
 (pdftex.def)             Requested size: 361.34912pt x 505.88875pt.
- [6 <./fig2.pdf>] [7 <./fig3.pdf>] [8 <./fig4.pdf>] [9 <./fig5.pdf>] (./RJwrapp
-er.bbl (./RJwrapper.brf)
+
+Package natbib Warning: Citation `tidyverse' on page 6 undefined on input line 
+351.
+
+
+Package natbib Warning: Citation `google' on page 6 undefined on input line 351
+.
+
+[6 <./fig2.pdf>] [7 <./fig3.pdf>] [8 <./fig4.pdf>] [9 <./fig5.pdf>]
+
+Package natbib Warning: Citation `chambers' on page 10 undefined on input line 
+353.
+
+
+Package natbib Warning: Citation `tidyverse' on page 10 undefined on input line
+ 353.
+
+
+Package natbib Warning: Citation `google' on page 10 undefined on input line 35
+3.
+
+
+Package natbib Warning: Citation `vanrossum' on page 10 undefined on input line
+ 357.
+
+
+Package natbib Warning: Citation `christiansen' on page 10 undefined on input l
+ine 357.
+
+
+Package natbib Warning: Citation `wang' on page 10 undefined on input line 385.
+
+
+
+Package natbib Warning: Citation `mosal' on page 10 undefined on input line 385
+.
+
+(./RJwrapper.bbl (./RJwrapper.brf)
 \tf@brf=\write6
 \openout6 = `RJwrapper.brf'.
 
- [10]
-Underfull \hbox (badness 1521) in paragraph at lines 63--63
-[]\T1/cmr/m/n/9 C. Mosal.  \T1/cmr/m/it/9 No-body talks about the real rea-son 
-to use Tabs over Spaces.\T1/cmr/m/n/9 , 2019.  URL
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--63
-[][]$\T1/zi4/m/n/9 https : / / www . reddit . com / r / javascript / comments /
- c8drjo / nobody _ talks _ about _ the _ real _
- []
-
-) [11]
+ [10]) [11]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 399.
@@ -987,65 +1151,79 @@ LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
 (Font)              scaled to size 9.18004pt on input line 412.
 )
-! Undefined control sequence.
-\endarticle ->\FloatBarrier 
-                            
-l.22 \end{article}
-                  
-? 
+
+Package natbib Warning: There were undefined citations.
+
 [12]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
- (./RJwrapper.aux)
+ (./RJwrapper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
-Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
-(rerunfilecheck)             Checksum: 64CA5D762122E92E57528675FFF304C6;753.
-Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: CA422A827FB2027219203739744C0DDF;1175.
 
+
+Package rerunfilecheck Warning: File `RJwrapper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `RJwrapper.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  64CA5D762122E92E57528675FFF304C6;753.
+
+Package rerunfilecheck Warning: File `RJwrapper.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `RJwrapper.brf':
+(rerunfilecheck)             Before: CA422A827FB2027219203739744C0DDF;1175
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 20243 strings out of 482419
- 371284 string characters out of 5946910
- 624732 words of memory out of 5000000
- 35538 multiletter control sequences out of 15000+600000
- 551625 words of font info for 69 fonts, out of 8000000 for 9000
+ 22198 strings out of 482841
+ 406421 string characters out of 5955581
+ 683184 words of memory out of 5000000
+ 36845 multiletter control sequences out of 15000+600000
+ 585986 words of font info for 225 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,11n,100p,2060b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
- </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0
-800.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/
-ec/tcrm0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecrb0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecti0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/chainsaw/Library/TinyTeX/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrb0800.600pk> </Users/chainsaw/Library/Tin
-yTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk>{/Users/chainsaw/Libr
-ary/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </Users/chainsa
-w/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users
-/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk>
- </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm090
-0.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecbx0900.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ecti1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fonts/pk/lj
-four/jknappen/ec/ecbx2074.600pk> </Users/chainsaw/Library/TinyTeX/texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </Users/chainsaw/Library/TinyTeX/texmf
--var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk></Users/chainsaw/Library/TinyTe
-X/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></Users/chains
-aw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/
-chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></U
-sers/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pf
-b></Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy9.pfb></Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts
-/symbols/msam10.pfb>
-Output written on RJwrapper.pdf (12 pages, 270733 bytes).
+ 68i,11n,100p,2082b,640s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+{/Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.
+enc}{/Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-
+t1-0.enc}{/Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.en
+c}</Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/public/inconsolata/In
+consolata-zi4r.pfb></Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr10.pfb></Users/chainsaw/Library/TinyTeX/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb></Users/chainsaw/Library/TinyTeX/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX/te
+xmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTeX/t
+exmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyTeX/
+texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on RJwrapper.pdf (12 pages, 176826 bytes).
 PDF statistics:
- 883 PDF objects out of 1000 (max. 8388607)
- 357 compressed objects within 4 object streams
+ 246 PDF objects out of 1000 (max. 8388607)
+ 212 compressed objects within 3 object streams
  51 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46630 words of extra memory for PDF output out of 51595 (max. 10000000)
 
