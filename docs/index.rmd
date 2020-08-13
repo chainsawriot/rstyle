@@ -1,6 +1,6 @@
 ---
-title: "Mining 108 million lines of R code from CRAN"
-subtitle: "1998-2019"
+title: "Searching for the world's most popular R programming style"
+subtitle: "Mining 108 million lines of R code from CRAN (1998-2019)"
 author: "Chai-Yi Yen, Mia Huai-Wen Chang, Chung-hong Chan"
 date: "`r Sys.Date()`"
 params:
