@@ -60,7 +60,7 @@ plot_naming_among_pkg <- function(pkg_feat){
     
     g_naming <- ggplot(data_naming, aes(y = percentage, x = pkg_name, fill = long_name)) + 
         geom_bar(stat="identity") + 
-        labs(x = "", y = "%") + 
+        labs(x = "package (years since first release)", y = "%") + 
         theme(legend.title = element_blank()) +
         coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
         poster_theme 
@@ -74,7 +74,8 @@ saveRDS(entro_res, cfg$PATH_PKG_ENTROPY)
 
 # compute average entropy within packages
 pkg$entro_res <- entro_res
-pkg_latest <- pkg %>% group_by(pkg_name) %>% filter(pub_year == max(pub_year))
+pkg_ext <-  pkg %>% group_by(pkg_name) %>% mutate(earliest_release = min(pub_year), latest_release = max(pub_year))
+pkg_latest <- pkg_ext %>% group_by(pkg_name) %>% filter(pub_year == latest_release) %>% mutate(age = 2019 - earliest_release) %>% ungroup()
 avg_entro_pkg <- pkg_latest %>% 
     filter(map_lgl(entro_res, ~is.null(.$error))) %>% pull(entro_res) %>% map("result") %>% 
     do.call("rbind", .) %>% summarise_all(mean) %>% 
@@ -100,6 +101,7 @@ ggsave(filename, plot = g_entro, width = 10, height = 6, units = "in", bg = "tra
 pkg_list <- read_rds(cfg$PATH_CRAN_GRAPH) %>% page_rank() %>% pluck("vector") %>% sort(decreasing = TRUE) %>% head(20) %>% names()
 top_pkgs <- pkg_latest %>% filter(pkg_name %in% pkg_list)
 pkg_feat <- top_pkgs %>% 
+    mutate(pkg_name = sprintf("%s (%s)", pkg_name, age)) %>% 
     select(pkg_name, function_feat) %>% 
     mutate(function_feat = map(function_feat, "result")) %>% 
     unnest(cols = c(function_feat)) %>% 
@@ -107,7 +109,7 @@ pkg_feat <- top_pkgs %>%
     group_by(pkg_name, fx_name) %>% summarise(n = n()) %>% 
     group_by(pkg_name) %>% mutate(ratio = n / sum(n)) %>% 
     pivot_wider(id_cols = c(pkg_name), names_from = fx_name, values_from = ratio) %>% 
-    mutate_if(is.numeric, ~ replace(., is.na(.), 0))
+    mutate_if(is.numeric, ~ replace(., is.na(.), 0)) 
 
 filename <- str_glue(cfg$FOLDER_FUNC_OUTPUT, "within_pkg_naming_variation.png")
 g_naming_most_popular <- plot_naming_among_pkg(pkg_feat)
