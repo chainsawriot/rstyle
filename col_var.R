@@ -2,6 +2,7 @@ require(tidyverse)
 require(modules)
 require(rex)
 require(furrr)
+require(igraph)
 
 ### local variables
 cfg <- modules::use("config.R")
@@ -50,8 +51,8 @@ cal_entro <- function(function_feat) {
 
 plot_naming_among_pkg <- function(pkg_feat){
     data_naming <- pkg_feat %>% ungroup() %>% 
-        mutate(rank_by_snake = snake_case) %>% 
-        pivot_longer(alllowercase:ALLUPPERCASE, names_to = "feature", values_to = "percentage") %>% 
+        mutate(rank_by_snake = snake_case) %>%
+        pivot_longer(c(-pkg_name, -rank_by_snake), names_to = "feature", values_to = "percentage") %>% 
         mutate(percentage = percentage * 100) %>% 
         left_join(naming_conv, by = "feature") %>% 
         mutate(pkg_name = fct_reorder(pkg_name, rank_by_snake),
@@ -95,12 +96,9 @@ g_entro <- ggplot(data =  data_entro, aes(feature, entropy)) +
     coord_flip() 
 ggsave(filename, plot = g_entro, width = 10, height = 6, units = "in", bg = "transparent")
 
-# plot the variation of names within the most popular packages
-# source: https://www.r-pkg.org/downloaded
-top_pkgs <- pkg_latest %>% filter(pkg_name %in% c("magrittr", "aws.s3", "aws.ec2metadata", "rsconnect", "jsonlite",
-                                                  "rlang", "fs", "devtools", "ggplot2", "vctrs", 
-                                                  "usethis", "dplyr", "tibble", "lifecycle", "glue", 
-                                                  "tidyselect", "xfun", "pillar", "knitr", "ellipsis"))
+# plot the variation of names within packages of largest pagerank
+pkg_list <- read_rds(cfg$PATH_CRAN_GRAPH) %>% page_rank() %>% pluck("vector") %>% sort(decreasing = TRUE) %>% head(20) %>% names()
+top_pkgs <- pkg_latest %>% filter(pkg_name %in% pkg_list)
 pkg_feat <- top_pkgs %>% 
     select(pkg_name, function_feat) %>% 
     mutate(function_feat = map(function_feat, "result")) %>% 
