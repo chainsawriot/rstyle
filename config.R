@@ -17,6 +17,10 @@ PATH_COMM_NAME <- "data/comm_name.csv"
 PATH_NAMING_CONVENTION <- "data/naming_convention.csv"
 PATH_COMM_LARGEST_FEATURES <- "data/comm_largest_feature.RDS"
 
+## within package variation
+PATH_PKG_ENTROPY <- "data/entro_res.RDS"
+FOLDER_FUNC_OUTPUT <- "visualization_fun/"
+
 ## fun0* -related parameters
 FX_DATA_PREFIX <- "data/fx_data_yr"
 FX_DATA_SUFFIX <- ".RDS"
