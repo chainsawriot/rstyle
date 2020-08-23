@@ -16,7 +16,13 @@ style_regexes <- list(
     "snake_case"     = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more("_", one_or_more(rex(one_of(lower, digit)))), end),
     "dotted.case"    = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more(dot, one_or_more(rex(one_of(lower, digit)))), end)
 )
-
+naming_conv <- tibble(feature = c("dotted.case", "ALLUPPERCASE", "UpperCamelCase", "other", "alllowercase", "lowerCamelCase", "snake_case"),
+                      long_name = c("dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel ", "lower_snake"))
+poster_theme <- theme(plot.title = element_text(size = 24, face = "bold"), 
+                      plot.subtitle =  element_text(size = 10), 
+                      axis.text = element_text(size = 15), 
+                      axis.title=element_text(size=14,face="bold"),
+                      rect = element_rect(fill = "transparent")) 
 
 ### functions
 match_function_style <- function(x, style_regexes) {
@@ -42,21 +48,41 @@ cal_entro <- function(function_feat) {
     return(res)
 }
 
+plot_naming_among_pkg <- function(pkg_feat){
+    data_naming <- pkg_feat %>% ungroup() %>% 
+        mutate(rank_by_snake = snake_case) %>% 
+        pivot_longer(alllowercase:ALLUPPERCASE, names_to = "feature", values_to = "percentage") %>% 
+        mutate(percentage = percentage * 100) %>% 
+        left_join(naming_conv, by = "feature") %>% 
+        mutate(pkg_name = fct_reorder(pkg_name, rank_by_snake),
+               long_name = fct_relevel(long_name, naming_conv$long_name))
+    
+    g_naming <- ggplot(data_naming, aes(y = percentage, x = pkg_name, fill = long_name)) + 
+        geom_bar(stat="identity") + 
+        labs(x = "", y = "%") + 
+        theme(legend.title = element_blank()) +
+        coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
+        poster_theme 
+    return(g_naming)
+}
+
 ### Main
 plan(multiprocess)
 entro_res <- future_map(pkg$function_feat, safely(cal_entro), .progress = TRUE)
 saveRDS(entro_res, cfg$PATH_PKG_ENTROPY)
 
+# compute average entropy within packages
 pkg$entro_res <- entro_res
-avg_entro_pkg <- pkg %>% 
+pkg_latest <- pkg %>% group_by(pkg_name) %>% filter(pub_year == max(pub_year))
+avg_entro_pkg <- pkg_latest %>% 
     filter(map_lgl(entro_res, ~is.null(.$error))) %>% pull(entro_res) %>% map("result") %>% 
     do.call("rbind", .) %>% summarise_all(mean) %>% 
     mutate_at(vars(fx_name), ~ ./ log(length(style_regexes)+1)) %>% 
     mutate_at(vars(fx_assign:fx_tab), ~ ./log(2))
 
-
+# plot within-package variation
 data_entro <- avg_entro_pkg %>% 
-    gather(key = "feature", value = "entropy") %>%
+    pivot_longer(everything(), names_to = "feature", values_to = "entropy") %>%
     arrange(desc(entropy)) %>% 
     mutate(feature = fct_reorder(feature, entropy))
 data_entro
@@ -68,3 +94,24 @@ g_entro <- ggplot(data =  data_entro, aes(feature, entropy)) +
     geom_text(aes(label = sprintf("%s", round(entropy, 2))), position = position_dodge(width=1), hjust = 0) + 
     coord_flip() 
 ggsave(filename, plot = g_entro, width = 10, height = 6, units = "in", bg = "transparent")
+
+# plot the variation of names within the most popular packages
+# source: https://www.r-pkg.org/downloaded
+top_pkgs <- pkg_latest %>% filter(pkg_name %in% c("magrittr", "aws.s3", "aws.ec2metadata", "rsconnect", "jsonlite",
+                                                  "rlang", "fs", "devtools", "ggplot2", "vctrs", 
+                                                  "usethis", "dplyr", "tibble", "lifecycle", "glue", 
+                                                  "tidyselect", "xfun", "pillar", "knitr", "ellipsis"))
+pkg_feat <- top_pkgs %>% 
+    select(pkg_name, function_feat) %>% 
+    mutate(function_feat = map(function_feat, "result")) %>% 
+    unnest(cols = c(function_feat)) %>% 
+    mutate(fx_name = conv_style(fx_name, style_regexes)) %>% 
+    group_by(pkg_name, fx_name) %>% summarise(n = n()) %>% 
+    group_by(pkg_name) %>% mutate(ratio = n / sum(n)) %>% 
+    pivot_wider(id_cols = c(pkg_name), names_from = fx_name, values_from = ratio) %>% 
+    mutate_if(is.numeric, ~ replace(., is.na(.), 0))
+
+filename <- str_glue(cfg$FOLDER_FUNC_OUTPUT, "within_pkg_naming_variation.png")
+g_naming_most_popular <- plot_naming_among_pkg(pkg_feat)
+ggsave(filename, plot = g_naming_most_popular, width = 10, height = 6, units = "in", bg = "transparent")
+
