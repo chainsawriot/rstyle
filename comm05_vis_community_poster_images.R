@@ -24,7 +24,13 @@ cal_dist <- function(i, feat, avg) {
     res[1]
 }
 
-plot_naming_among_comm <- function(comm_feat){
+plot_naming_among_comm <- function(comm_feat, naming_conv){
+    poster_theme <- theme(plot.title = element_text(size = 24, face = "bold"), 
+                          plot.subtitle =  element_text(size = 10), 
+                          axis.text = element_text(size = 15), 
+                          axis.title=element_text(size=14,face="bold"),
+                          rect = element_rect(fill = "transparent")) 
+    
     data_naming <- comm_feat %>% select(comm_id, comm_name, alllower:other) %>% 
         mutate(rank_by_snake = snake) %>%
         gather("feature", "proportion", -comm_id, -comm_name, -rank_by_snake) %>%
@@ -165,7 +171,7 @@ plot_syntax_distance_among_comm <- function(comm_feat, selected_syntax_features)
 
 # poster: Fig. 4 in paper
 filename <- str_glue(cfg$FOLDER_COMM_OUPUT, "comm05_naming_among_community.png")
-g_naming <- plot_naming_among_comm(comm_feat)
+g_naming <- plot_naming_among_comm(comm_feat, naming_conv)
 ggsave(filename, plot = g_naming, width = 9, height = 6, units = "in", bg = "transparent")
 
 
