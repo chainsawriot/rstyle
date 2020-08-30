@@ -32,3 +32,6 @@ SYNTAX_DATA_SUFFIX <- ".RDS"
 
 ## line0* - related parameters
 PATH_COMMENT_DIST <- "data/comment_dist.RDS"
+
+## oo
+OO_DATA <- "data/oo.RDS"
