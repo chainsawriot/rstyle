@@ -15,7 +15,8 @@ check_oo <- function(target_pkg_name, target_pub_year, pkg_ns) {
     pkg_ns2 %>% filter(filename == "NAMESPACE") %>% pull(code) %>% str_detect("^S3method") %>% any -> s3
     pkg_ns2 %>% filter(filename == "NAMESPACE") %>% pull(code) %>% str_detect("^exportMethods") %>% any -> s4
     pkg_ns2 %>% filter(filename == "DESCRIPTION") %>% pull(code) %>% textConnection() %>% read.dcf(all = TRUE) -> des_file
-    "R6" %in% des_file$Imports -> r6
+    imde <- unlist(c(str_split(des_file$Depends, ", "), str_split(des_file$Imports, ", ")))
+    str_detect(imde, "^R6") %>% any -> r6
     tibble(pkg_name = target_pkg_name, pub_year = target_pub_year, s3, s4, r6)
 }
 
