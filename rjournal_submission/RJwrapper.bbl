@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -20,6 +20,11 @@ Bioconductor.
 J.~Chambers.
 \newblock \emph{Assignments with the = Operator.}, 2001.
 \newblock URL \url{http://developer.r-project.org/equalAssign.html}.
+
+\bibitem[Chan(2020)]{chan2}
+C.-h. Chan.
+\newblock \emph{chainsawriot/baaugwo}, Sept. 2020.
+\newblock URL \url{https://doi.org/10.5281/zenodo.4016596}.
 
 \bibitem[Christiansen(1998)]{christiansen}
 T.~Christiansen.
@@ -88,6 +93,8 @@ J.~Vanderplas.
 Z.~Wang and J.~Hahn.
 \newblock The effects of programming style on open source collaboration.
 \newblock 2017.
+\newblock URL
+  \url{https://aisel.aisnet.org/icis2017/DigitalPlatforms/Presentations/22/}.
 
 \bibitem[Wickham(2017)]{tidyverse}
 H.~Wickham.

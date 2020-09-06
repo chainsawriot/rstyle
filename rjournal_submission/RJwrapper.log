@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.11)  6 SEP 2020 21:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.11)  6 SEP 2020 23:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -970,13 +970,13 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 
 ] [2]
 LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 1
-51.
+53.
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 9.18004pt on input line 151.
+(Font)              scaled to size 9.18004pt on input line 153.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
@@ -984,37 +984,37 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 [3]
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
-29.
+31.
  (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 [4]
-<fig1.pdf, id=143, 361.35pt x 361.35pt>
+<fig1.pdf, id=144, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
-Package pdftex.def Info: fig1.pdf  used on input line 254.
+Package pdftex.def Info: fig1.pdf  used on input line 256.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
  [5 <./fig1.pdf>]
-<fig2.pdf, id=165, 361.35pt x 289.08pt>
+<fig2.pdf, id=166, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
-Package pdftex.def Info: fig2.pdf  used on input line 266.
+Package pdftex.def Info: fig2.pdf  used on input line 268.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
-<fig3.pdf, id=171, 361.35pt x 289.08pt>
+<fig3.pdf, id=172, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
-Package pdftex.def Info: fig3.pdf  used on input line 276.
+Package pdftex.def Info: fig3.pdf  used on input line 278.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
  [6 <./fig2.pdf>]
-<fig4.pdf, id=185, 361.35pt x 361.35pt>
+<fig4.pdf, id=186, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
-Package pdftex.def Info: fig4.pdf  used on input line 347.
+Package pdftex.def Info: fig4.pdf  used on input line 349.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=187, 361.35pt x 505.89pt>
+<fig5.pdf, id=188, 361.35pt x 505.89pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
-Package pdftex.def Info: fig5.pdf  used on input line 356.
+Package pdftex.def Info: fig5.pdf  used on input line 358.
 (pdftex.def)             Requested size: 361.34912pt x 505.88875pt.
  [7 <./fig3.pdf>] [8 <./fig4.pdf>]
 [9 <./fig5.pdf>] (./RJwrapper.bbl (./RJwrapper.brf)
@@ -1024,10 +1024,10 @@ Package pdftex.def Info: fig5.pdf  used on input line 356.
  [10]) [11]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 411.
+(Font)              using `T1/zi4/m/n' instead on input line 413.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 9.18004pt on input line 424.
+(Font)              scaled to size 9.18004pt on input line 426.
 ) [12]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
@@ -1037,7 +1037,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
 (rerunfilecheck)             Checksum: D3E950F982C2A1BD868F5582FCD78457;832.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: C238217B1B827EE55E0A152259E9D5CE;1178.
+(rerunfilecheck)             Checksum: 17269A9881B2B51049CE06638AB4C57F;1226.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1045,15 +1045,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22248 strings out of 482841
- 406928 string characters out of 5955581
- 685418 words of memory out of 5000000
- 36857 multiletter control sequences out of 15000+600000
- 587890 words of font info for 249 fonts, out of 8000000 for 9000
+ 22259 strings out of 482841
+ 407036 string characters out of 5955581
+ 685442 words of memory out of 5000000
+ 36863 multiletter control sequences out of 15000+600000
+ 588053 words of font info for 251 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,11n,100p,1857b,640s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exi
+ 68i,11n,100p,1857b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
 , replaced by a fixed one
@@ -1075,10 +1078,10 @@ ts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX/te
 xmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTeX/t
 exmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyTeX/
 texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (12 pages, 182841 bytes).
+Output written on RJwrapper.pdf (12 pages, 183431 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 318 compressed objects within 4 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 360 PDF objects out of 1000 (max. 8388607)
+ 325 compressed objects within 4 object streams
+ 55 named destinations out of 1000 (max. 500000)
  46718 words of extra memory for PDF output out of 51595 (max. 10000000)
 

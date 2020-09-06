@@ -5,45 +5,45 @@ The style file: abbrvnat.bst
 Database file #1: RJreferences.bib
 Warning--empty journal in elish
 Warning--empty journal in wang
-You've used 16 entries,
+You've used 17 entries,
             2773 wiz_defined-function locations,
-            676 strings with 6473 characters,
-and the built_in function-call counts, 5617 in all, are:
-= -- 520
-> -- 246
-< -- 16
-+ -- 88
-- -- 72
-* -- 376
-:= -- 886
-add.period$ -- 51
-call.type$ -- 16
-change.case$ -- 63
-chr.to.int$ -- 16
-cite$ -- 34
-duplicate$ -- 303
-empty$ -- 484
-format.name$ -- 100
-if$ -- 1158
+            682 strings with 6617 characters,
+and the built_in function-call counts, 5914 in all, are:
+= -- 549
+> -- 256
+< -- 17
++ -- 92
+- -- 75
+* -- 397
+:= -- 935
+add.period$ -- 55
+call.type$ -- 17
+change.case$ -- 66
+chr.to.int$ -- 17
+cite$ -- 36
+duplicate$ -- 320
+empty$ -- 509
+format.name$ -- 104
+if$ -- 1217
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 7
-newline$ -- 90
-num.names$ -- 64
-pop$ -- 132
+newline$ -- 96
+num.names$ -- 68
+pop$ -- 138
 preamble$ -- 1
-purify$ -- 56
+purify$ -- 59
 quote$ -- 0
-skip$ -- 241
+skip$ -- 253
 stack$ -- 0
-substring$ -- 120
-swap$ -- 33
+substring$ -- 122
+swap$ -- 36
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 176
+type$ -- 187
 warning$ -- 2
-while$ -- 56
+while$ -- 59
 width$ -- 0
-write$ -- 207
+write$ -- 221
 (There were 2 warnings)

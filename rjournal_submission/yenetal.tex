@@ -44,7 +44,7 @@ Among the 3 style-guides, the major differences are the suggested naming convent
 \hline
 Feature & Google & Tidyverse & Bioconductor\\
 \hline
-Function name & UpperCamel & snake\_case & lowerCamel\\
+\textbf{Function name} & UpperCamel & snake\_case & lowerCamel\\
 \hline
 Assignment & Discourage = & Discourage = & Discourage =\\
 \hline
@@ -54,7 +54,9 @@ Space after a comma & Yes & Yes & Yes\\
 \hline
 Space around infix operators & Yes & Yes & Yes\\
 \hline
-Indentation & 2 spaces & 2 spaces & 4 spaces\\
+\textbf{Indentation} & 2 spaces & 2 spaces & 4 spaces\\
+\hline
+Integer & Not specified & Not specified (Integers are not explicitly typed in included code examples) & Not specified\\
 \hline
 Quotes & Double & Double & Not specified\\
 \hline
@@ -71,9 +73,9 @@ Curly braces & \{ same line, then a newline, \} on its own line & \{ same line, 
 \section{Analysis}
 \subsection{Data Source}
 
-On July 1, 2020, we cloned a local mirror of CRAN using the rsync method suggested in the CRAN Mirror HOWTO \citep{cranminihowto}. Our local mirror contains all packages as tarball files (.tar.gz). By all packages, we mean packages actively listed online on the CRAN website as well as packages that are no longer listed on the website Available CRAN Packages By Name \url{https://cran.r-project.org/web/packages/available_packages_by_name.html}, i.e. orphaned or archived packages. In this analysis, we include all packages, i.e. including those orpaned or archived.
+On July 1, 2020, we cloned a local mirror of CRAN using the rsync method suggested in the CRAN Mirror HOWTO \citep{cranminihowto}. Our local mirror contains all packages as tarball files (.tar.gz). By all packages, we mean packages actively listed online on the CRAN website as well as orphaned and archived packages. In this analysis, we include all active, orphaned and archived packages.
 
-In order to facilitate the analysis, we have developed the \code{baaugwo} package to extract all R source code and metadata from these tarballs. In this study, only the source code from the \code{/R} directory of each tarball file is included. We have also archived the metadata from the \code{DESCRIPTION} and \code{NAMESPACE} files from the tarballs.
+In order to facilitate the analysis, we have developed the package \code{baaugwo} \citep{chan2} to extract all R source code and metadata from these tarballs. In this study, only the source code from the \code{/R} directory of each tarball file is included. We have also archived the metadata from the \code{DESCRIPTION} and \code{NAMESPACE} files from the tarballs.
 
 In order to cancel out the over-representation effect of multiple submissions in a year by a particular package, we have applied the \emph{"one-submission-per-year"} rule to randomly selected only one submission from a year for each package. Unless explicitly notice, we present below the analysis of this \emph{"one-submission-per-year"} sample. Similarly, unless explicitly notice, the unit of the analysis is \emph{exported function}. The study period for this study is from 1998 to 2019.
 
@@ -366,7 +368,7 @@ From a policy recommendation standpoint, our study provides important insight fo
 
 Secondly, style-guides, linters, and editors are important standardizers of PSV. Although we have not directly measured the use of style-guides, linters, and editors in our analysis \footnote{The usage of style-guides, linters, and editors cannot be directly measured from the record on CRAN. The maintainers usually do not explicitly state the style-guide they endorsed in their code. Similarly, packages that have been processed with linters do not import or suggest linters such as \CRANpkg{lintr}, \CRANpkg{styler} or \CRANpkg{goodpractice}. It might be possible to infer the use of a specific editor such as RStudio in the development version of a package with signals such as the inclusion of an RStudio Project file. These signals, however, were usually removed in the CRAN submission of the package. Future research should use alternative methods to measure the usage of these 3 things in R packages.}, we infer their effect by study the time trend (Figure~\ref{figure:fig1}). Even with these standizers, programming styles are slow to change. As indicated by the local patterns of PSV we found in some communities, some package developers keep using their own styles. Having said so, we are not accusing those developers of not following the trendy programming styles. Instead, they follow the mantra of ``if it ain't broke don't fix it''. Again, from a policy recommendation standpoint, the existence of local PSV patterns suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide's authors may consider community outreach to promote their endorsed styles, if they want other communities to adopt their styles.
 
-Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 of the Python Software Foundation \citep{vanrossum}? There are of course pros and cons of adopting such official style-guide. As written by \citet{christiansen}, ``style can easily become a religious issue.'' It is not our intention to meddle in this ``religious issue.'' If such an effort would be undertaken by someone else, we suggest the following style. We must stress here that this \emph{consensus-based} style is only the most popular style based on our analysis, i.e. the \emph{Zeitgeist} (the spirit of the age). We have no guarantee that this style can improve clarity or comprehensibility. The following is an example of a function written in such consensus-based style.
+Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 of the Python Software Foundation \citep{vanrossum}? There are of course pros and cons of adopting an official style-guide. As written by \citet{christiansen}, ``style can easily become a religious issue.'' It is not our intention to meddle in this ``religious issue.'' If such an effort would be undertaken by someone else, we suggest the following consensus-based style. The following is an example of a function written in such style.
 
 \begin{example}
 softplus_func <- function(value, leaky = FALSE) {
@@ -394,7 +396,7 @@ In essense,
   \item Don't use tab to indent
 \end{itemize}
 
-As a final remark: although enforcing a consistent style can improve open source collaboration \citep{wang}, one must also bear in mind that these rules might need to be adjusted sometimes to cater for programmers with special needs. For example, using spaces instead of tabs for indentation can make code not accessible to visually impaired programmers \citep{mosal}.
+We must stress here that this \emph{consensus-based} style is only the most popular style based on our analysis, i.e. the \emph{Zeitgeist} (the spirit of the age) \footnote{In 2019, 5.35\% of all functions are using this \emph{Zeitgeist} style. Using electorial system as an analogy, this style is having the plurality (have the highest number of votes) but not the absolute majority (have over 50\% of the votes)}. We have no guarantee that this style can improve clarity or comprehensibility. As a final remark: although enforcing a consistent style can improve open source collaboration \citep{wang}, one must also bear in mind that these rules might need to be adjusted sometimes to cater for programmers with special needs. For example, using spaces instead of tabs for indentation can make code not accessible to visually impaired programmers \citep{mosal}.
 
 \section{Reproducibility}
 
