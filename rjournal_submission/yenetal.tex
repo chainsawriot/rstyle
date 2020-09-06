@@ -5,7 +5,7 @@
 \maketitle
 
 \abstract{
-The flexibility of R and the diversity of the R community leads to a large number of programming styles applied in R packages. We have analyzed 108 million lines of R code from CRAN and quantified the evolution in popularity of 12 style-elements from 1998 to 2019. We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features, and effect of editors. A consensus in programming style is forming and we have summarised it into a style which contains all of the most popular style elements, e.g. snake case, use <- for assignment etc.
+The flexibility of R and the diversity of the R community leads to a large number of programming styles applied in R packages. We have analyzed 108 million lines of R code from CRAN and quantified the evolution in popularity of 12 style-elements from 1998 to 2019. We attribute 3 main factors that drive changes in programming style: effect of style-guides, effect of introducing new features, and effect of editors. A consensus in programming style is forming and we have summarized it into a style which contains all of the most popular style elements, e.g. snake case, use <- for assignment etc.
 \footnote{
     We have summarized key results of this paper in a poster presented at UseR! 2019 Toulouse. Interested readers can access it with the following link: \url{
     https://github.com/chainsawriot/rstyle/blob/master/Poster_useR2019_Toulouse.png}
@@ -28,9 +28,11 @@ sum_oF.square=function(x)
     sum(x ^ 2)}
 \end{example}
 
-One area that can highlight this flexibility is naming conventions. According to the previous research by \citet{baaaath}, there are at least 6 styles and none of the 6 has dominated the scene. There are still some other style-elements that R programmers have the freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reusability, maintainability \citep{elish}, and open source collaboration \citep{wang}. 
+One area that can highlight this flexibility is naming conventions. According to the previous research by \citet{baaaath}, there are at least 6 styles and none of the 6 has dominated the scene. Beyond naming conventions investigated by Baath, there are style-elements that R programmers have the freedom to adopt, e.g. whether or not to add spaces around infix operators, use double quotation marks or single quotation marks to denote strings, etc. On one hand, these variations provide programmers with freedom. On the other hand, these variations can confuse new programmers and can have dire effects on program comprehension. Also, incompatibility between programming styles might also affect reusability, maintainability \citep{elish}, and open source collaboration \citep{wang}. 
 
-Various efforts to standardize the programming style, e.g. Google's R Style Guide \citep{google}, the Tidyverse Style Guide \citep{tidyverse}, Bioconductor Coding Style \citep{bioconductor} etc.,  are available (Table~\ref{tab:table1}) \footnote{\citet{baaaath} lists also \href{https://csgillespie.wordpress.com/2010/11/23/r-style-guide/}{Colin Gillespie's R style guide}.  Additional style guides that we found include the style guides by \href{https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit}{Henrik Bengtsson}, \href{https://jef.works/R-style-guide/}{Jean Fan}, \href{https://irudnyts.github.io//r-coding-style-guide/}{Iegor Rudnytskyi}, \href{https://rpahl.github.io/r-some-blog/my-r-style-guide/}{Roman Pahl}, \href{https://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf}{Paul E. Johnson}, \href{https://bookdown.org/joshuah40/qa_code/Coding-Guidelines.html}{Joshua Halls},  \href{https://www.datanovia.com/en/blog/r-coding-style-best-practices/}{Datanovia}, and \href{https://www.daqana.org/dqstyle-r/}{daqana}. We focus only on the 3 style guides of Tidyverse, Google and Bioconductor is because these 3 are argubly most influential. There are groups of developers (e.g. contributers to \CRANpkg{tidyverse}, Google employees, and Bioconductor contributors) adhering to these 3 styles.}. These style guides are based on possible improvement in code quality, e.g. style-elements that improve program comprehension \citep{oman}. However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R communities can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have a better understanding of the factors driving increase and decrease in PSV historically, such that more effective standardization efforts can be formulated.
+Various efforts to standardize the programming style, e.g. Google's R Style Guide \citep{google}, the Tidyverse Style Guide \citep{tidyverse}, Bioconductor Coding Style \citep{bioconductor} etc.,  are available (Table~\ref{tab:table1}) \footnote{\citet{baaaath} lists also \href{https://csgillespie.wordpress.com/2010/11/23/r-style-guide/}{Colin Gillespie's R style guide}.  Additional style guides that we found include the style guides by \href{https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit}{Henrik Bengtsson}, \href{https://jef.works/R-style-guide/}{Jean Fan}, \href{https://irudnyts.github.io//r-coding-style-guide/}{Iegor Rudnytskyi}, \href{https://rpahl.github.io/r-some-blog/my-r-style-guide/}{Roman Pahl}, \href{https://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf}{Paul E. Johnson}, \href{https://bookdown.org/joshuah40/qa_code/Coding-Guidelines.html}{Joshua Halls},  \href{https://www.datanovia.com/en/blog/r-coding-style-best-practices/}{Datanovia}, and \href{https://www.daqana.org/dqstyle-r/}{daqana}. We focus only on the 3 style guides of Tidyverse, Google and Bioconductor is because these 3 are argubly most influential. There are groups of developers (e.g. contributers to \CRANpkg{tidyverse}, Google employees, and Bioconductor contributors) adhering to these 3 styles.}.
+
+Among the 3 style-guides, the major differences are the suggested naming convention and indentation. Other style-elements are essentially the same. These style guides are based on possible improvement in code quality, e.g. style-elements that improve program comprehension \citep{oman}. However, we argue that one should first study the current situation, and preferably, the historical development, of programming style variations (PSV) to supplement these standardization efforts. We have undertaken such a task, so that the larger R communities can have a baseline to evaluate the effectiveness of those standardization efforts. Also, we can have a better understanding of the factors driving increase and decrease in PSV historically, such that more effective standardization efforts can be formulated.
 
 \newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
 
@@ -69,7 +71,7 @@ Curly braces & \{ same line, then a newline, \} on its own line & \{ same line, 
 \section{Analysis}
 \subsection{Data Source}
 
-On July 1, 2020, we cloned a local mirror of CRAN using the rsync method suggested in the CRAN Mirror HOWTO \citep{cranminihowto}. Our local mirror contains all packages as tarball files (.tar.gz). By all packages, we mean packages actively listed online on the CRAN websites and packages that are no longer listed on the website Available CRAN Packages By Name \url{https://cran.r-project.org/web/packages/available_packages_by_name.html}, i.e. orphaned or archived packages. In this analysis, we include all packages, i.e. including those orpaned or archived.
+On July 1, 2020, we cloned a local mirror of CRAN using the rsync method suggested in the CRAN Mirror HOWTO \citep{cranminihowto}. Our local mirror contains all packages as tarball files (.tar.gz). By all packages, we mean packages actively listed online on the CRAN website as well as packages that are no longer listed on the website Available CRAN Packages By Name \url{https://cran.r-project.org/web/packages/available_packages_by_name.html}, i.e. orphaned or archived packages. In this analysis, we include all packages, i.e. including those orpaned or archived.
 
 In order to facilitate the analysis, we have developed the \code{baaugwo} package to extract all R source code and metadata from these tarballs. In this study, only the source code from the \code{/R} directory of each tarball file is included. We have also archived the metadata from the \code{DESCRIPTION} and \code{NAMESPACE} files from the tarballs.
 
@@ -235,7 +237,7 @@ We have studied also the naming conventions of all included functions. Using the
 
 The last style-element is line-length. For each R file, we counted the distribution of line-length. In this analysis, the unit of analysis is line.
 
-By not considering line-length, we have studied 10 binary style-elements and one multinomial style-element with 7 categories. Therefore, the possible number of combinations based on these 11 style-elements is: $7 \times 2^{10} = 7,168$.
+If not considering line-length, the remaining 10 binary and one multinomial leave 7,168 possible combinations of PSVs that a programmer could employ ($7 \times 2^{10} = 7,168$).
 
 \subsection{Community-specific variations}
 
@@ -276,6 +278,20 @@ The evolution of line lengths is tricky to be visualized on a 2-D surface. We ha
   \label{figure:fig3}
 \end{figure}
 
+\subsection{Within-package variations}
+
+To analyze the consistency of PSV within packages, we check what variations are chosen by the functions within a package. The style elements we investigate include fx\_assign, fx\_commas, fx_integer, fx_semi, fx_t_f, fx_closecurly, fx_infix, fx_opencurly, fx_singleq, fx_tab, and fx_name.  
+Therefore, 11 binary indicators will be assigned to each function within a package, which refers to style variation it adopts. Second, we compute the entropy of these style indicators among all the functions within a package, and therefore we can analyze the consistency of each style element within a package. Notably, we normalize the entropy of style elements to be [0, 1], such that we can compare the entropy across style elements fairly. Finally, we calculate the average entropy of all CRAN packages by aggregating the package-level entropy we computed in the previous stage. 
+
+The result shows that consistency is still an issue for many style elements within a package. For example, style elements like fx_integer, fx_commas, fx_infix, fx_opencurly, and fx_name have rather larger variations, compared to fx_tab, fx_semi, fx_t_f, fx_closecurly, fx_singleq, fx_assign, as shown in the below figure.
+
+:::insert plot
+
+This finding echoes our concerns that these inconsistent style variations at package level may hinder developers collaborating in a more efficient way.  We provide a more detailed example in the naming convention (fx_name) for a better understanding of the within-package style inconsistency, as shown in the below figure.
+
+::: insert plot
+
+We list the most important packages identified by their pagerank in the CRAN dependency graph.  As what we expect, lower_snake or lowerCamel is the dominating naming convention in many packages. However, for many packages like digest, Rcpp, and survival, there is a lack of consensus on the function names, which may make it harder for developers to read the codes in a more efficient way.
 
 \subsection{Community-based variations}
 
@@ -354,6 +370,7 @@ From a policy recommendation standpoint, our study provides important insight fo
 
 Secondly, style-guides, linters, and editors are important standardizers of PSV. Nonetheless, we observe very strong path dependency in programming styles. As indicated by the local patterns of PSV we found in some communities, some package developers are very resistant to these standardizers and keep using their own styles. Having said so, we are not accusing those developers of not following the trendy programming styles. Instead, they follow the mantra of ``if it ain't broke don't fix it''. Again, from a policy recommendation standpoint, the existence of local PSV patterns suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide's authors may consider community outreach to promote their endorsed styles, if they want other communities to adopt their styles.
 
+
 Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 of the Python Software Foundation \citep{vanrossum}? There are of course pros and cons of adopting such official style-guide. As written by \citet{christiansen}, ``style can easily become a religious issue.'' It is not our intention to meddle in this ``religious issue.'' If such an effort would be undertaken by someone else, we suggest the following style. We must stress here that this \emph{consensus-based} style is only the most popular style based on our analysis, i.e. the \emph{Zeitgeist} (the spirit of the age). We have no guarantee that this style can improve clarity or comprehensibility. The following is an example of a function written in such consensus-based style.
 
 \begin{example}
@@ -410,3 +427,4 @@ The data and scripts to reproduce the analysis in this paper are available at \u
   Germany\\
   \url{https://orcid.org/0000-0002-6232-7530}\\
   \email{chung-hong.chan@mzes.uni-mannheim.de}}
+

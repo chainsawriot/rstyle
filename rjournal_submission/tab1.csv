@@ -5,6 +5,7 @@ Line length,“limit your code to 80 characters per line”,“limit your code t
 Space after a comma,Yes,Yes,Yes
 Space around infix operators,Yes,Yes,Yes
 Indentation,2 spaces,2 spaces,4 spaces
+Integer,Not specified,Yes,Not specified
 Quotes,Double,Double,Not specified
 Boolean values,Use TRUE / FALSE,Use TRUE / FALSE,Not specified
 Terminate a line with a semicolon,No,No,Not specified
