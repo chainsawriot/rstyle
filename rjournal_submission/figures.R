@@ -4,6 +4,7 @@ require(lintr)
 require(furrr)
 require(here)
 require(modules)
+require(rex)
 
 cfg <- modules::use(here::here("config.R"))
 
@@ -70,13 +71,16 @@ dir_ls(here::here("data")) %>% str_subset(cfg$FX_DATA_PREFIX) -> fx_data_rds
 set.seed(42)
 pkg_functions <- purrr::map_dfr(fx_data_rds[str_extract(fx_data_rds, "[0-9]{4}") %in% 1998:cfg$INCLUDE_YR], ~ readRDS(.)) %>% sample_n(150)
 
-conv_style <- function(x, style_regexes) {
-    x <- x[!is.na(x) & !is.null(x)]
-    styles <- map_chr(x, match_function_style, style_regexes = style_regexes)
-}
-
 ## Stole the regexes from the lintr package.
 ## rearrange the order for precedence.
+
+match_function_style <- function(x, style_regexes) {
+    res <- map_lgl(style_regexes, ~ str_detect(x, .))
+    if (sum(res) == 0) {
+        return("other")
+    }
+    names(style_regexes)[min(which(res))]
+}
 
 style_regexes <- list(
     "alllowercase"   = rex(start, one_or_more(rex(one_of(lower, digit))), end),
@@ -86,6 +90,15 @@ style_regexes <- list(
     "snake_case"     = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more("_", one_or_more(rex(one_of(lower, digit)))), end),
     "dotted.case"    = rex(start, one_or_more(rex(one_of(lower, digit))), zero_or_more(dot, one_or_more(rex(one_of(lower, digit)))), end)
 )
+
+## ### adherence to Zeitgeist
+
+## test %>% filter(pub_year == 2019) %>% pull(function_feat) %>% map("result") %>% bind_rows %>% as_tibble %>% mutate(styles = future_map_chr(fx_name, match_function_style, style_regexes = style_regexes, .progress = TRUE)) -> data2019
+## saveRDS(data2019, here::here("rjournal_submission", "data2019.RDS"))
+
+
+readRDS(here::here("rjournal_submission", "data2019.RDS")) %>% count(styles == "snake_case" & !fx_assign & !fx_opencurly & !fx_infix & fx_integer & !fx_singleq & !fx_commas & !fx_semi & !fx_t_f & !fx_closecurly & !fx_tab) %>% add_count(wt = n) %>% mutate(p = n / nn)
+
 plan(multiprocess)
 
 pkg_functions %>%

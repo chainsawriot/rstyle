@@ -7,7 +7,7 @@
 
 \bibitem[B{\aa}{\aa}th(2012)]{baaaath}
 R.~B{\aa}{\aa}th.
-\newblock The state of naming conventions in r.
+\newblock The state of naming conventions in {R}.
 \newblock \emph{The R journal}, 4\penalty0 (2):\penalty0 74--75, 2012.
 
 \bibitem[Bioconductor(2015)]{bioconductor}
@@ -39,18 +39,18 @@ G.~Csardi and T.~Nepusz.
 
 \bibitem[Elish and Offutt(2002)]{elish}
 M.~O. Elish and J.~Offutt.
-\newblock The adherence of open source java programmers to standard coding
+\newblock The adherence of open source {J}ava programmers to standard coding
   practices.
 \newblock 2002.
 
 \bibitem[Google(2019)]{google}
 Google.
-\newblock \emph{Google's R Style Guide}, 2019.
+\newblock \emph{Google's {R} Style Guide}, 2019.
 \newblock URL \url{https://google.github.io/styleguide/Rguide.html}.
 
 \bibitem[Hester and Angly(2019)]{lintr}
 J.~Hester and F.~Angly.
-\newblock \emph{lintr: A 'Linter' for R Code}, 2019.
+\newblock \emph{lintr: A 'Linter' for {R} Code}, 2019.
 \newblock URL \url{https://CRAN.R-project.org/package=lintr}.
 \newblock R package version 2.0.0.
 
@@ -75,7 +75,7 @@ P.~Pons and M.~Latapy.
 
 \bibitem[Van~Rossum et~al.(2001)Van~Rossum, Warsaw, and Coghlan]{vanrossum}
 G.~Van~Rossum, B.~Warsaw, and N.~Coghlan.
-\newblock Pep 8: style guide for python code.
+\newblock {PEP} 8: style guide for {P}ython code.
 \newblock \emph{Python. org}, 1565, 2001.
 
 \bibitem[Vanderplas(2017)]{vanderplas}

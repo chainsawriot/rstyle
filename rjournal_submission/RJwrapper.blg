@@ -1,5 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: RJwrapper.aux
 The style file: abbrvnat.bst
 Database file #1: RJreferences.bib
@@ -7,7 +7,7 @@ Warning--empty journal in elish
 Warning--empty journal in wang
 You've used 16 entries,
             2773 wiz_defined-function locations,
-            676 strings with 6461 characters,
+            676 strings with 6473 characters,
 and the built_in function-call counts, 5617 in all, are:
 = -- 520
 > -- 246
