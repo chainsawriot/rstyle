@@ -4,18 +4,18 @@ comm_id,comm_name
 28,Rcpp
 3,Statistical Analysis
 9,Machine Learning
-16,Geography 1
-15,Geography 2
-25,Bioconductor: Graph
+16,Geospatial
+15,GNU gsl
+25,Graph
 49,Text Analysis
-42,GUI
-13,Infrastructure 1
+42,GUI 1
+13,Infrastructure
 17,Numerical Optimization
-40,Bioconductor: Genomics
+40,Genomics
 77,RUnit
 24,Survival Analysis
 2,Sparse Matrix
-44,Infrastructure 2
+44,GUI 2
 75,Bioinformatics
 37,IO
 45,rJava
