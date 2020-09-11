@@ -213,7 +213,7 @@ fig5 <- comm_feat %>% select(comm_name, fx_assign:fx_tab) %>%
     mutate(comm_name = fct_reorder(comm_name, fx_opencurly2)) %>%
     mutate(feature = fct_relevel(feature, "fx_opencurly")) %>%
     ggplot(aes(x = comm_name, y = proportion)) + geom_bar(stat = 'identity') +
-    facet_grid(feature ~ ., switch="y", scales="free") +
+    facet_grid(feature ~ ., switch="y") +
     theme(axis.text.x = element_text(angle = 90, hjust = 1),
           strip.text.y=element_text(angle=180)) + labs(x = "") + 
     scale_y_continuous("Share of all functions", position="right") 
