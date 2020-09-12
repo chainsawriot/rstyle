@@ -81,7 +81,7 @@ In order to cancel out the over-representation effect of multiple submissions in
 
 \subsection{Quantification of PSV}
 
-Every exported function in our sample are parsed into a parse tree using the parser from the \CRANpkg{lintr} \citep{lintr} package.
+All exported functions in our sample are parsed into a parse tree using the parser from the \CRANpkg{lintr} \citep{lintr} package.
 
 These parse trees were then filtered for lines with function definition and then linted them using the linters from the lintr package to detect for various style-elements. Style-elements considered in this study are:
 
@@ -249,7 +249,7 @@ We selected the largest 20 communities for further analysis. The purpose of this
 
 \subsection{Methodology of within-package variations analysis}
 
-Maintaining a consistent style in source code can enable efficient reading by multiple readers \citep{gillespie2016efficient} \footnote{Maintaining a consistent style is even thought to be a quality of a successful R programmer in \citet{gillespie2016efficient}.}. In addition to community-level analysis, we extend our work to the package-level, in which we investigate the consistency of different style elements within a package. In this analysis, we studied 12 style elements, including fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name.  In another words, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) could be assigned to each function within a package.
+Maintaining a consistent style in source code can enable efficient reading by multiple readers \citep{gillespie2016efficient} \footnote{Maintaining a consistent style is even thought to be a quality of a successful R programmer in \citet{gillespie2016efficient}.}. In addition to community-level analysis, we extend our work to the package-level, in which we investigate the consistency of different style elements within a package. In this analysis, we studied 12 style elements, including fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name.  In other words, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) could be assigned to each function within a package.
 
 We quantified the package-level consistency of each style element within by computing the entropy for each style element. Given a style element S of an R package $R_{i}$, with possible n choices $s_{1}$, $\mathellipsis$ $s_{n}$ (e.g. n = 2 for binary; n = 7 for fx\_names), the entropy $H(S)$ is calculated as:
 
