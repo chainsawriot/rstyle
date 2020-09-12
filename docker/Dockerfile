@@ -14,5 +14,5 @@ RUN apt-get update && apt-get install -y \
 RUN install2.r --error rio quanteda stm rtweet topicmodels dbplyr gganimate ggthemes rmarkdown rticles fs RSQLite furrr ctv rticles modules igraph sets here shiny plotly
 RUN chown rstudio.rstudio /home/rstudio .
 
-RUN R -e "devtools::install_github('jimhester/lintr') ; devtools::install_github('chainsawriot/baaugwo')"
+RUN R -e "devtools::install_github('jimhester/lintr') ; devtools::install_github('chainsawriot/baaugwo'); devtools::install_version('ggplot2', version = '3.3.2')"
 
