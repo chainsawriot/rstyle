@@ -233,7 +233,7 @@ plot_naming_among_comm <- function(comm_feat, naming_conv){
     return(g_naming)
 }
 
-comm_feat <- readRDS(here::here(cfg$PATH_COMM_LARGEST_FEATURES))
+comm_feat <- readRDS(here::here(cfg$PATH_COMM_LARGEST_FEATURES)) %>% select(-comm_name) %>% left_join(comm_name, by = "comm_id")
 naming_conv <- read.csv(here::here(cfg$PATH_NAMING_CONVENTION), stringsAsFactors = FALSE)
 fig4 <- plot_naming_among_comm(comm_feat, naming_conv)
 ggsave(here::here("rjournal_submission", "fig4.pdf"), plot = fig4, width = 5, height = 5)
@@ -241,7 +241,7 @@ ggsave(here::here("rjournal_submission", "fig4.pdf"), plot = fig4, width = 5, he
 #########
 # Fig 5
 #########
-fig5 <- comm_feat %>% select(comm_name, fx_assign:fx_tab) %>% 
+fig5 <- comm_feat %>% select(-comm_name) %>% left_join(comm_name, by = "comm_id") %>%  select(comm_name, fx_assign:fx_tab) %>% 
     mutate(fx_opencurly2 = fx_opencurly) %>%
     gather('feature', 'proportion', -comm_name, -fx_opencurly2) %>%
     mutate(comm_name = fct_reorder(comm_name, fx_opencurly2)) %>%
@@ -249,7 +249,7 @@ fig5 <- comm_feat %>% select(comm_name, fx_assign:fx_tab) %>%
     ggplot(aes(x = comm_name, y = percentage)) + geom_bar(stat = 'identity') +
     facet_grid(feature ~ ., switch="y") +
     theme(axis.text.x = element_text(angle = 40, hjust = 1),
-          strip.text.y.left=element_text(angle=0)) + labs(x = "") + 
+          strip.text.y.left = element_text(angle=0)) + labs(x = "") + 
     scale_y_continuous("Share of all exported functions (%)", position="right") 
 
 ggsave(here::here("rjournal_submission", "fig5.pdf"), fig5, width = 5, height = 8)
