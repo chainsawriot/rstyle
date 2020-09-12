@@ -124,7 +124,7 @@ style_regexes <- list(
 
 readRDS(here::here("rjournal_submission", "data2019.RDS")) %>% 
     count(styles == "snake_case" & !fx_assign & !fx_opencurly & !fx_infix & fx_integer & !fx_singleq & !fx_commas & !fx_semi & !fx_t_f & !fx_closecurly & !fx_tab) %>% 
-    add_count(wt = n) %>% 
+    add_count(wt = n, name = "nn") %>% 
     mutate(p = n / nn)
 
 conv_style <- function(x, style_regexes) {
