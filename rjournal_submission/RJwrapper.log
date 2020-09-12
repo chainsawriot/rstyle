@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1111,10 +1111,10 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyT
 eX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (14 pages, 204343 bytes).
+Output written on RJwrapper.pdf (14 pages, 204514 bytes).
 PDF statistics:
- 427 PDF objects out of 1000 (max. 8388607)
- 385 compressed objects within 4 object streams
+ 429 PDF objects out of 1000 (max. 8388607)
+ 387 compressed objects within 4 object streams
  66 named destinations out of 1000 (max. 500000)
  46744 words of extra memory for PDF output out of 51595 (max. 10000000)
 
