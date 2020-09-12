@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.11)  12 SEP 2020 11:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.11)  12 SEP 2020 14:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -990,61 +990,61 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 [4]
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 260.
-
-
 LaTeX Warning: Command \textquoteright invalid in math mode on input line 262.
 
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 262.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 264.
 
-<fig1.pdf, id=148, 361.35pt x 361.35pt>
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 264.
+
+<fig1.pdf, id=153, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
-Package pdftex.def Info: fig1.pdf  used on input line 270.
+Package pdftex.def Info: fig1.pdf  used on input line 272.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig2.pdf, id=156, 361.35pt x 289.08pt>
+<fig2.pdf, id=161, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
-Package pdftex.def Info: fig2.pdf  used on input line 282.
+Package pdftex.def Info: fig2.pdf  used on input line 284.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 [5] [6 <./fig1.pdf> <./fig2.pdf>]
-<fig3.pdf, id=189, 361.35pt x 289.08pt>
+<fig3.pdf, id=197, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
-Package pdftex.def Info: fig3.pdf  used on input line 292.
+Package pdftex.def Info: fig3.pdf  used on input line 293.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 
-Overfull \hbox (13.66705pt too wide) in paragraph at lines 308--353
+Overfull \hbox (13.66705pt too wide) in paragraph at lines 309--354
  [][] 
  []
 
-<fig4.pdf, id=192, 361.35pt x 361.35pt>
+<fig4.pdf, id=200, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
-Package pdftex.def Info: fig4.pdf  used on input line 357.
+Package pdftex.def Info: fig4.pdf  used on input line 358.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=194, 361.35pt x 505.89pt>
+<fig5.pdf, id=202, 361.35pt x 505.89pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
-Package pdftex.def Info: fig5.pdf  used on input line 366.
+Package pdftex.def Info: fig5.pdf  used on input line 367.
 (pdftex.def)             Requested size: 361.34912pt x 505.88875pt.
-<fig6.pdf, id=196, 361.35pt x 361.35pt>
+<fig6.pdf, id=212, 361.35pt x 361.35pt>
 File: fig6.pdf Graphic file (type pdf)
 <use fig6.pdf>
-Package pdftex.def Info: fig6.pdf  used on input line 376.
+Package pdftex.def Info: fig6.pdf  used on input line 378.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig7.pdf, id=197, 361.35pt x 361.35pt>
+[7 <./fig3.pdf>] [8 <./fig4.pdf>] [9 <./fig5.pdf>] [10 <./fig6.pdf>]
+<fig7.pdf, id=265, 361.35pt x 361.35pt>
 File: fig7.pdf Graphic file (type pdf)
 <use fig7.pdf>
-Package pdftex.def Info: fig7.pdf  used on input line 385.
+Package pdftex.def Info: fig7.pdf  used on input line 387.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-[7 <./fig3.pdf>] [8 <./fig4.pdf>] [9 <./fig5.pdf>] [10 <./fig6.pdf>] [11 <./fig
-7.pdf>] [12] (./RJwrapper.bbl (./RJwrapper.brf)
+ [11 <./fig7.pdf>] (./RJwrapper.bbl (./RJwrapper.brf)
 \tf@brf=\write6
 \openout6 = `RJwrapper.brf'.
 
-) [13]
+ [12]) [13]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 442.
@@ -1060,7 +1060,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
 (rerunfilecheck)             Checksum: 2BDAD086560631723E26217E1CAD4940;911.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: F6C57D2A35DC24CE086D18DBD8115AE0;1228.
+(rerunfilecheck)             Checksum: B1CA0C79B460792F34623FB960AC4AB3;1673.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1068,15 +1068,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22287 strings out of 482841
- 407363 string characters out of 5955581
- 685676 words of memory out of 5000000
- 36879 multiletter control sequences out of 15000+600000
- 591350 words of font info for 259 fonts, out of 8000000 for 9000
+ 22322 strings out of 482841
+ 408013 string characters out of 5955581
+ 685892 words of memory out of 5000000
+ 36897 multiletter control sequences out of 15000+600000
+ 592054 words of font info for 268 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,11n,100p,1976b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
+ 68i,11n,100p,1996b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
 , replaced by a fixed one
@@ -1102,10 +1105,10 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyT
 eX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (14 pages, 200290 bytes).
+Output written on RJwrapper.pdf (14 pages, 203595 bytes).
 PDF statistics:
- 394 PDF objects out of 1000 (max. 8388607)
- 352 compressed objects within 4 object streams
- 61 named destinations out of 1000 (max. 500000)
+ 427 PDF objects out of 1000 (max. 8388607)
+ 385 compressed objects within 4 object streams
+ 65 named destinations out of 1000 (max. 500000)
  46736 words of extra memory for PDF output out of 51595 (max. 10000000)
 
