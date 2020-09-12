@@ -247,6 +247,22 @@ On top of the overall patterns based on the analysis of all functions, the commu
 
 We selected the largest 20 communities for further analysis. The purpose of this analysis is to show the PSV across communities. The choice of 20 is deemed enough to show these community-specific variations. Readers could explore other choices themselves using our openly shared data.
 
+\subsection{Within-package variations}
+
+Maintaining a consistent style in source code can enable efficient reading by multiple readers \citep{gillespie2016efficient} \footnote{Maintaining a consistent style is even thought to be a quality of a successful R programmer in \citet{gillespie2016efficient}.}. In addition to community-level analysis, we extend our work to the package-level, in which we investigate the consistency of different style elements within a package. In this analysis, we studied 12 style elements, including fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name.  In another words, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) could be assigned to each function within a package.
+
+We quantified the package-level consistency of each style element within by computing the entropy for each style element. Given a style element S of an R package $R_{i}$, with possible n choices $s_{1}$, $\mathellipsis$ $s_{n}$ (e.g. n = 2 for binary; n = 7 for fx\_names), the entropy $H(S)$ is calculated as:
+
+\begin{equation} \label{eqn}
+H(S) = - \sum_{i = 1}^{n} P(s_{i}) \log P(s_{i})
+\end{equation}
+
+$P(s_{i})$ is calculated as the proportion of all functions in $R_{i}$ with the style element $s_{i}$. For example, if a package has 4 functions and the S of these 4 functions are {0,0,1,2}. The entropy $H(S)$ is $- ((0.5 \times log(0.5)) + (0.25 \times log(0.25)) + (0.25 \times log(0.25))) = 0.45$.
+
+As the value of $H(S)$ is not comparable across different S with a different number of n, we normalize the value of $H(S)$ into $H’(S)$ by dividing $H(S)$ with the theoretical maximum. The maximum values of $H(S)$ for n = 2 and n = 7 are 0.693 and 1.946, respectively.
+
+Finally, we calculate the $\bar{H’(S)}$ of all CRAN packages (i.e. $R_{1}$ $\mathellipsis$ $R_{n}$, where n equals the number of all CRAN packages) by averaging the package-level entropy we computed previously.
+
 \section{Results}
 
 We studied more than 94 million lines of code from 15,530 unique packages. In total, 1,898,142 exported functions were studied. Figure~\ref{figure:fig1} displays the popularity of the 10 binary style-elements from 1998 to 2008. Some style-elements have very clear trends towards a majority-vs-minority pattern, e.g. fx\_closecurly, fx\_semi, fx\_t\_f and fx\_tab. Some styles-elements are instead trending towards a divergence from a previous majority-vs-minority pattern, e.g. fx\_assign, fx\_commas, fx\_infix, fx\_integer, fx\_opencurly and fx\_singleq. There are two style-elements that deserve special scrutiny. Firstly, the variation in fx\_assign is an illustrative example of the effect of introducing a new language feature by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 \citep{chambers} has coincided with the taking off in popularity of such style-element since 2001. Up to now, around 20\% of exported functions use such style.
@@ -270,8 +286,7 @@ Similarly, the evolution of different naming conventions is shown in Figure~\ref
   \label{figure:fig2}
 \end{figure}
 
-The evolution of line lengths is tricky to be visualized on a 2-D surface. We have prepared an animation (\url{https://github.com/chainsawriot/rstyle/blob/master/file60f331694ef5.gif}) to visualize the change in line distribution over the span of 20 years. In this paper, Figure~\ref{figure:fig3} shows the snapshot of the change in line length distribution in the range of 40 to 100 characters. In general, developers of newer packages write with a lesser number of characters per line. Similar to previous analyses with Python programs (e.g. \citet{vanderplas}), artificial peaks corresponding to recommendations from either style-guides, linters, and editor settings are also observed in our analysis. In 2019, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as \CRANpkg{lintr}) is more pronounced for lines with comments but not those with actual code.
-
+The evolution of line lengths is tricky to be visualized on a 2-D surface. We have prepared an animation (\url{https://github.com/chainsawriot/rstyle/blob/master/file60f331694ef5.gif}) to visualize the change in line distribution over the span of 20 years. In this paper, Figure~\ref{figure:fig3} shows the snapshot of the change in line length distribution in the range of 40 to 100 characters. In general, developers of newer packages write with a lesser number of characters per line. Similar to previous analyses with Python programs e.g.\citet{vanderplas}, artificial peaks corresponding to recommendations from either style-guides, linters, and editor settings are also observed in our analysis. In 2019, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as \CRANpkg{lintr}) is more pronounced for lines with comments but not those with actual code.
 
 \begin{figure}[htbp]
   \centering
@@ -355,25 +370,17 @@ For the binary style-elements, local patterns are also observed (Figure~\ref{fig
 \end{figure}
 
 \subsection{Within-package variations}
-In addition to community-level analysis, we extend our work to the package-level analysis, which we also believe is important and interesting to investigate. Below we provide a detailed workaround on how we conduct this analysis: First, we have studied the variations in 12  style elements ( fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name).  Therefore, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) were assigned to each function within a package. Second, we quantified the consistency of each style element within by computing the entropy for each style element. Given a style element S of an R package $R_{i}$, with possible n choices $s_{1}$,...$s_{n}$ (e.g. n = 2 for binary; n = 7 for fx\_names), the entropy $H(S)$ is calculated as:
 
-$H(S) = - \sum_{i = 1}^{n} P(s_{i}) \log P(s_{i})$
+The result shows that the consistency of style elements within a package varies (Figure~\ref{figure:fig6}). For example, style elements like fx\_integer, fx\_commas, fx\_infix, fx\_opencurly, and fx\_name have less consistency within a package than fx\_tab, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_singleq, and fx\_assign. This finding echoes previous concerns e.g. \citet{oman, elish, wang, gillespie2016efficient} that these inconsistent style variations within a software project (e.g. in an R package) might make open source collaboration difficult.
 
-
-$P(s_{i})$ is calculated as the proportion of all functions in $R_{i}$ with the style element $s_{i}$. For example, if a package has 4 functions and the S of these 4 functions are {0,0,1,2}. The entropy $H(S)$ is $- ((0.5 * log(0.5)) + (0.25 * log(0.25)) + (0.25 * log(0.25))) = 0.45$.
-
-As the value of $H(S)$ is not comparable across different S with a different number of n, we normalize the value of $H(S)$ into $H’(S)$ by dividing $H(S)$ with the theoretical maximum. The maximum values of $H(S)$ for n = 2 and n = 7 are 0.693 and 1.946, respectively.
-
-Finally, we calculate the $\bar{H’(S)}$ of all CRAN packages by aggregating the package-level entropy we computed previously. 
-The result shows that consistency of style elements within a package varies. For example, style elements like fx\_integer, fx\_commas, fx\_infix, fx\_opencurly, and fx\_name have comparatively larger variations than fx\_tab, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_singleq, and fx\_assign, as shown in Figure~\ref{figure:fig6}.
 \begin{figure}[htbp]
   \centering
   \includegraphics{fig6}
-  \caption{Package-specific entropy of 12 style elements}
+  \caption{Average package-level entropy of 12 style elements}
   \label{figure:fig6}
 \end{figure}
-                     
-This finding echoes our concerns that these inconsistent style variations at package level may hinder developers collaborating in a more efficient way.  
+
+In Figure~\ref{figure:fig7}, we contextualize the above analysis by showing the distribution of fx\_name in 20 R packages with the highest PageRank \citep{page1999pagerank} in the CRAN dependency graph. Many of these packages have only 1 dominant naming convention (e.g. lower\_snake or lowerCamel), but not always. For instance, functions with 6 different naming conventions can be found in the package \CRANpkg{Rcpp}.
 
 \begin{figure}[htbp]
   \centering
@@ -382,15 +389,13 @@ This finding echoes our concerns that these inconsistent style variations at pac
   \label{figure:fig7}
 \end{figure}
 
-In Figure~\ref{figure:fig7}, we contextualize the above analysis by showing the distribution of fx\_name in 20 R packages with the highest pagerank in the CRAN dependency graph. Many of these packages have only 1 dominant naming convention (e.g. lower\_snake or lowerCamel). For packages such as Rcpp, functions with 6 different naming conventions can be found.
-
 \section{Discussion}
 
 In this study, we study the PSV in 21 years of CRAN packages across two dimensions: 1) temporal dimension: the longitudinal changes in popularity of various style-elements over 21 years, and 2) cross-sectional dimension: the variations among communities of the latest snapshot of all packages, which contains all submissions from 1998 to 2019. From our analysis, we identify three factors that possibly drive PSV: effect of style-guides (trending of naming conventions endorsed by \citet{tidyverse} and \citet{google}), the effect of introducing a new language feature (trending of = usage as assignments after 2001), and effect of editors (the dominance of 80-character line limit).
 
-From a policy recommendation standpoint, our study provides important insight for the R Development Core Team and other stakeholders to improve the current situation of PSV in R. Firstly, the introduction of a new language feature can have a very long-lasting effect on PSV. "Assignments with the = operator" is a feature that introduced by the R Development Core Team to ``increase compatibility with S-Plus (as well as with C, Java, and many other languages)'' \citep{chambers}. This might be a good intention but it has an unintended consequence of introducing a very persistent PSV that two major style-guides, \citet{tidyverse} and \citet{google}, consider as a bad style.
+From a policy recommendation standpoint, our study provides important insight for the R Development Core Team and other stakeholders to improve the current situation of PSV in R. First, the introduction of a new language feature can have a very long-lasting effect on PSV. "Assignments with the = operator" is a feature that introduced by the R Development Core Team to ``increase compatibility with S-Plus (as well as with C, Java, and many other languages)'' \citep{chambers}. This might be a good intention but it has an unintended consequence of introducing a very persistent PSV that two major style-guides, \citet{tidyverse} and \citet{google}, consider as a bad style.
 
-Secondly, style-guides, linters, and editors are important standardizers of PSV. Although we have not directly measured the use of style-guides, linters, and editors in our analysis \footnote{The usage of style-guides, linters, and editors cannot be directly measured from the record on CRAN. The maintainers usually do not explicitly state the style-guide they endorsed in their code. Similarly, packages that have been processed with linters do not import or suggest linters such as \CRANpkg{lintr}, \CRANpkg{styler} or \CRANpkg{goodpractice}. It might be possible to infer the use of a specific editor such as RStudio in the development version of a package with signals such as the inclusion of an RStudio Project file. These signals, however, were usually removed in the CRAN submission of the package. Future research should use alternative methods to measure the usage of these 3 things in R packages.}, we infer their effect by study the time trend (Figure~\ref{figure:fig1}). Even with these standizers, programming styles are slow to change. As indicated by the local patterns of PSV we found in some communities, some package developers have their own standardizers and have less interaction with other developer projects; hence, they tend to use their own styles. Having said so, we are not accusing those developers of not following the trendy programming styles. Instead, they follow the mantra of ``if it ain't broke don't fix it''. Again, from a policy recommendation standpoint, the existence of local PSV patterns suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide's authors may consider community outreach to promote their endorsed styles, if they want other communities to adopt their styles.
+Second, style-guides, linters, and editors are important standardizers of PSV. Although we have not directly measured the use of style-guides, linters, and editors in our analysis \footnote{The usage of style-guides, linters, and editors cannot be directly measured from the record on CRAN. The maintainers usually do not explicitly state the style-guide they endorsed in their code. Similarly, packages that have been processed with linters do not import or suggest linters such as \CRANpkg{lintr}, \CRANpkg{styler} or \CRANpkg{goodpractice}. It might be possible to infer the use of a specific editor such as RStudio in the development version of a package with signals such as the inclusion of an RStudio Project file. These signals, however, were usually removed in the CRAN submission of the package. Future research should use alternative methods to measure the usage of these 3 things in R packages. In this study, similar to other studies, e.g. \citet{bafatakis:2019:PCS}, we use style compliance as a proxy to usage of a particular style guide, linter or editor.}, we infer their effect by study the time trend (Figure~\ref{figure:fig1}). Even with these standizers, programming styles are slow to change. As indicated by the local patterns of PSV we found in some communities, some package developers have their own standardizers and have less interaction with other developer projects; hence, they tend to use their own styles. Having said so, we are not accusing those developers of not following the trendy programming styles. Instead, they follow the mantra of ``if it ain't broke don't fix it''. Again, from a policy recommendation standpoint, the existence of local PSV patterns suggests there are many blind spots to the previous efforts in addressing PSV. Style-guide's authors may consider community outreach to promote their endorsed styles, if they want other communities to adopt their styles.
 
 Our analysis also opens up an open question: should R adopt an official style-guide akin the PEP-8 of the Python Software Foundation \citep{vanrossum}? There are of course pros and cons of adopting an official style-guide. As written by \citet{christiansen}, ``style can easily become a religious issue.'' It is not our intention to meddle in this ``religious issue.'' If such an effort would be undertaken by someone else, we suggest the following consensus-based style. The following is an example of a function written in such style.
 
@@ -420,7 +425,7 @@ In essense,
   \item Don't use tab to indent
 \end{itemize}
 
-We must stress here that this \emph{consensus-based} style is only the most popular style based on our analysis, i.e. the \emph{Zeitgeist} (the spirit of the age) \footnote{In 2019, 5.35\% of all functions are using this \emph{Zeitgeist} style. Using electorial system as an analogy, this style is having the plurality (have the highest number of votes) but not the absolute majority (have over 50\% of the votes)}. We have no guarantee that this style can improve clarity or comprehensibility. As a final remark: although enforcing a consistent style can improve open source collaboration \citep{wang}, one must also bear in mind that these rules might need to be adjusted sometimes to cater for programmers with special needs. For example, using spaces instead of tabs for indentation can make code inaccessible to visually impaired programmers \citep{mosal}.
+We must stress here that this \emph{consensus-based} style is only the most popular style based on our analysis, i.e. the \emph{Zeitgeist} (the spirit of the age) \footnote{In 2019, 5.35\% of all functions are in this \emph{Zeitgeist} style. Using electorial system as an analogy, this style is having the plurality (have the highest number of votes) but not the absolute majority (have over 50\% of the votes)}. We have no guarantee that this style can improve clarity or comprehensibility. As a final remark: although enforcing a consistent style can improve open source collaboration \citep{wang}, one must also bear in mind that these rules might need to be adjusted sometimes to cater for programmers with special needs. For example, using spaces instead of tabs for indentation can make code inaccessible to visually impaired programmers \citep{mosal}.
 
 \section{Reproducibility}
 

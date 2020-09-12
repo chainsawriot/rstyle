@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,16 @@
 R.~B{\aa}{\aa}th.
 \newblock The state of naming conventions in {R}.
 \newblock \emph{The R journal}, 4\penalty0 (2):\penalty0 74--75, 2012.
+
+\bibitem[Bafatakis et~al.(2019)Bafatakis, Boecker, Boon, Cabello~Salazar,
+  Krinke, Oznacar, and White]{bafatakis:2019:PCS}
+N.~Bafatakis, N.~Boecker, W.~Boon, M.~Cabello~Salazar, J.~Krinke, G.~Oznacar,
+  and R.~White.
+\newblock Python coding style compliance on stack overflow.
+\newblock \emph{2019 IEEE/ACM 16th International Conference on Mining Software
+  Repositories (MSR)}, May 2019.
+\newblock \doi{10.1109/msr.2019.00042}.
+\newblock URL \url{http://dx.doi.org/10.1109/MSR.2019.00042}.
 
 \bibitem[Bioconductor(2015)]{bioconductor}
 Bioconductor.
@@ -48,6 +58,12 @@ M.~O. Elish and J.~Offutt.
   practices.
 \newblock 2002.
 
+\bibitem[Gillespie and Lovelace(2016)]{gillespie2016efficient}
+C.~Gillespie and R.~Lovelace.
+\newblock \emph{Efficient {R} programming: {a} practical guide to smarter
+  programming}.
+\newblock "O'Reilly Media, Inc.", 2016.
+
 \bibitem[Google(2019)]{google}
 Google.
 \newblock \emph{Google's {R} Style Guide}, 2019.
@@ -71,6 +87,11 @@ P.~W. Oman and C.~R. Cook.
 \newblock A programming style taxonomy.
 \newblock \emph{Journal of Systems and Software}, 15\penalty0 (3):\penalty0
   287--301, 1991.
+
+\bibitem[Page et~al.(1999)Page, Brin, Motwani, and Winograd]{page1999pagerank}
+L.~Page, S.~Brin, R.~Motwani, and T.~Winograd.
+\newblock The pagerank citation ranking: Bringing order to the web.
+\newblock Technical report, Stanford InfoLab, 1999.
 
 \bibitem[Pons and Latapy(2005)]{pons}
 P.~Pons and M.~Latapy.
