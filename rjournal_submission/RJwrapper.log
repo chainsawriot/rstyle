@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.11)  12 SEP 2020 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 20:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -76,7 +76,7 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
  (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+File: pdftex.def 2020/08/26 v1.2 Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen137
 \Gin@req@width=\dimen138
@@ -647,11 +647,10 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2020/05/30 v3.4k Customizing captions (AR)
+Package: caption 2020/09/02 v3.5a Customizing captions (AR)
 
 (/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/07/20 v1.12b caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 61.
+Package: caption3 2020/09/11 v2.0b caption3 kernel (AR)
 \captionmargin=\dimen262
 \captionmargin@=\dimen263
 \captionwidth=\dimen264
@@ -764,9 +763,9 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count302
 \@thisrulewidth=\dimen292
 )
-(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfmo
-de.def
-File: l3backend-pdfmode.def 2020-08-07 L3 backend support: PDF mode
+(/Users/chainsaw/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
+x.def
+File: l3backend-pdftex.def 2020-09-11 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count303
 \l__pdf_internal_box=\box62
 ) (./RJwrapper.aux)
@@ -1075,13 +1074,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22323 strings out of 482841
- 408019 string characters out of 5955581
- 685892 words of memory out of 5000000
- 36898 multiletter control sequences out of 15000+600000
- 592054 words of font info for 268 fonts, out of 8000000 for 9000
+ 22380 strings out of 482824
+ 410091 string characters out of 5955096
+ 689985 words of memory out of 5000000
+ 36975 multiletter control sequences out of 15000+600000
+ 591895 words of font info for 266 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,11n,100p,1996b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,11n,101p,1996b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1112,7 +1111,7 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyT
 eX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (14 pages, 204143 bytes).
+Output written on RJwrapper.pdf (14 pages, 204144 bytes).
 PDF statistics:
  423 PDF objects out of 1000 (max. 8388607)
  381 compressed objects within 4 object streams
