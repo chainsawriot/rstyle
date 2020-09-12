@@ -69,9 +69,9 @@ data1 <- readRDS(here::here(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)) %>%
     select(-feature) %>% rename(feature = "full_name") %>% 
     mutate(share = share * 100) 
 
-fig1 <- ggplot(data=data1, aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature, ncol = 2) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all functions (%)") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + theme(rect = element_rect(fill = "transparent")) + theme(legend.position = "none") 
+fig1 <- ggplot(data=data1, aes(x = pub_year, y = share)) + geom_line() + facet_wrap(~feature, ncol = 2) + scale_color_brewer(palette="Dark2") + xlab("Year") + ylab("Share of all exported functions (%)") +  theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 8, angle = 90), axis.title=element_text(size=10)) + theme(rect = element_rect(fill = "transparent")) + theme(legend.position = "none") 
 
-ggsave(here::here("rjournal_submission", "fig1.pdf"), figure1, width = 5, height = 5)
+ggsave(here::here("rjournal_submission", "fig1.pdf"), fig1, width = 5, height = 5)
 
 #########
 # Fig 2
@@ -131,6 +131,12 @@ readRDS(here::here("rjournal_submission", "data2019.RDS")) %>%
     add_count(wt = n) %>% 
     mutate(p = n / nn)
 
+conv_style <- function(x, style_regexes) {
+    x <- x[!is.na(x) & !is.null(x)]
+    styles <- map_chr(x, match_function_style, style_regexes = style_regexes)
+}
+
+
 plan(multiprocess)
 
 pkg_functions <- pkg_functions %>%
@@ -175,7 +181,7 @@ fig2 <- fx_style %>%
     mutate(percentage = share * 100) %>%
     ggplot(aes(x = pub_year, y = share, col = Naming)) + 
     geom_line() + scale_color_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
-    xlab("Year") + ylab("Share of all functions") + 
+    xlab("Year") + ylab("Share of all exported functions") + 
     theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + 
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10)) 
 
