@@ -228,7 +228,7 @@ plot_naming_among_comm <- function(comm_feat, naming_conv){
     g_naming <- ggplot(data_naming, aes(y = percentage, x = comm_name, fill = long_name)) + 
         geom_bar(stat="identity") + 
         labs(x = "", y = "Share of all exported functions (%)") + 
-        theme(legend.title = element_blank(), legend.position = "bottom") +
+        theme(legend.title = element_blank(), legend.position = "bottom", legend.text = element_text(size = 6)) +
         coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2'))
     return(g_naming)
 }
