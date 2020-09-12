@@ -247,6 +247,20 @@ On top of the overall patterns based on the analysis of all functions, the commu
 
 We selected the largest 20 communities for further analysis. The purpose of this analysis is to show the PSV across communities. The choice of 20 is deemed enough to show these community-specific variations. Readers could explore other choices themselves using our openly shared data.
 
+\subsection{Within-package variations}
+
+In addition to community-level analysis, we extend our work to the package-level analysis, which we also believe is important and interesting to investigate. Below we provide a detailed workaround on how we conduct this analysis: First, we have studied the variations in 12  style elements ( fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name).  Therefore, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) were assigned to each function within a package. Second, we quantified the consistency of each style element within by computing the entropy for each style element. Given a style element S of an R package $R_{i}$, with possible n choices $s_{1}$, $\mathellipsis$ $s_{n}$ (e.g. n = 2 for binary; n = 7 for fx\_names), the entropy $H(S)$ is calculated as:
+
+\begin{equation} \label{eqn}
+H(S) = - \sum_{i = 1}^{n} P(s_{i}) \log P(s_{i})
+\end{equation}
+
+$P(s_{i})$ is calculated as the proportion of all functions in $R_{i}$ with the style element $s_{i}$. For example, if a package has 4 functions and the S of these 4 functions are {0,0,1,2}. The entropy $H(S)$ is $- ((0.5 \times log(0.5)) + (0.25 \times log(0.25)) + (0.25 \times log(0.25))) = 0.45$.
+
+As the value of $H(S)$ is not comparable across different S with a different number of n, we normalize the value of $H(S)$ into $H’(S)$ by dividing $H(S)$ with the theoretical maximum. The maximum values of $H(S)$ for n = 2 and n = 7 are 0.693 and 1.946, respectively.
+
+Finally, we calculate the $\bar{H’(S)}$ of all CRAN packages by averaging the package-level entropy we computed previously. 
+
 \section{Results}
 
 We studied more than 94 million lines of code from 15,530 unique packages. In total, 1,898,142 exported functions were studied. Figure~\ref{figure:fig1} displays the popularity of the 10 binary style-elements from 1998 to 2008. Some style-elements have very clear trends towards a majority-vs-minority pattern, e.g. fx\_closecurly, fx\_semi, fx\_t\_f and fx\_tab. Some styles-elements are instead trending towards a divergence from a previous majority-vs-minority pattern, e.g. fx\_assign, fx\_commas, fx\_infix, fx\_integer, fx\_opencurly and fx\_singleq. There are two style-elements that deserve special scrutiny. Firstly, the variation in fx\_assign is an illustrative example of the effect of introducing a new language feature by the R Development Core Team. The introduction of the language feature (= as assignment operator) in R 1.4 \citep{chambers} has coincided with the taking off in popularity of such style-element since 2001. Up to now, around 20\% of exported functions use such style.
@@ -355,16 +369,7 @@ For the binary style-elements, local patterns are also observed (Figure~\ref{fig
 \end{figure}
 
 \subsection{Within-package variations}
-In addition to community-level analysis, we extend our work to the package-level analysis, which we also believe is important and interesting to investigate. Below we provide a detailed workaround on how we conduct this analysis: First, we have studied the variations in 12  style elements ( fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name).  Therefore, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) were assigned to each function within a package. Second, we quantified the consistency of each style element within by computing the entropy for each style element. Given a style element S of an R package $R_{i}$, with possible n choices $s_{1}$,...$s_{n}$ (e.g. n = 2 for binary; n = 7 for fx\_names), the entropy $H(S)$ is calculated as:
 
-$H(S) = - \sum_{i = 1}^{n} P(s_{i}) \log P(s_{i})$
-
-
-$P(s_{i})$ is calculated as the proportion of all functions in $R_{i}$ with the style element $s_{i}$. For example, if a package has 4 functions and the S of these 4 functions are {0,0,1,2}. The entropy $H(S)$ is $- ((0.5 * log(0.5)) + (0.25 * log(0.25)) + (0.25 * log(0.25))) = 0.45$.
-
-As the value of $H(S)$ is not comparable across different S with a different number of n, we normalize the value of $H(S)$ into $H’(S)$ by dividing $H(S)$ with the theoretical maximum. The maximum values of $H(S)$ for n = 2 and n = 7 are 0.693 and 1.946, respectively.
-
-Finally, we calculate the $\bar{H’(S)}$ of all CRAN packages by aggregating the package-level entropy we computed previously. 
 The result shows that consistency of style elements within a package varies. For example, style elements like fx\_integer, fx\_commas, fx\_infix, fx\_opencurly, and fx\_name have comparatively larger variations than fx\_tab, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_singleq, and fx\_assign, as shown in Figure~\ref{figure:fig6}.
 \begin{figure}[htbp]
   \centering
