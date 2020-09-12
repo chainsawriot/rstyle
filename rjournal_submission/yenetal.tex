@@ -241,13 +241,13 @@ The last style-element is line-length. For each R file, we counted the distribut
 
 If not considering line-length, the remaining 10 binary and one multinomial leave 7,168 possible combinations of PSVs that a programmer could employ ($7 \times 2^{10} = 7,168$).
 
-\subsection{Community-specific variations}
+\subsection{Methodology of community-specific variations analysis}
 
 On top of the overall patterns based on the analysis of all functions, the community-specific variations are also studied. In this part of the study, we ask the question: do local patterns of PSV exist in various programming communities? To this end, we constructed a dependency graph of CRAN packages by defining a package as a node and an import/suggest relationship as a directed edge. Communities in this dependency graph were extracted using the Walktrap Community Detection Algorithm \citep{pons} provided by the \CRANpkg{igraph} package \citep{csardi}. The step parameter was set at 4 for this analysis. Notably, we analyzed the dependency graph as a snapshot, which is built based on the submission history of every package from 1998 to 2019. 
 
 We selected the largest 20 communities for further analysis. The purpose of this analysis is to show the PSV across communities. The choice of 20 is deemed enough to show these community-specific variations. Readers could explore other choices themselves using our openly shared data.
 
-\subsection{Within-package variations}
+\subsection{Methodology of within-package variations analysis}
 
 Maintaining a consistent style in source code can enable efficient reading by multiple readers \citep{gillespie2016efficient} \footnote{Maintaining a consistent style is even thought to be a quality of a successful R programmer in \citet{gillespie2016efficient}.}. In addition to community-level analysis, we extend our work to the package-level, in which we investigate the consistency of different style elements within a package. In this analysis, we studied 12 style elements, including fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name.  In another words, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) could be assigned to each function within a package.
 
