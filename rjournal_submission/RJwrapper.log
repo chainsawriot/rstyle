@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1061,7 +1061,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
-(rerunfilecheck)             Checksum: 1B19881F9262140EF270425F14737FF8;974.
+(rerunfilecheck)             Checksum: 573419F108727D364B690159444DCE39;973.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
 (rerunfilecheck)             Checksum: B1CA0C79B460792F34623FB960AC4AB3;1673.
 
@@ -1074,11 +1074,11 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22382 strings out of 482824
- 410115 string characters out of 5955096
+ 22378 strings out of 482824
+ 410078 string characters out of 5955096
  689985 words of memory out of 5000000
  36976 multiletter control sequences out of 15000+600000
- 591895 words of font info for 266 fonts, out of 8000000 for 9000
+ 591660 words of font info for 263 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  68i,11n,101p,1976b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exi
@@ -1111,7 +1111,7 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyT
 eX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (14 pages, 204517 bytes).
+Output written on RJwrapper.pdf (14 pages, 204464 bytes).
 PDF statistics:
  429 PDF objects out of 1000 (max. 8388607)
  387 compressed objects within 4 object streams
