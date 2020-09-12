@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -997,18 +997,18 @@ LaTeX Warning: Command \textquoteright invalid in math mode on input line 264.
 
 LaTeX Warning: Command \textquoteright invalid in math mode on input line 264.
 
-<fig1.pdf, id=152, 361.35pt x 361.35pt>
+<fig1.pdf, id=156, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
 Package pdftex.def Info: fig1.pdf  used on input line 272.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig2.pdf, id=160, 361.35pt x 289.08pt>
+<fig2.pdf, id=164, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
 Package pdftex.def Info: fig2.pdf  used on input line 284.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 [5] [6 <./fig1.pdf> <./fig2.pdf>]
-<fig3.pdf, id=196, 361.35pt x 289.08pt>
+<fig3.pdf, id=200, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
 Package pdftex.def Info: fig3.pdf  used on input line 293.
@@ -1022,22 +1022,22 @@ Overfull \hbox (13.66705pt too wide) in paragraph at lines 309--354
  [][] 
  []
 
-<fig4.pdf, id=198, 361.35pt x 361.35pt>
+<fig4.pdf, id=202, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
 Package pdftex.def Info: fig4.pdf  used on input line 358.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=200, 361.35pt x 614.295pt>
+<fig5.pdf, id=204, 361.35pt x 614.295pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
 Package pdftex.def Info: fig5.pdf  used on input line 367.
 (pdftex.def)             Requested size: 361.34912pt x 614.29349pt.
-<fig6.pdf, id=210, 361.35pt x 361.35pt>
+<fig6.pdf, id=214, 361.35pt x 361.35pt>
 File: fig6.pdf Graphic file (type pdf)
 <use fig6.pdf>
 Package pdftex.def Info: fig6.pdf  used on input line 378.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig7.pdf, id=215, 361.35pt x 361.35pt>
+<fig7.pdf, id=219, 361.35pt x 361.35pt>
 File: fig7.pdf Graphic file (type pdf)
 <use fig7.pdf>
 Package pdftex.def Info: fig7.pdf  used on input line 387.
@@ -1050,10 +1050,10 @@ Package pdftex.def Info: fig7.pdf  used on input line 387.
  [12]) [13]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 442.
+(Font)              using `T1/zi4/m/n' instead on input line 446.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 9.18004pt on input line 455.
+(Font)              scaled to size 9.18004pt on input line 459.
 ) [14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
@@ -1061,7 +1061,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
-(rerunfilecheck)             Checksum: 2BDAD086560631723E26217E1CAD4940;911.
+(rerunfilecheck)             Checksum: 1B19881F9262140EF270425F14737FF8;974.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
 (rerunfilecheck)             Checksum: B1CA0C79B460792F34623FB960AC4AB3;1673.
 
@@ -1074,10 +1074,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22380 strings out of 482824
- 410091 string characters out of 5955096
+ 22382 strings out of 482824
+ 410115 string characters out of 5955096
  689985 words of memory out of 5000000
- 36975 multiletter control sequences out of 15000+600000
+ 36976 multiletter control sequences out of 15000+600000
  591895 words of font info for 266 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  68i,11n,101p,1976b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1111,10 +1111,10 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyT
 eX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (14 pages, 204091 bytes).
+Output written on RJwrapper.pdf (14 pages, 204343 bytes).
 PDF statistics:
- 423 PDF objects out of 1000 (max. 8388607)
- 381 compressed objects within 4 object streams
- 65 named destinations out of 1000 (max. 500000)
- 46736 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 427 PDF objects out of 1000 (max. 8388607)
+ 385 compressed objects within 4 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 46744 words of extra memory for PDF output out of 51595 (max. 10000000)
 
