@@ -60,6 +60,9 @@ cal_entro <- function(yr, data) {
 
 fx_name_trans <- tibble(fx_name = c("fx_assign_ratio", "fx_opencurly_ratio", "fx_infix_ratio",  "fx_integer_ratio", "fx_singleq_ratio", "fx_commas_ratio", "fx_semi_ratio", "fx_t_f_ratio", "fx_closecurly_ratio", "fx_tab_ratio"), full_name = c("= as assignment", "{ on own line", "Infix no spaces", "Not type integers", "' for strings", "No space after ,", "; to terminate lines", "Use T/F", "} not on own line", "Tab to indent"))
 
+## Number of exported functions
+## readRDS(here::here(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)) %>% pull(function_feat) %>% map("result") %>% map_dfr(~.) %>% nrow
+
 data1 <- readRDS(here::here(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)) %>% 
     map_dfr(1998:cfg$INCLUDE_YR, cal_entro, data = .) %>% 
     gather(key = 'feature', value = 'entropy', -pub_year) %>% 
