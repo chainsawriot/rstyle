@@ -98,9 +98,11 @@ g_entro <- ggplot(data =  data_entro, aes(feature, entropy)) +
 ggsave(filename, plot = g_entro, width = 10, height = 6, units = "in", bg = "transparent")
 
 # plot the variation of names within packages of largest pagerank
-pkg_list <- read_rds(cfg$PATH_CRAN_GRAPH) %>% page_rank() %>% pluck("vector") %>% sort(decreasing = TRUE) %>% head(20) %>% names()
-top_pkgs <- pkg_latest %>% filter(pkg_name %in% pkg_list)
-pkg_feat <- top_pkgs %>% 
+pagerank <- read_rds(cfg$PATH_CRAN_GRAPH) %>% page_rank() %>% pluck("vector") %>% sort(decreasing = TRUE) %>% 
+    tibble(pkg_name = names(.), pagerank = .) 
+pkg_feat <- pkg_latest %>% 
+    left_join(pagerank, by = c("pkg_name")) %>%  
+    arrange(desc(pagerank)) %>% head(21) %>% 
     mutate(pkg_name = sprintf("%s (%s)", pkg_name, age)) %>% 
     select(pkg_name, function_feat) %>% 
     mutate(function_feat = map(function_feat, "result")) %>% 
