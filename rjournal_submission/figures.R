@@ -245,20 +245,20 @@ fig5 <- comm_feat %>% select(comm_name, fx_assign:fx_tab) %>%
     mutate(fx_opencurly2 = fx_opencurly) %>%
     gather('feature', 'proportion', -comm_name, -fx_opencurly2) %>%
     mutate(comm_name = fct_reorder(comm_name, fx_opencurly2)) %>%
-    mutate(feature = fct_relevel(feature, "fx_opencurly")) %>%
-    ggplot(aes(x = comm_name, y = proportion)) + geom_bar(stat = 'identity') +
+    mutate(feature = fct_relevel(feature, "fx_opencurly")) %>% mutate(percentage = proportion * 100) %>%
+    ggplot(aes(x = comm_name, y = percentage)) + geom_bar(stat = 'identity') +
     facet_grid(feature ~ ., switch="y") +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1),
-          strip.text.y=element_text(angle=180)) + labs(x = "") + 
-    scale_y_continuous("Share of all functions", position="right") 
+    theme(axis.text.x = element_text(angle = 40, hjust = 1),
+          strip.text.y.left=element_text(angle=0)) + labs(x = "") + 
+    scale_y_continuous("Share of all exported functions (%)", position="right") 
 
-ggsave(here::here("rjournal_submission", "fig5.pdf"), fig5, width = 5, height = 7)
+ggsave(here::here("rjournal_submission", "fig5.pdf"), fig5, width = 5, height = 8)
 
 #########
 # Fig 6
 #########
-pkg <- readRDS(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE)
-pkg$entro_res <- entro_res <- readRDS(cfg$PATH_PKG_ENTROPY)
+pkg <- readRDS(here::here(cfg$PATH_PKGS_FUNCTIONS_W_SYNTAX_FEATURE))
+pkg$entro_res <- entro_res <- readRDS(here::here(cfg$PATH_PKG_ENTROPY))
 pkg_ext <-  pkg %>% group_by(pkg_name) %>% mutate(earliest_release = min(pub_year), latest_release = max(pub_year))
 pkg_latest <- pkg_ext %>% group_by(pkg_name) %>% filter(pub_year == latest_release) %>% mutate(age = 2019 - earliest_release) %>% ungroup()
 avg_entro_pkg <- pkg_latest %>% 
@@ -269,15 +269,15 @@ avg_entro_pkg <- pkg_latest %>%
 
 # plot within-package variation
 data_entro <- avg_entro_pkg %>% 
-    pivot_longer(everything(), names_to = "feature", values_to = "entropy") %>%
-    arrange(desc(entropy)) %>% 
-    mutate(feature = fct_reorder(feature, entropy))
+    pivot_longer(everything(), names_to = "feature", values_to = "entropy")  %>% 
+    mutate(feature = fct_reorder(feature, entropy))  %>% mutate(fx_name = paste0(feature, "_ratio")) %>% left_join(bind_rows(fx_name_trans,tibble(fx_name = "fx_name_ratio", full_name = "Naming convention"))) %>% mutate(feature = paste0(feature, ": ", full_name)) %>% select(-fx_name) %>% arrange(desc(entropy))
 
-fig6 <- ggplot(data =  data_entro, aes(feature, entropy)) + 
+fig6 <- ggplot(data =  data_entro, aes(fct_reorder(feature, entropy), entropy)) + 
     geom_col() + 
-    ylim(0, 1) + xlab("") + 
+    ylim(0, 0.6) + xlab("") + 
     geom_text(aes(label = sprintf("%s", round(entropy, 2))), position = position_dodge(width=1), hjust = 0) + 
-    coord_flip() 
+    coord_flip()
+
 ggsave(here::here("rjournal_submission", "fig6.pdf"), fig6, width = 5, height = 5)
 
 #########
