@@ -211,10 +211,10 @@ ggsave(here::here("rjournal_submission", "fig3.pdf"), fig3, width = 5, height = 
 require(igraph)
 
 plot_naming_among_comm <- function(comm_feat, naming_conv){
-    poster_theme <- theme(plot.title = element_text(size = 24, face = "bold"), 
+    poster_theme <- theme(plot.title = element_text(size = 15, face = "bold"), 
                           plot.subtitle =  element_text(size = 10), 
-                          axis.text = element_text(size = 15), 
-                          axis.title=element_text(size=14,face="bold"),
+                          axis.text = element_text(size = 10), 
+                          axis.title=element_text(size=10,face="bold"),
                           rect = element_rect(fill = "transparent")) 
     
     data_naming <- comm_feat %>% select(comm_id, comm_name, alllower:other) %>% 
@@ -227,10 +227,9 @@ plot_naming_among_comm <- function(comm_feat, naming_conv){
     
     g_naming <- ggplot(data_naming, aes(y = percentage, x = comm_name, fill = long_name)) + 
         geom_bar(stat="identity") + 
-        labs(x = "", y = "%") + 
-        theme(legend.title = element_blank()) +
-        coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
-        poster_theme 
+        labs(x = "", y = "Share of all exported functions (%)") + 
+        theme(legend.title = element_blank(), legend.position = "bottom") +
+        coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2'))
     return(g_naming)
 }
 
@@ -285,10 +284,10 @@ ggsave(here::here("rjournal_submission", "fig6.pdf"), fig6, width = 5, height = 
 # Fig 7
 #########
 plot_naming_among_pkg <- function(pkg_feat){
-    poster_theme <- theme(plot.title = element_text(size = 24, face = "bold"), 
+    poster_theme <- theme(plot.title = element_text(size = 16, face = "bold"), 
                           plot.subtitle =  element_text(size = 10), 
-                          axis.text = element_text(size = 15), 
-                          axis.title=element_text(size=14,face="bold"),
+                          axis.text = element_text(size = 10), 
+                          axis.title=element_text(size=10,face="bold"),
                           rect = element_rect(fill = "transparent")) 
     
     naming_conv <- tibble(feature = c("dotted.case", "ALLUPPERCASE", "UpperCamelCase", "other", "alllowercase", "lowerCamelCase", "snake_case"),
