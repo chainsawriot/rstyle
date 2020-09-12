@@ -122,10 +122,6 @@ style_regexes <- list(
 ## test %>% filter(pub_year == 2019) %>% pull(function_feat) %>% map("result") %>% bind_rows %>% as_tibble %>% mutate(styles = future_map_chr(fx_name, match_function_style, style_regexes = style_regexes, .progress = TRUE)) -> data2019
 ## saveRDS(data2019, here::here("rjournal_submission", "data2019.RDS"))
 
-####################
-# PROBLEMATIC
-# TODO: Hong please check where the bug is
-
 readRDS(here::here("rjournal_submission", "data2019.RDS")) %>% 
     count(styles == "snake_case" & !fx_assign & !fx_opencurly & !fx_infix & fx_integer & !fx_singleq & !fx_commas & !fx_semi & !fx_t_f & !fx_closecurly & !fx_tab) %>% 
     add_count(wt = n) %>% 
@@ -179,9 +175,9 @@ fig2 <- fx_style %>%
                                    "dotted.func", "ALLUPPER", "UpperCamel", "other", "alllower", "lowerCamel", "lower_snake")) %>%
     rename("Naming" = long_name) %>%
     mutate(percentage = share * 100) %>%
-    ggplot(aes(x = pub_year, y = share, col = Naming)) + 
+    ggplot(aes(x = pub_year, y = percentage, col = Naming)) + 
     geom_line() + scale_color_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
-    xlab("Year") + ylab("Share of all exported functions") + 
+    xlab("Year") + ylab("Share of all exported functions (%)") + 
     theme(plot.title = element_text(size = 24), plot.subtitle =  element_text(size = 10), axis.text = element_text(size = 10), axis.title=element_text(size = 10)) + 
     theme(rect = element_rect(fill = "transparent")) + theme(strip.text.x = element_text(size = 10)) 
 
