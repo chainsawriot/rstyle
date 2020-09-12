@@ -8,14 +8,14 @@ comm_id,comm_name
 15,GNU gsl
 25,Graph
 49,Text Analysis
-42,GUI 1
+42,GUI: Tcl/Tk
 13,Infrastructure
 17,Numerical Optimization
 40,Genomics
 77,RUnit
 24,Survival Analysis
 2,Sparse Matrix
-44,GUI 2
+44,GUI: Gtk
 75,Bioinformatics
 37,IO
 45,rJava
