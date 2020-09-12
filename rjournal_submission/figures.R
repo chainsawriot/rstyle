@@ -248,11 +248,10 @@ fig5 <- comm_feat %>% select(-comm_name) %>% left_join(comm_name, by = "comm_id"
     mutate(feature = fct_relevel(feature, "fx_opencurly")) %>% mutate(percentage = proportion * 100) %>%
     ggplot(aes(x = comm_name, y = percentage)) + geom_bar(stat = 'identity') +
     facet_grid(feature ~ ., switch="y") +
-    theme(axis.text.x = element_text(angle = 40, hjust = 1),
-          strip.text.y.left = element_text(angle=0)) + labs(x = "") + 
+    theme(axis.text.x = element_text(angle = 40, hjust = 1)) + labs(x = "") + 
     scale_y_continuous("Share of all exported functions (%)", position="right") 
 
-ggsave(here::here("rjournal_submission", "fig5.pdf"), fig5, width = 5, height = 8)
+ggsave(here::here("rjournal_submission", "fig5.pdf"), fig5, width = 5, height = 8.5)
 
 #########
 # Fig 6

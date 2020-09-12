@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 20:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.12)  12 SEP 2020 21:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1027,11 +1027,11 @@ File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
 Package pdftex.def Info: fig4.pdf  used on input line 358.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=200, 361.35pt x 578.16pt>
+<fig5.pdf, id=200, 361.35pt x 614.295pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
 Package pdftex.def Info: fig5.pdf  used on input line 367.
-(pdftex.def)             Requested size: 361.34912pt x 578.15858pt.
+(pdftex.def)             Requested size: 361.34912pt x 614.29349pt.
 <fig6.pdf, id=210, 361.35pt x 361.35pt>
 File: fig6.pdf Graphic file (type pdf)
 <use fig6.pdf>
@@ -1111,7 +1111,7 @@ fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/chainsaw/Library/TinyTeX
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></Users/chainsaw/Library/TinyTe
 X/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></Users/chainsaw/Library/TinyT
 eX/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (14 pages, 204087 bytes).
+Output written on RJwrapper.pdf (14 pages, 204091 bytes).
 PDF statistics:
  423 PDF objects out of 1000 (max. 8388607)
  381 compressed objects within 4 object streams
