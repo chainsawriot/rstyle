@@ -124,6 +124,7 @@ style_regexes <- list(
 
 ####################
 # PROBLEMATIC
+# TODO: Hong please check where the bug is
 
 readRDS(here::here("rjournal_submission", "data2019.RDS")) %>% 
     count(styles == "snake_case" & !fx_assign & !fx_opencurly & !fx_infix & fx_integer & !fx_singleq & !fx_commas & !fx_semi & !fx_t_f & !fx_closecurly & !fx_tab) %>% 
@@ -141,7 +142,6 @@ pkg_sample <- pkg_functions %>% mutate(fxl = map_int(styles, length)) %>%
 tibble(fun_name = unlist(pkg_sample$functions), fun_style = unlist(pkg_sample$styles)) %>% filter(fun_style == "other") %>% sample_n(10) %>% pull(fun_name) %>% paste(collapse = ", ")
 ####################
 
-###
 
 fx_style <- readRDS(here::here(cfg$PATH_FX_STYLE_BY_YEAR))
 
