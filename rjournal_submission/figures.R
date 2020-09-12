@@ -303,13 +303,13 @@ plot_naming_among_pkg <- function(pkg_feat){
     
     g_naming <- ggplot(data_naming, aes(y = percentage, x = pkg_name, fill = long_name)) + 
         geom_bar(stat="identity") + 
-        labs(x = "", y = "%") + 
-        theme(legend.title = element_blank()) +
-        coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2')) + 
-        poster_theme 
+        labs(x = "", y = "Share of all exported functions (%)") + 
+        theme(legend.title = element_blank(), legend.position = "bottom", legend.text = element_text(size = 7)) +
+        coord_flip() + scale_fill_manual(values = RColorBrewer::brewer.pal(7, 'Dark2'))
     return(g_naming)
 }
-pagerank <- read_rds(cfg$PATH_CRAN_GRAPH) %>% page_rank() %>% pluck("vector") %>% sort(decreasing = TRUE) %>% 
+
+pagerank <- read_rds(here::here(cfg$PATH_CRAN_GRAPH)) %>% page_rank() %>% pluck("vector") %>% sort(decreasing = TRUE) %>% 
     tibble(pkg_name = names(.), pagerank = .) 
 pkg_feat <- pkg_latest %>% 
     left_join(pagerank, by = c("pkg_name")) %>%  
