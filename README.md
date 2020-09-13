@@ -1,6 +1,8 @@
 # rstyle
 
-![animation](file60f331694ef5.gif) ![poster](user2019_poster.png)
+[![DOI](https://zenodo.org/badge/168371451.svg)](https://zenodo.org/badge/latestdoi/168371451)
+
+![poster](user2019_poster.png)
 
 ## Citation
 
