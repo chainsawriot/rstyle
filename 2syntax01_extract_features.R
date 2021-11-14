@@ -151,14 +151,11 @@ extract_features_pkgsdata <- function(pkgsdata, cfg) {
     return(yr)
 }
 
-
 plan(multiprocess)
 
 ## detect missing years
 
 dir_ls("data") %>% str_subset(cfg$SYNTAX_DATA_PREFIX) %>% str_extract("[0-9]{4}") %>% as.numeric %>% setdiff(seq(1998,cfg$INCLUDE_YR), .) -> missing_yrs
-
-
 
 all_pkgs_nest %>% filter(year %in% missing_yrs) %>% pull(data) -> data_to_extract
 

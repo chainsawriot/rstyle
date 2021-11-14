@@ -54,7 +54,7 @@ In `data` directory
 
 #### 2syntax - Analysis of style elements
 
-1. **2syntax01_extract_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. It takes a long time. Generate *syntax_feature_yr...RDS* files in `data` directory.
+1. **2syntax01_extract_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. This procedure is both CPU and I/O intensive. On a normal i5 computer, it would take a month to run. Generate *syntax_feature_yr...RDS* files in `data` directory.
 
 2. **2syntax02_gen_pkgs_functions_with_syntax_feature.R** (requires: *syntax_feature_yr...RDS* files): combine all .RDS files into one. Generate pkgs_functions_with_syntax_feature.RDS.
 
