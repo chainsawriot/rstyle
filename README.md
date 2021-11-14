@@ -30,7 +30,7 @@ In `data` directory
 
 1. target_meta.RDS - packages, one (randomly-selected) submission per year.
 
-2. pkgs_functions_with_syntax_feature.R - package information with syntatic features.
+2. pkgs_functions_with_syntax_feature.RDS - package information with syntatic features.
 
 ### R files:
 
@@ -66,7 +66,7 @@ In `data` directory
 
 2. **3linelength02_animation.R** (requires: comment_dist.RDS): generate shiny app.
 
-#### 4communities
+#### 4communities - Community-based analysis
 
 1. **4communities01_extract_cran_dependency.R** (requires: code.db): extract dependencies of packages from CRAN. Generate **cran_dependency.RDS** (END)
 
@@ -78,10 +78,13 @@ In `data` directory
 
 5. **4communities05_vis_community_poster_images.R** (requires: comm_largest_feature.RDS, cran_graph.RDS, comm_walktrap.RDS, comm_size.RDS, naming_convention.csv): visualize community-related analysis (END)
 
+#### 5conversion - Convert key RDS files to csv for preservation
+
+1. **5conversion01_make_csv.R** (requires: target_meta.RDS, pkgs_functions_with_syntax_feature.RDS): Convert RDS files to csv (END)
+
 # Related projects
 
 * [baaugwo](https://github.com/chainsawriot/baaugwo) - this project depends on this experimental package to extract meta data and dump code from R packages.
-
 
 # How to use the Docker to build and launch the docker instance?
 
