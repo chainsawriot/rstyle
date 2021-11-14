@@ -4,7 +4,7 @@ require(fs)
 require(dbplyr)
 require(RSQLite)
 
-cran_meta <- readRDS('target_meta.RDS')
+cran_meta <- readRDS(fs::path("data", 'target_meta.RDS'))
 
 cran_meta %>% ungroup -> cran_meta
 

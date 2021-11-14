@@ -5,7 +5,7 @@ require(lubridate)
 require(purrr)
 
 
-target_meta <- readRDS('target_meta.RDS')
+target_meta <- readRDS(fs::path("data", "target_meta.RDS"))
 
 vread <- function(path, fields = c("Description")) {
     print(path)
@@ -16,4 +16,4 @@ descs <- map(target_meta$path, safely(vread))
 
 transpose(descs)$result %>% map_chr(~ ifelse(is.null(.), NA, .)) -> target_meta$desc
 
-saveRDS(target_meta, "target_meta.RDS")
+saveRDS(target_meta, fs::path("data", "target_meta.RDS"))
