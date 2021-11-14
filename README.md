@@ -34,49 +34,49 @@ In `data` directory
 
 ### R files:
 
-#### prep - collecting data and sampling
+#### 0prep - collecting data and sampling
 
-1. **prep01_extract_metadata.R** (requires: Cloned CRAN mirror): extract meta data from tarballs. Generate *target_meta.RDS* and *final_meta.RDS* in `data` directory.
+1. **0prep01_extract_metadata.R** (requires: Cloned CRAN mirror): extract meta data from tarballs. Generate *target_meta.RDS* and *final_meta.RDS* in `data` directory.
 
 2. **cat code.sql | sqlite3 code.db** : generate the schema of the SQLITE database - code.db. Generate *code.db*.
 
-3. **prep02_dump.R** (requires: Cloned CRAN mirror, target_meta.RDS): dump the source code, NAMESPACEs and DESCRIPTIONs into code.db. Generate *code.db* with data. It is very large (> 20G).
+3. **0prep02_dump.R** (requires: Cloned CRAN mirror, target_meta.RDS): dump the source code, NAMESPACEs and DESCRIPTIONs into code.db. Generate *code.db* with data. It is very large (> 20G).
 
-4. **prep03_extract_desc.R** (requires: Cloned CRAN mirror, target_meta.RDS): add the text description also into target_meta.RDS as a column *desc*. Generate *target_meta.RDS* (overwrite) in `data` directory.
+4. **0prep03_extract_desc.R** (requires: Cloned CRAN mirror, target_meta.RDS): add the text description also into target_meta.RDS as a column *desc*. Generate *target_meta.RDS* (overwrite) in `data` directory.
 
-#### functionnames - Analysis of function names
+#### 1functionnames - Analysis of function names
 
-1. **functionnames01_extract_function_name.R** (requires: code.db): extract names of all exported function from each package. Generate multiple *fx_data_yr...RDS* files in `data` directory.
+1. **1functionnames01_extract_function_name.R** (requires: code.db): extract names of all exported function from each package. Generate multiple *fx_data_yr...RDS* files in `data` directory.
 
-2. **functionnames02_function_name_analysis.R** (requires: *fx_data_yr...RDS* files): analyse the style in function names by year. Generate *fx_style_by_year.RDS* in `data` directory.
+2. **1functionnames02_function_name_analysis.R** (requires: *fx_data_yr...RDS* files): analyse the style in function names by year. Generate *fx_style_by_year.RDS* in `data` directory.
 
-3. **functionnames03_function_name_vis.R** (requires: *fx_style_by_year.RDS*): visualize the time trends of styles in function names. Generate images(END)
+3. **1functionnames03_function_name_vis.R** (requires: *fx_style_by_year.RDS*): visualize the time trends of styles in function names. Generate images(END)
 
-#### syntax - Analysis of style elements
+#### 2syntax - Analysis of style elements
 
-1. **syntax01_extract_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. It takes a long time. Generate *syntax_feature_yr...RDS* files in `data` directory.
+1. **2syntax01_extract_features.R** (requires: target_meta.RDS, code.db): extract syntactic features. It takes a long time. Generate *syntax_feature_yr...RDS* files in `data` directory.
 
-2. **syntax02_gen_pkgs_functions_with_syntax_feature.R** (requires: *syntax_feature_yr...RDS* files): combine all .RDS files into one. Generate pkgs_functions_with_syntax_feature.RDS.
+2. **2syntax02_gen_pkgs_functions_with_syntax_feature.R** (requires: *syntax_feature_yr...RDS* files): combine all .RDS files into one. Generate pkgs_functions_with_syntax_feature.RDS.
 
-3. **syntax03_vis.R** (requires: pkgs_functions_with_syntax_feature.RDS): Visualize the time trends of syntactic features. Generate images. (END)
+3. **2syntax03_vis.R** (requires: pkgs_functions_with_syntax_feature.RDS): Visualize the time trends of syntactic features. Generate images. (END)
 
-#### linelength - Analysis of line length
+#### 3linelength - Analysis of line length
 
-1. **linelength01_extraction.R** (requires: code.db):  generate **comment_dist.RDS** in `data` directory.
+1. **3linelength01_extraction.R** (requires: code.db):  generate **comment_dist.RDS** in `data` directory.
 
-2. **linelength02_animation.R** (requires: comment_dist.RDS): generate shiny app.
+2. **3linelength02_animation.R** (requires: comment_dist.RDS): generate shiny app.
 
-#### communities
+#### 4communities
 
-1. **communities01_extract_cran_dependency.R** (requires: code.db): extract dependencies of packages from CRAN. Generate **cran_dependency.RDS** (END)
+1. **4communities01_extract_cran_dependency.R** (requires: code.db): extract dependencies of packages from CRAN. Generate **cran_dependency.RDS** (END)
 
-2. **communities02_build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS**(END)
+2. **4communities02_build_cran_graph.R** (requires: cran_dependency.RDS): build CRAN dependency graph based on two fields, say "Import" and "Suggests." Generate **cran_graph.RDS**(END)
 
-3. **communities03_detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **comm_walktrap.RDS** and **comm_size.RDS**. In addition, it examines the robustness of identified communities with respect to the choice of random seeds(END)
+3. **4communities03_detect_cran_community_by_walktrap.R** (requires: cran_graph.RDS): detect CRAN communities by using walktrap algorithm. Generate **comm_walktrap.RDS** and **comm_size.RDS**. In addition, it examines the robustness of identified communities with respect to the choice of random seeds(END)
 
-4. **communities04_community_based_features_correction.R** (requires: pkgs_functions_with_syntax_feature.RDS, comm_walktrap.RDS, comm_size.RDS, comm_name.csv): assign community labels to each package, such that package-level summary of syntax features and naming features can be usage for analyzing the style variations among communites. Only apply to the largest 20 communites. Generate **comm_largest_feature.RDS** (END)
+4. **4communities04_community_based_features_correction.R** (requires: pkgs_functions_with_syntax_feature.RDS, comm_walktrap.RDS, comm_size.RDS, comm_name.csv): assign community labels to each package, such that package-level summary of syntax features and naming features can be usage for analyzing the style variations among communites. Only apply to the largest 20 communites. Generate **comm_largest_feature.RDS** (END)
 
-5. **communities05_vis_community_poster_images.R** (requires: comm_largest_feature.RDS, cran_graph.RDS, comm_walktrap.RDS, comm_size.RDS, naming_convention.csv): visualize community-related analysis (END)
+5. **4communities05_vis_community_poster_images.R** (requires: comm_largest_feature.RDS, cran_graph.RDS, comm_walktrap.RDS, comm_size.RDS, naming_convention.csv): visualize community-related analysis (END)
 
 # Related projects
 
