@@ -83,16 +83,17 @@ It takes 220G of disk space.
 * [baaugwo](https://github.com/chainsawriot/baaugwo) - this project depends on this experimental package to extract meta data and dump code from R packages.
 
 
-# How to lunch docker in remote server?
+# How to use the Docker to build and launch the docker instance?
+
 - Build docker file
-    - it is way faster if we build the docker image inside the director **docker** since it copies least data in this way. 
+    - it is way faster if one builds the docker image inside the directory **docker** because less data are copied. 
 ```sh
 cd docker/ ;
 docker build -t rstudio/rstyle -f Dockerfile . ;
 cd ../ ;
 ```
-- By default, docker launches rstudio server and mounts folders by using root user, which makes user **rstudio** not able to write files due to lack of previledge. 
-- One of the solution of this problem is to ask docker to launch rstudio server by using current UID
+- By default, docker launches RStudio Server and mounts folders using **root** user. It makes user **rstudio** (the default user of RStudio server) with no write access. 
+- One of the solutions of this problem is to make docker launching RStudio Server by using current the UID
 
 ```sh
 docker run -v $(pwd):/home/$USER/rstyle -e USER=$USER -e PASSWORD=xxxx -e USERID=$UID -p 8787:8787 rstudio/rstyle
@@ -101,14 +102,15 @@ docker run -v $(pwd):/home/$USER/rstyle -e USER=$USER -e PASSWORD=xxxx -e USERID
 ```sh
 bash dev-tmux.sh
 ```
-if you are developing under Window Subsystem Linus (WSL), you may encounter a problem that docker can not see the folder you mounted into the container. Then try to soft link /mnt/c/ to the root directory as illustrated in the blog article below:
-https://medium.com/@lixis630/extra-setup-on-wsl-for-ros-7c539463370a
-And git clone this repository anywhere under the /c/Users/{YOUR_USERNAME}. And then specify the PATH_RSTYLE as environment variable as shown below, such that you can launch the dashboard successfully.
+
+If one is developing under Window Subsystem for Linux (WSL), you may encounter a problem that docker cannot see the folder you mounted in the container. In that case, please try to soft link `/mnt/c/` to the root directory as illustrated in this [blog post](https://medium.com/@lixis630/extra-setup-on-wsl-for-ros-7c539463370a).
+
+And then clone this repository anywhere inside /c/Users/{YOUR_USERNAME}. And then specify the `PATH_RSTYLE` environment variable as shown below, such that you can launch the dashboard successfully.
+
 ```sh
 PATH_RSTYLE=/c/Users/{YOUR_USERNAME}/{PATH_TO_RSTYLE}/rstyle bash dev-tmux.sh
 ```
  
-
 # Label the names of identified communities by walktrap algorithm
 We manually assigned a name to the largest identified communities by their 3 most important package members. We priorized importance of packages within a community by the algorithm PageRank. 
 
