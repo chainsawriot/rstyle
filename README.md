@@ -2,11 +2,11 @@
 
 [![DOI](https://zenodo.org/badge/168371451.svg)](https://zenodo.org/badge/latestdoi/168371451)
 
-![poster](user2019_poster.png)
+![poster](docs/user2019_poster.png)
 
 ## Citation
 
-Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) *A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years.* [Paper presented at the useR! 2019 conference, Toulouse, France.](user2019_poster.pdf) doi:10.31235/osf.io/ts2wq
+Please cite this as: Yen, C.Y., Chang, M.H.W., Chan, C.H. (2019) *A Computational Analysis of the Dynamics of R Style Based on 94 Million Lines of Code from All CRAN Packages in the Past 20 Years.* [Paper presented at the useR! 2019 conference, Toulouse, France.](docs/user2019_poster.pdf) doi:10.31235/osf.io/ts2wq
 
 Preprint of this paper is available [here](https://osf.io/preprints/socarxiv/ts2wq/).
 
