@@ -85,7 +85,8 @@ In `data` directory
 
 # How to use the Docker to build and launch the docker instance?
 
-- Build docker file
+- Build the docker image using the provided [Dockerfile](https://github.com/chainsawriot/rstyle/blob/master/docker/Dockerfile)
+
     - it is way faster if one builds the docker image inside the directory **docker** because less data are copied. 
 ```sh
 cd docker/ ;
