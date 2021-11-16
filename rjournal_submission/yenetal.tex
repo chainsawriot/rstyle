@@ -5,7 +5,7 @@
 \maketitle
 
 \abstract{
-The flexibility of R and the diversity of the R community leads to a large number of programming styles applied in R packages. We have analyzed 108 million lines of R code from CRAN and quantified the evolution in popularity of 12 style-elements from 1998 to 2019. We attribute 3 main factors that drive changes in programming style: the effect of style-guides, the effect of introducing new features, and the effect of editors. We observe in the data that a consensus in programming style is forming,  such as using lower snake case for function names (e.g. softplus_func) and  <- rather than = for assignment.
+The flexibility of R and the diversity of the R community leads to a large number of programming styles applied in R packages. We have analyzed 108 million lines of R code from CRAN and quantified the evolution in popularity of 12 style-elements from 1998 to 2019. We attribute 3 main factors that drive changes in programming style: the effect of style-guides, the effect of introducing new features, and the effect of editors. We observe in the data that a consensus in programming style is forming, such as using lower snake case for function names (e.g. softplus\_func) and  <- rather than = for assignment.
 \footnote{
     We have presented a previous version of this paper as a poster at UseR! 2019 Toulouse. Interested readers can access it with the following link: \url{
     https://github.com/chainsawriot/rstyle/blob/master/docs/Poster_useR2019_Toulouse.png}
@@ -73,7 +73,7 @@ Curly braces & \{ same line, then a newline, \} on its own line & \{ same line, 
 \section{Analysis}
 \subsection{Data Source}
 
-On July 1, 2020, we cloned a local mirror of CRAN using the rsync method suggested in the CRAN Mirror HOWTO \citep{cranminihowto}. Our local mirror contains all contributed packages as tarball files (.tar.gz). By all contributed packages, we mean packages actively listed online on the CRAN website as well as orphaned and archived packages. In this analysis, we include all active, orphaned and archived packages.
+On July 1, 2020, we cloned a local mirror of CRAN using the rsync method suggested in the CRAN Mirror HOWTO \citep{cranminihowto}. \footnote{Regarding the specification of the hardware used for this analysis, please refer to the README file in our Github repository: \url{https://github.com/chainsawriot/rstyle}} Our local mirror contains all contributed packages as tarball files (.tar.gz). By all contributed packages, we mean packages actively listed online on the CRAN website as well as orphaned and archived packages. In this analysis, we include all active, orphaned and archived packages.
 
 In order to facilitate the analysis, we have developed the package \code{baaugwo} \citep{chan2} to extract all R source code and metadata from these tarballs. In this study, only the source code from the \code{/R} directory of each tarball file is included. We have also archived the metadata from the \code{DESCRIPTION} and \code{NAMESPACE} files from the tarballs.
 
@@ -249,7 +249,7 @@ By applying the Walktrap Community Detection on the 2019 data, we have identifie
 
 \subsection{Methodology of within-package variations analysis}
 
-Maintaining a consistent style in source code can enable efficient reading by multiple readers \citep{gillespie2016efficient} \footnote{Maintaining a consistent style is even thought to be a quality of a successful R programmer in \citet{gillespie2016efficient}.}. In addition to community-level analysis, we extend our work to the package-level, in which we investigate the consistency of different style elements within a package. In this analysis, we studied 12 style elements, including fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name.  In other words, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) could be assigned to each function within a package.
+Maintaining a consistent style in source code can enable efficient reading by multiple readers \citep{gillespie2016efficient}. Maintaining a consistent style is even thought to be a quality of a successful R programmer in \citet{gillespie2016efficient}. In addition to community-level analysis, we extend our work to the package-level, in which we investigate the consistency of different style elements within a package. In this analysis, we studied 12 style elements, including fx\_assign, fx\_commas, fx\_integer, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_infix, fx\_opencurly, fx\_singleq, fx\_tab, and fx\_name.  In other words, 11 binary variables (the first 11) and 1 multinomial variable (fx\_name) could be assigned to each function within a package.
 
 We quantified the package-level consistency by computing the entropy for each style element. Given a style element S of an R package $R_{i}$, with possible n choices $s_{1}$, $\mathellipsis$ $s_{n}$ (e.g. n = 2 for binary; n = 7 for fx\_names), the entropy $H(S)$ is calculated as:
 
@@ -371,7 +371,7 @@ For the binary style-elements, local patterns are also observed (Figure~\ref{fig
 
 \subsection{Within-package variations}
 
-The result shows that the consistency of style elements within a package varies (Figure~\ref{figure:fig6}). For example, style elements like fx\_integer, fx\_commas, fx\_infix, fx\_opencurly, and fx\_name have less consistency within a package than fx\_tab, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_singleq, and fx\_assign. This finding echoes previous concerns e.g. \citet{oman, elish, wang, gillespie2016efficient} that these inconsistent style variations within a software project (e.g. in an R package) might make open source collaboration difficult.
+The result shows that the consistency of style elements within a package varies (Figure~\ref{figure:fig6}). For example, style elements like fx\_integer, fx\_commas, fx\_infix, fx\_opencurly, and fx\_name have less consistency within a package than fx\_tab, fx\_semi, fx\_t\_f, fx\_closecurly, fx\_singleq, and fx\_assign. Based on our within-package analysis, we noticed that it is rare for a package to use a consistent style in all of its functions, except those packages with only a few functions. This finding prompts previous concerns e.g. \citet{oman, elish, wang, gillespie2016efficient} that these inconsistent style variations within a software project (e.g. in an R package) might make open source collaboration difficult.
 
 \begin{figure}[htbp]
   \centering
@@ -380,7 +380,7 @@ The result shows that the consistency of style elements within a package varies 
   \label{figure:fig6}
 \end{figure}
 
-In Figure~\ref{figure:fig7}, we contextualize the above analysis by showing the distribution of fx\_name in 20 R packages with the highest PageRank \citep{page1999pagerank} in the CRAN dependency graph. Many of these packages have only 1 dominant naming convention (e.g. lower\_snake or lowerCamel), but not always. For instance, functions with 6 different naming conventions can be found in the package \CRANpkg{Rcpp}.
+In Figure~\ref{figure:fig7}, we contextualize this finding by showing the distribution of fx\_name in 20 R packages with the highest PageRank \citep{page1999pagerank} in the CRAN dependency graph. Many of these packages have only 1 dominant naming convention (e.g. lower\_snake or lowerCamel), but not always. For instance, functions with 6 different naming conventions can be found in the package \CRANpkg{Rcpp}.
 
 \begin{figure}[htbp]
   \centering
@@ -433,7 +433,7 @@ The data and scripts to reproduce the analysis in this paper are available at \u
 
 \section{Acknowledgment}
 
-The authors would like to thank Wush Wu and Liang-Bo Wang for their valuable comments that greatly improved this paper. Taiwan R User group, R-Ladies Taipei, and attendees of UseR! 2019 gave us thought-provoking feedbacks on this research.
+The authors would like to thank Wush Wu, Liang-Bo Wang, Taiwan R User group, R-Ladies Taipei, attendees of UseR! 2019, and the two reviewers for their valuable comments that greatly improved this paper.
 
 \bibliography{RJreferences}
 

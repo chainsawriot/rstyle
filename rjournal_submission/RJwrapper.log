@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.29)  14 NOV 2021 20:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.29)  16 NOV 2021 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1005,18 +1005,18 @@ LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 [4]
-<fig1.pdf, id=160, 361.35pt x 361.35pt>
+<fig1.pdf, id=161, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
 Package pdftex.def Info: fig1.pdf  used on input line 272.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
  [5] [6 </home/chainsawriot/dev/rstyle/rjournal_submission/fig1.pdf>]
-<fig2.pdf, id=192, 361.35pt x 289.08pt>
+<fig2.pdf, id=195, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
 Package pdftex.def Info: fig2.pdf  used on input line 284.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
-<fig3.pdf, id=198, 361.35pt x 289.08pt>
+<fig3.pdf, id=201, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
 Package pdftex.def Info: fig3.pdf  used on input line 293.
@@ -1026,12 +1026,12 @@ Overfull \hbox (13.66705pt too wide) in paragraph at lines 309--354
  [][] 
  []
 
-<fig4.pdf, id=204, 361.35pt x 361.35pt>
+<fig4.pdf, id=207, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
 Package pdftex.def Info: fig4.pdf  used on input line 358.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=206, 361.35pt x 614.295pt>
+<fig5.pdf, id=209, 361.35pt x 614.295pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
 Package pdftex.def Info: fig5.pdf  used on input line 367.
@@ -1040,12 +1040,12 @@ Package pdftex.def Info: fig5.pdf  used on input line 367.
 nsawriot/dev/rstyle/rjournal_submission/fig3.pdf>] [9 </home/chainsawriot/dev/r
 style/rjournal_submission/fig4.pdf>] [10 </home/chainsawriot/dev/rstyle/rjourna
 l_submission/fig5.pdf>]
-<fig6.pdf, id=262, 361.35pt x 361.35pt>
+<fig6.pdf, id=265, 361.35pt x 361.35pt>
 File: fig6.pdf Graphic file (type pdf)
 <use fig6.pdf>
 Package pdftex.def Info: fig6.pdf  used on input line 378.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig7.pdf, id=267, 361.35pt x 361.35pt>
+<fig7.pdf, id=270, 361.35pt x 361.35pt>
 File: fig7.pdf Graphic file (type pdf)
 <use fig7.pdf>
 Package pdftex.def Info: fig7.pdf  used on input line 387.
@@ -1072,14 +1072,14 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
 (rerunfilecheck)             Checksum: 11EACFAB5D95A1163B1ED9F18ABA2566;2760.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: 74717FF5634104739B29E3557AB1A7EA;1721.
+(rerunfilecheck)             Checksum: 8FC7890E40FBEF7DB2DDEE59F5EA519F;1725.
  ) 
 Here is how much of TeX's memory you used:
- 25794 strings out of 480539
- 459281 string characters out of 5902067
+ 25797 strings out of 480539
+ 459308 string characters out of 5902067
  781258 words of memory out of 5000000
  42549 multiletter control sequences out of 15000+600000
- 463181 words of font info for 320 fonts, out of 8000000 for 9000
+ 463340 words of font info for 322 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  117i,11n,131p,1976b,701s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exi
@@ -1115,10 +1115,10 @@ ols/msam10.pfb></home/chainsawriot/.TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplb8a.pfb></home/chainsawriot/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/up
 lr8a.pfb></home/chainsawriot/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri
 8a.pfb>
-Output written on RJwrapper.pdf (16 pages, 214376 bytes).
+Output written on RJwrapper.pdf (16 pages, 214652 bytes).
 PDF statistics:
- 459 PDF objects out of 1000 (max. 8388607)
- 405 compressed objects within 5 object streams
+ 462 PDF objects out of 1000 (max. 8388607)
+ 408 compressed objects within 5 object streams
  69 named destinations out of 1000 (max. 500000)
  83096 words of extra memory for PDF output out of 89155 (max. 10000000)
 
