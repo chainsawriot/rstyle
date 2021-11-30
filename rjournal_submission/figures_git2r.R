@@ -5,7 +5,7 @@ require(furrr)
 require(here)
 require(modules)
 require(rex)
-install.packages("git2r")
+#install.packages("git2r")
 require(git2r)
 
 path <- file.path(tempfile(pattern="rstylerepo"), "rstylerepo")
