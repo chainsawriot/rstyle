@@ -1,23 +1,23 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.11.20)  30 NOV 2021 21:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.3.22)  9 APR 2022 16:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\nonstopmode \input ./RJwrapper.tex \input ./RJwrapper.tex
+**\nonstopmode \input ./RJwrapper.tex
 (./RJwrapper.tex
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2021/10/04 v1.4n Standard LaTeX document class
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count183
-\c@chapter=\count184
-\c@section=\count185
-\c@subsection=\count186
-\c@subsubsection=\count187
-\c@paragraph=\count188
-\c@subparagraph=\count189
-\c@figure=\count190
-\c@table=\count191
+\c@part=\count185
+\c@chapter=\count186
+\c@section=\count187
+\c@subsection=\count188
+\c@subsubsection=\count189
+\c@paragraph=\count190
+\c@subparagraph=\count191
+\c@figure=\count192
+\c@table=\count193
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
@@ -105,14 +105,14 @@ ed.code.tex
 \pgf@yd=\dimen152
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count192
-\c@pgf@countb=\count193
-\c@pgf@countc=\count194
-\c@pgf@countd=\count195
+\c@pgf@counta=\count194
+\c@pgf@countb=\count195
+\c@pgf@countc=\count196
+\c@pgf@countd=\count197
 \t@pgf@toka=\toks23
 \t@pgf@tokb=\toks24
 \t@pgf@tokc=\toks25
-\pgf@sys@id@count=\count196
+\pgf@sys@id@count=\count198
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
@@ -130,8 +130,8 @@ File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftp
 ath.code.tex
 File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfsyssoftpath@smallbuffer@items=\count197
-\pgfsyssoftpath@bigbuffer@items=\count198
+\pgfsyssoftpath@smallbuffer@items=\count199
+\pgfsyssoftpath@bigbuffer@items=\count266
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysproto
 col.code.tex
@@ -166,7 +166,7 @@ ex)
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code
 .tex
 \pgfmath@dimen=\dimen153
-\pgfmath@count=\count199
+\pgfmath@count=\count267
 \pgfmath@box=\box51
 \pgfmath@toks=\toks26
 \pgfmath@stack@operand=\toks27
@@ -192,7 +192,7 @@ isc.code.tex)
 ntegerarithmetics.code.tex)))
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.
 tex
-\c@pgfmathroundto@lastzeros=\count266
+\c@pgfmathroundto@lastzeros=\count268
 ))
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoint
@@ -231,7 +231,7 @@ File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfpic=\box52
 \pgf@hbox=\box53
 \pgf@layerbox@main=\box54
-\pgf@picture@serial@count=\count267
+\pgf@picture@serial@count=\count269
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraph
 icstate.code.tex
@@ -266,8 +266,8 @@ File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 .code.tex
 File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@max=\dimen177
-\pgf@sys@shading@range@num=\count268
-\pgf@shadingcount=\count269
+\pgf@sys@shading@range@num=\count270
+\pgf@shadingcount=\count271
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage
 .code.tex
@@ -336,7 +336,7 @@ Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplo
 thandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgf@plot@mark@count=\count270
+\pgf@plot@mark@count=\count272
 \pgfplotmarksize=\dimen182
 )
 \tikz@lastx=\dimen183
@@ -351,19 +351,19 @@ File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \tikz@figbox@bg=\box58
 \tikz@tempbox=\box59
 \tikz@tempbox@bg=\box60
-\tikztreelevel=\count271
-\tikznumberofchildren=\count272
-\tikznumberofcurrentchild=\count273
-\tikz@fig@count=\count274
+\tikztreelevel=\count273
+\tikznumberofchildren=\count274
+\tikznumberofcurrentchild=\count275
+\tikz@fig@count=\count276
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix
 .code.tex
 File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfmatrixcurrentrow=\count275
-\pgfmatrixcurrentcolumn=\count276
-\pgf@matrix@numberofcolumns=\count277
+\pgfmatrixcurrentrow=\count277
+\pgfmatrixcurrentcolumn=\count278
+\pgf@matrix@numberofcolumns=\count279
 )
-\tikz@expandcount=\count278
+\tikz@expandcount=\count280
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 aries/tikzlibrarytopaths.code.tex
@@ -376,11 +376,11 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count279
-\Gm@cntv=\count280
-\c@Gm@tempcnt=\count281
+\Gm@cnth=\count281
+\Gm@cntv=\count282
+\c@Gm@tempcnt=\count283
 \Gm@bindingoffset=\dimen191
 \Gm@wd@mp=\dimen192
 \Gm@odd@mp=\dimen193
@@ -405,32 +405,34 @@ rs
 \f@nch@O@orf=\skip57
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2021/10/31 v3.0 Micro-typographical refinements (RS)
+Package: microtype 2022/03/14 v3.0d Micro-typographical refinements (RS)
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count282
+\etb@tempcnta=\count284
 )
 \MT@toks=\toks32
-\MT@count=\count283
 \MT@tempbox=\box61
-\MT@leftmarginkern=\dimen199
-\MT@rightmarginkern=\dimen256
-LaTeX Info: Redefining \textls on input line 1114.
-\MT@outer@kern=\dimen257
-LaTeX Info: Redefining \textmicrotypecontext on input line 1700.
-\MT@listname@count=\count284
+\MT@count=\count285
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1027.
+LaTeX Info: Redefining \leftprotrusion on input line 1028.
+LaTeX Info: Redefining \rightprotrusion on input line 1036.
+LaTeX Info: Redefining \textls on input line 1195.
+\MT@outer@kern=\dimen199
+LaTeX Info: Redefining \textmicrotypecontext on input line 1781.
+\MT@listname@count=\count286
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.de
 f
-File: microtype-pdftex.def 2021/10/31 v3.0 Definitions specific to pdftex (RS)
-LaTeX Info: Redefining \lsstyle on input line 915.
-LaTeX Info: Redefining \lslig on input line 915.
+File: microtype-pdftex.def 2022/03/14 v3.0d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 900.
+LaTeX Info: Redefining \lslig on input line 900.
 \MT@outer@space=\skip58
 )
 Package microtype Info: Loading configuration file microtype.cfg.
  (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2021/10/31 v3.0 microtype main configuration file (RS)
+File: microtype.cfg 2022/03/14 v3.0d microtype main configuration file (RS)
 ))
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/psnfss/helvet.sty
 Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
@@ -457,10 +459,10 @@ Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 \XKV@toks=\toks33
 \XKV@tempa@toks=\toks34
 )
-\XKV@depth=\count285
+\XKV@depth=\count287
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\zifour@ocount=\count286
+\zifour@ocount=\count288
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -475,7 +477,7 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
@@ -511,39 +513,35 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen258
-\Hy@linkcounter=\count287
-\Hy@pagecounter=\count288
+\@linkdim=\dimen256
+\Hy@linkcounter=\count289
+\Hy@pagecounter=\count290
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-langpatches
-.def
-File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
-nguages
-) (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+(/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count289
+\Hy@SavedSpaceFactor=\count291
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4192.
-Package hyperref Info: Link nesting OFF on input line 4197.
-Package hyperref Info: Hyper index ON on input line 4200.
-Package hyperref Info: Plain pages OFF on input line 4207.
-Package hyperref Info: Backreferencing ON on input line 4210.
+Package hyperref Info: Hyper figures OFF on input line 4137.
+Package hyperref Info: Link nesting OFF on input line 4142.
+Package hyperref Info: Hyper index ON on input line 4145.
+Package hyperref Info: Plain pages OFF on input line 4152.
+Package hyperref Info: Backreferencing ON on input line 4155.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4445.
+Package hyperref Info: Bookmarks ON on input line 4390.
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/backref.sty
 Package: backref 2021/02/04 v1.41 Bibliographical back referencing
@@ -567,39 +565,39 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 ))
-\c@Hy@tempcnt=\count290
-LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen259
+\c@Hy@tempcnt=\count292
+LaTeX Info: Redefining \url on input line 4749.
+\XeTeXLinkMargin=\dimen257
  (/home/chainsawriot/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 )
-\Fld@menulength=\count291
-\Field@Width=\dimen260
-\Fld@charsize=\dimen261
-Package hyperref Info: Hyper figures OFF on input line 6076.
-Package hyperref Info: Link nesting OFF on input line 6081.
-Package hyperref Info: Hyper index ON on input line 6084.
-Package hyperref Info: backreferencing ON on input line 6089.
-Package hyperref Info: Link coloring OFF on input line 6096.
-Package hyperref Info: Link coloring with OCG OFF on input line 6101.
-Package hyperref Info: PDF/A mode OFF on input line 6106.
-LaTeX Info: Redefining \ref on input line 6146.
-LaTeX Info: Redefining \pageref on input line 6150.
+\Fld@menulength=\count293
+\Field@Width=\dimen258
+\Fld@charsize=\dimen259
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing ON on input line 6040.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+LaTeX Info: Redefining \ref on input line 6097.
+LaTeX Info: Redefining \pageref on input line 6101.
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count292
-\c@Item=\count293
-\c@Hfootnote=\count294
+\Hy@abspage=\count294
+\c@Item=\count295
+\c@Hfootnote=\count296
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
-\Fld@listcount=\count295
-\c@bookmark@seq@number=\count296
+File: hpdftex.def 2022-02-21 v7.00n Hyperref driver for pdfTeX
+\Fld@listcount=\count297
+\c@bookmark@seq@number=\count298
 \Hy@SectionHShift=\skip59
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 62.
@@ -612,16 +610,16 @@ Package: titlesec 2021/07/05 v2.14 Sectioning titles
 \ttl@box=\box62
 \beforetitleunit=\skip60
 \aftertitleunit=\skip61
-\ttl@plus=\dimen262
-\ttl@minus=\dimen263
+\ttl@plus=\dimen260
+\ttl@minus=\dimen261
 \ttl@toksa=\toks35
-\titlewidth=\dimen264
-\titlewidthlast=\dimen265
-\titlewidthfirst=\dimen266
+\titlewidth=\dimen262
+\titlewidthlast=\dimen263
+\titlewidthfirst=\dimen264
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2021/07/05 v2.14 TOC entries
-\ttl@leftsep=\dimen267
+\ttl@leftsep=\dimen265
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
@@ -631,15 +629,15 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip62
 \bibsep=\skip63
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count297
+\c@NAT@ctr=\count299
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2021/10/15 v3.9 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count298
+Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
+\FV@CodeLineNo=\count300
 \FV@InFile=\read3
 \FV@TabBox=\box63
-\c@FancyVerbLine=\count299
-\FV@StepNumber=\count300
+\c@FancyVerbLine=\count301
+\FV@StepNumber=\count302
 \FV@OutFile=\write4
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty
@@ -655,21 +653,22 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+Package: caption 2022/03/01 v3.6b Customizing captions (AR)
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen268
-\captionmargin@=\dimen269
-\captionwidth=\dimen270
-\caption@tempdima=\dimen271
-\caption@indent=\dimen272
-\caption@parindent=\dimen273
-\caption@hangindent=\dimen274
+Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
+\caption@tempdima=\dimen266
+\captionmargin=\dimen267
+\caption@leftmargin=\dimen268
+\caption@rightmargin=\dimen269
+\caption@width=\dimen270
+\caption@indent=\dimen271
+\caption@parindent=\dimen272
+\caption@hangindent=\dimen273
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count301
-\c@continuedfloat=\count302
+\c@caption@flags=\count303
+\c@continuedfloat=\count304
 Package caption Info: hyperref package is loaded.
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/environ/environ.sty
@@ -691,47 +690,47 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks38
-\ex@=\dimen275
+\ex@=\dimen274
 ))
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen276
+\pmbraise@=\dimen275
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 LaTeX Info: Redefining \operatorname on input line 43.
 )
-\inf@bad=\count303
+\inf@bad=\count305
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count304
-\leftroot@=\count305
+\uproot@=\count306
+\leftroot@=\count307
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count306
-\DOTSCASE@=\count307
+\classnum@=\count308
+\DOTSCASE@=\count309
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
 \Mathstrutbox@=\box64
 \strutbox@=\box65
-\big@size=\dimen277
+\big@size=\dimen276
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count308
-\c@MaxMatrixCols=\count309
+\macc@depth=\count310
+\c@MaxMatrixCols=\count311
 \dotsspace@=\muskip17
-\c@parentequation=\count310
-\dspbrk@lvl=\count311
+\c@parentequation=\count312
+\dspbrk@lvl=\count313
 \tag@help=\toks39
-\row@=\count312
-\column@=\count313
-\maxfields@=\count314
+\row@=\count314
+\column@=\count315
+\maxfields@=\count316
 \andhelp@=\toks40
-\eqnshift@=\dimen278
-\alignsep@=\dimen279
-\tagshift@=\dimen280
-\tagwidth@=\dimen281
-\totwidth@=\dimen282
-\lineht@=\dimen283
+\eqnshift@=\dimen277
+\alignsep@=\dimen278
+\tagshift@=\dimen279
+\tagwidth@=\dimen280
+\totwidth@=\dimen281
+\lineht@=\dimen282
 \@envbody=\toks41
 \multlinegap=\skip65
 \multlinetaggap=\skip66
@@ -744,9 +743,9 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen284
+\col@sep=\dimen283
 \ar@mcellbox=\box66
-\extrarowheight=\dimen285
+\extrarowheight=\dimen284
 \NC@list=\toks43
 \extratabsurround=\skip67
 \backup@length=\skip68
@@ -754,28 +753,28 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen286
-\lightrulewidth=\dimen287
-\cmidrulewidth=\dimen288
-\belowrulesep=\dimen289
-\belowbottomsep=\dimen290
-\aboverulesep=\dimen291
-\abovetopsep=\dimen292
-\cmidrulesep=\dimen293
-\cmidrulekern=\dimen294
-\defaultaddspace=\dimen295
-\@cmidla=\count315
-\@cmidlb=\count316
-\@aboverulesep=\dimen296
-\@belowrulesep=\dimen297
-\@thisruleclass=\count317
-\@lastruleclass=\count318
-\@thisrulewidth=\dimen298
+\heavyrulewidth=\dimen285
+\lightrulewidth=\dimen286
+\cmidrulewidth=\dimen287
+\belowrulesep=\dimen288
+\belowbottomsep=\dimen289
+\aboverulesep=\dimen290
+\abovetopsep=\dimen291
+\cmidrulesep=\dimen292
+\cmidrulekern=\dimen293
+\defaultaddspace=\dimen294
+\@cmidla=\count317
+\@cmidlb=\count318
+\@aboverulesep=\dimen295
+\@belowrulesep=\dimen296
+\@thisruleclass=\count319
+\@lastruleclass=\count320
+\@thisrulewidth=\dimen297
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.de
 f
-File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count319
+File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count321
 \l__pdf_internal_box=\box68
 ) (/home/chainsawriot/dev/rstyle/rjournal_submission/RJwrapper.aux)
 \openout1 = `RJwrapper.aux'.
@@ -801,16 +800,16 @@ LaTeX Font Info:    ... okay on input line 10.
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count320
-\scratchdimen=\dimen299
+\scratchcounter=\count322
+\scratchdimen=\dimen298
 \scratchbox=\box69
-\nofMPsegments=\count321
-\nofMParguments=\count322
+\nofMPsegments=\count323
+\nofMParguments=\count324
 \everyMPshowfont=\toks44
-\MPscratchCnt=\count323
-\MPscratchDim=\dimen300
-\MPnumerator=\count324
-\makeMPintoPDFobject=\count325
+\MPscratchCnt=\count325
+\MPscratchDim=\dimen299
+\MPnumerator=\count326
+\makeMPintoPDFobject=\count327
 \everyMPtoPDFconversion=\toks45
 )
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.st
@@ -863,7 +862,9 @@ LaTeX Info: Redefining \microtypecontext on input line 10.
 Package microtype Info: Applying patch `item' on input line 10.
 Package microtype Info: Applying patch `toc' on input line 10.
 Package microtype Info: Applying patch `eqnum' on input line 10.
-Package microtype Info: Applying patch `footnote' on input line 10.
+
+Package microtype Warning: Unable to apply patch `footnote' on input line 10.
+
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -881,6 +882,7 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
+Package backref Info: ** backref set up for natbib ** on input line 10.
 Package hyperref Info: Link coloring ON on input line 10.
 
 (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -893,7 +895,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ng.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count326
+\c@section@level=\count328
 )
 LaTeX Info: Redefining \ref on input line 10.
 LaTeX Info: Redefining \pageref on input line 10.
@@ -903,7 +905,6 @@ LaTeX Info: Redefining \nameref on input line 10.
 \@outlinefile=\write5
 \openout5 = `RJwrapper.out'.
 
-Package backref Info: ** backref set up for natbib ** on input line 10.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
@@ -998,12 +999,12 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 ]
 [2]
 LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 1
-53.
+42.
  (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/inconsolata/ts1zi4.fd
 File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 9.18004pt on input line 153.
+(Font)              scaled to size 9.18004pt on input line 142.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1011,7 +1012,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 [3]
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
-31.
+20.
  (/home/chainsawriot/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
@@ -1019,47 +1020,47 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 <fig1.pdf, id=159, 361.35pt x 361.35pt>
 File: fig1.pdf Graphic file (type pdf)
 <use fig1.pdf>
-Package pdftex.def Info: fig1.pdf  used on input line 272.
+Package pdftex.def Info: fig1.pdf  used on input line 261.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
  [5] [6 </home/chainsawriot/dev/rstyle/rjournal_submission/fig1.pdf>]
 <fig2.pdf, id=192, 361.35pt x 289.08pt>
 File: fig2.pdf Graphic file (type pdf)
 <use fig2.pdf>
-Package pdftex.def Info: fig2.pdf  used on input line 284.
+Package pdftex.def Info: fig2.pdf  used on input line 273.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 <fig3.pdf, id=198, 361.35pt x 289.08pt>
 File: fig3.pdf Graphic file (type pdf)
 <use fig3.pdf>
-Package pdftex.def Info: fig3.pdf  used on input line 293.
+Package pdftex.def Info: fig3.pdf  used on input line 282.
 (pdftex.def)             Requested size: 361.34912pt x 289.07928pt.
 
-Overfull \hbox (13.66705pt too wide) in paragraph at lines 309--354
+Overfull \hbox (14.85802pt too wide) in paragraph at lines 298--323
  [][] 
  []
 
-<fig4.pdf, id=204, 361.35pt x 361.35pt>
+<fig4.pdf, id=262, 361.35pt x 361.35pt>
 File: fig4.pdf Graphic file (type pdf)
 <use fig4.pdf>
-Package pdftex.def Info: fig4.pdf  used on input line 358.
+Package pdftex.def Info: fig4.pdf  used on input line 327.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig5.pdf, id=206, 361.35pt x 614.295pt>
+<fig5.pdf, id=264, 361.35pt x 614.295pt>
 File: fig5.pdf Graphic file (type pdf)
 <use fig5.pdf>
-Package pdftex.def Info: fig5.pdf  used on input line 367.
+Package pdftex.def Info: fig5.pdf  used on input line 336.
 (pdftex.def)             Requested size: 361.34912pt x 614.29349pt.
 [7 </home/chainsawriot/dev/rstyle/rjournal_submission/fig2.pdf>] [8 </home/chai
 nsawriot/dev/rstyle/rjournal_submission/fig3.pdf>] [9 </home/chainsawriot/dev/r
 style/rjournal_submission/fig4.pdf>] [10 </home/chainsawriot/dev/rstyle/rjourna
 l_submission/fig5.pdf>]
-<fig6.pdf, id=262, 361.35pt x 361.35pt>
+<fig6.pdf, id=321, 361.35pt x 361.35pt>
 File: fig6.pdf Graphic file (type pdf)
 <use fig6.pdf>
-Package pdftex.def Info: fig6.pdf  used on input line 378.
+Package pdftex.def Info: fig6.pdf  used on input line 347.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
-<fig7.pdf, id=267, 361.35pt x 361.35pt>
+<fig7.pdf, id=326, 361.35pt x 361.35pt>
 File: fig7.pdf Graphic file (type pdf)
 <use fig7.pdf>
-Package pdftex.def Info: fig7.pdf  used on input line 387.
+Package pdftex.def Info: fig7.pdf  used on input line 356.
 (pdftex.def)             Requested size: 361.34912pt x 361.34912pt.
  [11 </home/chainsawriot/dev/rstyle/rjournal_submission/fig6.pdf>] [12 </home/c
 hainsawriot/dev/rstyle/rjournal_submission/fig7.pdf>]
@@ -1072,10 +1073,10 @@ hainsawriot/dev/rstyle/rjournal_submission/fig7.pdf>]
 [15]
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 446.
+(Font)              using `T1/zi4/m/n' instead on input line 415.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 9.18004pt on input line 459.
+(Font)              scaled to size 9.18004pt on input line 428.
 ) [16] (/home/chainsawriot/dev/rstyle/rjournal_submission/RJwrapper.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1086,13 +1087,13 @@ Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
 (rerunfilecheck)             Checksum: 0DBBAB2A8536E50CD3AA24C7BA2D8A73;1660.
  ) 
 Here is how much of TeX's memory you used:
- 26984 strings out of 480331
- 493494 string characters out of 5897137
- 797476 words of memory out of 5000000
- 43943 multiletter control sequences out of 15000+600000
- 463181 words of font info for 320 fonts, out of 8000000 for 9000
+ 27029 strings out of 480236
+ 494171 string characters out of 5895123
+ 791814 words of memory out of 5000000
+ 44080 multiletter control sequences out of 15000+600000
+ 529339 words of font info for 327 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 115i,11n,131p,2003b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 115i,11n,131p,1980b,705s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1126,10 +1127,10 @@ ols/msam10.pfb></home/chainsawriot/.TinyTeX/texmf-dist/fonts/type1/urw/palatino
 /uplb8a.pfb></home/chainsawriot/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/up
 lr8a.pfb></home/chainsawriot/.TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplri
 8a.pfb>
-Output written on RJwrapper.pdf (16 pages, 214570 bytes).
+Output written on RJwrapper.pdf (16 pages, 217306 bytes).
 PDF statistics:
- 459 PDF objects out of 1000 (max. 8388607)
- 405 compressed objects within 5 object streams
+ 517 PDF objects out of 1000 (max. 8388607)
+ 463 compressed objects within 5 object streams
  69 named destinations out of 1000 (max. 500000)
  83096 words of extra memory for PDF output out of 89155 (max. 10000000)
 

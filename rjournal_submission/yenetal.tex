@@ -8,7 +8,7 @@
 The flexibility of R and the diversity of the R community leads to a large number of programming styles applied in R packages. We have analyzed 108 million lines of R code from CRAN and quantified the evolution in popularity of 12 style-elements from 1998 to 2019. We attribute 3 main factors that drive changes in programming style: the effect of style-guides, the effect of introducing new features, and the effect of editors. We observe in the data that a consensus in programming style is forming, such as using lower snake case for function names (e.g. softplus\_func) and  <- rather than = for assignment.
 \footnote{
     We have presented a previous version of this paper as a poster at UseR! 2019 Toulouse. Interested readers can access it with the following link: \url{
-    https://github.com/chainsawriot/rstyle/blob/master/docs/Poster_useR2019_Toulouse.png}
+    https://github.com/chainsawriot/rstyle/blob/master/docs/Poster_useR2019_Toulouse.png}. The work was done prior to Ms Chang joining Amazon Web Services.
 }
 }
 
@@ -38,34 +38,23 @@ Among the 3 style-guides, the major differences are the suggested naming convent
 
 \begin{table}
 
-\caption{\label{tab:table1}Three major style-guides: Google, Tidyverse and Bioconductor}
+\caption{\label{tab:table1}Three major style-guides and their differentiating style elements (in Bold): Google, Tidyverse and Bioconductor}
 \centering
-\begin{tabular}[t]{L|L|L|L}
-\hline
+\begin{tabular}[t]{LLLL}\toprule
 Feature & Google & Tidyverse & Bioconductor\\
-\hline
+\midrule
 \textbf{Function name} & UpperCamel & snake\_case & lowerCamel\\
-\hline
 Assignment & Discourage = & Discourage = & Discourage =\\
-\hline
 Line length & “limit your code to 80 characters per line” & “limit your code to 80 characters per line” & $\leqslant$ 80\\
-\hline
 Space after a comma & Yes & Yes & Yes\\
-\hline
 Space around infix operators & Yes & Yes & Yes\\
-\hline
 \textbf{Indentation} & 2 spaces & 2 spaces & 4 spaces\\
-\hline
 Integer & Not specified & Not specified (Integers are not explicitly typed in included code examples) & Not specified\\
-\hline
 Quotes & Double & Double & Not specified\\
-\hline
 Boolean values & Use TRUE / FALSE & Use TRUE / FALSE & Not specified\\
-\hline
 Terminate a line with a semicolon & No & No & Not specified\\
-\hline
 Curly braces & \{ same line, then a newline, \} on its own line & \{ same line, then a newline, \} on its own line & Not specified\\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -257,11 +246,11 @@ We quantified the package-level consistency by computing the entropy for each st
 H(S) = - \sum_{i = 1}^{n} P(s_{i}) \log P(s_{i})
 \end{equation}
 
-$P(s_{i})$ is calculated as the proportion of all functions in $R_{i}$ with the style element $s_{i}$. For example, if a package has 4 functions and the S of these 4 functions are {0,0,1,2}. The entropy $H(S)$ is $- ((0.5 \times log(0.5)) + (0.25 \times log(0.25)) + (0.25 \times log(0.25))) = 0.45$.
+$P(s_{i})$ is calculated as the proportion of all functions in $R_{i}$ with the style element $s_{i}$. For example, if a package has 4 functions and the S of these 4 functions are {0,0,1,2}. The entropy $H(S)$ is $- ((0.5 \times \log 0.5) + (0.25 \times \log 0.25 ) + (0.25 \times \log 0.25)) = 0.45$.
 
 As the value of $H(S)$ is not comparable across different S with a different number of n, we normalize the value of $H(S)$ into $H'(S)$ by dividing $H(S)$ with the theoretical maximum. The maximum values of $H(S)$ for n = 2 and n = 7 are 0.693 and 1.946, respectively.
 
-Finally, we calculate the $\bar{H'(S)}$ of all CRAN packages (i.e. $R_{1}$ $\mathellipsis$ $R_{n}$, where n equals the number of all CRAN packages) by averaging the $H'(S)$.
+Finally, we calculate the $\overline{H'(S)}$ of all CRAN packages (i.e. $R_{1}$ $\mathellipsis$ $R_{n}$, where n equals the number of all CRAN packages) by averaging the $H'(S)$.
 
 \section{Results}
 
@@ -275,7 +264,7 @@ We studied more than 108 million lines of code from 17,692 unique packages. In t
 \end{figure}
 
 
-Secondly, the popularity of fx\_opencurly shows how a previously established majority style (~80\% in late 90s) slowly reduced into a minority, but still prominent, style (~30\% in late 10s).
+Secondly, the popularity of fx\_opencurly shows how a previously established majority style (around 80\% in late 90s) slowly reduced into a minority, but still prominent, style (around 30\% in late 10s).
 
 Similarly, the evolution of different naming conventions is shown in Figure~\ref{figure:fig2} \footnote{'Other' is the 4th most popular naming convention. Some examples of function names classified as 'other' are: \emph{Blanc-Sablon}, \emph{returnMessage.maxim}, \emph{table\_articles\_byAuth}, \emph{mktTime.market}, \emph{smoothed\_EM}, \emph{plot.Sncf2D}, \emph{as.igraph.EPOCG}, \emph{TimeMap.new}, \emph{fT.KB}, \emph{IDA\_stable}. These functions were classified as 'other' because of the placement of capital letters. For packages using an all capitals object class name (e.g. EPOCG) and S3 generic method names (e.g. as.igraph), their methods are likely to be classified as 'others'. One could also classify these functions as dotted.func. However, we follow both \CRANpkg{lintr} and \citet{baaaath} to classify a function as dotted.func only when no capital letter is used in its name.}. This analysis can best be used to illustrate the effect of style-guides. According to \citet{baaaath}, dotted.func style is very specific to R programming. This style is the most dominant style in the early days of CRAN. However, multiple style guides advise against the use of dotted.func style and thus a significant declining trend is observed. lower\_snake and UpperCamel are the styles endorsed by the Tidyverse Style Guide and the Google's R Style Guide, respectively. These two styles see an increasing trend since the 2010s, while the growth of lower\_snake is stronger, with almost a 20\% growth in the share of all functions in contrast with the 1-2\% growth of other naming conventions. In 2019, lower\_snake (a style endorsed by Tidyverse) is the most popular style (26.6\%). lowerCamel case, a style endorsed by Bioconductor, is currently the second most popular naming convention (21.3\% in 2019). Only 7.0\% of functions use UpperCamel, the style endorsed by Google.
 
@@ -286,12 +275,12 @@ Similarly, the evolution of different naming conventions is shown in Figure~\ref
   \label{figure:fig2}
 \end{figure}
 
-The evolution of line lengths is tricky to be visualized on a 2-D surface. We have prepared a Shiny app (\url{https://chung-hong-chan.shinyapps.io/shiny/}) to visualize the change in line distribution over the span of 20 years. In this paper, Figure~\ref{figure:fig3} shows the snapshot of the change in line length distribution in the range of 40 to 100 characters. In general, developers of newer packages write with less characters per line. Similar to previous analyses with Python programs e.g.\citet{vanderplas}, artificial peaks corresponding to recommendations from either style-guides, linters, and editor settings are also observed in our analysis. In 2019, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as \CRANpkg{lintr}) is more pronounced for lines with comments but not those with actual code.
+The evolution of line lengths is tricky to be visualized on a 2-D surface. We have prepared a Shiny app (\url{https://github.com/chainsawriot/rstyle/tree/master/shiny}) to visualize the change in line distribution over the span of 21 years. In this paper, Figure~\ref{figure:fig3} shows the snapshot of the change in line length distribution in the range of 40 to 100 characters. In general, developers of newer packages write with less characters per line. Similar to previous analyses with Python programs e.g.\citet{vanderplas}, artificial peaks corresponding to recommendations from either style-guides, linters, and editor settings are also observed in our analysis. In 2019, the artificial peak of 80 characters (recommended by most of the style-guides and linters such as \CRANpkg{lintr}) is more pronounced for lines with comments but not those with actual code.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics{fig3}
-  \caption{Change in line length distribution: 2003, 2008, 2013 and 2019.}
+  \caption{Change in line length distribution of comments (orange) and actual code (green): 2003, 2008, 2013 and 2019.}
   \label{figure:fig3}
 \end{figure}
 
@@ -306,50 +295,30 @@ Using the naming convention as an example, there are local patterns in PSV (Figu
 
 \caption{\label{tab:table2}The largest 20 communities and their top 3 packages according to PageRank}
 \centering
-\begin{tabular}[t]{l|r|l}
-\hline
-Community & Number\_of\_Packages & Top\_3\_Packages\\
-\hline
-base & 5157 & methods, stats, MASS\\
-\hline
-RStudio & 4758 & testthat, knitr, rmarkdown\\
-\hline
-Rcpp & 826 & Rcpp, tinytest, pinp\\
-\hline
-Statistical Analysis & 463 & survival, Formula, sandwich\\
-\hline
-Machine Learning & 447 & nnet, rpart, randomForest\\
-\hline
-Geospatial & 367 & sp, rgdal, maptools\\
-\hline
-GNU gsl & 131 & gsl, expint, mnormt\\
-\hline
-Graph & 103 & graph, Rgraphviz, bnlearn\\
-\hline
-Text Analysis & 79 & tm, SnowballC, NLP\\
-\hline
-GUI: Tcl/Tk & 55 & tcltk, tkrplot, tcltk2\\
-\hline
-Infrastructure & 54 & rsp, listenv, globals\\
-\hline
-Numerical Optimization & 51 & polynom, magic, numbers\\
-\hline
-Genomics & 43 & Biostrings, IRanges, S4Vectors\\
-\hline
-RUnit & 38 & RUnit, ADGofTest, fAsianOptions\\
-\hline
-Survival Analysis & 33 & kinship2, CompQuadForm, coxme\\
-\hline
-Sparse Matrix & 32 & slam, ROI, registry\\
-\hline
-GUI: Gtk & 31 & RGtk2, gWidgetstcltk, gWidgetsRGtk2\\
-\hline
-Bioinformatics & 29 & limma, affy, marray\\
-\hline
-IO & 28 & RJSONIO, Rook, base64\\
-\hline
-rJava & 27 & rJava, xlsxjars, openNLP\\
-\hline
+\begin{tabular}[t]{lcl}\toprule
+Community & Number of Packages & Top 3 Packages\\
+\midrule
+base & 5157 & methods, stats, \CRANpkg{MASS}\\
+RStudio & 4758 & \CRANpkg{testthat}, \CRANpkg{knitr}, \CRANpkg{rmarkdown}\\
+Rcpp & 826 & \CRANpkg{Rcpp}, \CRANpkg{tinytest}, \CRANpkg{pinp}\\
+Statistical Analysis & 463 & \CRANpkg{survival}, \CRANpkg{Formula}, \CRANpkg{sandwich}\\
+Machine Learning & 447 & \CRANpkg{nnet}, \CRANpkg{rpart}, \CRANpkg{randomForest}\\
+Geospatial & 367 & \CRANpkg{sp}, \CRANpkg{rgdal}, \CRANpkg{maptools}\\
+GNU gsl & 131 & \CRANpkg{gsl}, \CRANpkg{expint}, \CRANpkg{mnormt}\\
+Graph & 103 & \CRANpkg{graph}, \CRANpkg{Rgraphviz}, \CRANpkg{bnlearn}\\
+Text Analysis & 79 & \CRANpkg{tm}, \CRANpkg{SnowballC}, \CRANpkg{NLP}\\
+GUI: Tcl/Tk & 55 & \CRANpkg{tcltk}, \CRANpkg{tkrplot}, \CRANpkg{tcltk2}\\
+Infrastructure & 54 & \CRANpkg{rsp}, \CRANpkg{listenv}, \CRANpkg{globals}\\
+Numerical Optimization & 51 & \CRANpkg{polynom}, \CRANpkg{magic}, \CRANpkg{numbers}\\
+Genomics & 43 & \BIOpkg{Biostrings}, \BIOpkg{IRanges}, \BIOpkg{S4Vectors}\\
+RUnit & 38 & \CRANpkg{RUnit}, \CRANpkg{ADGofTest}, \CRANpkg{fAsianOptions}\\
+Survival Analysis & 33 & \CRANpkg{kinship2}, \CRANpkg{CompQuadForm}, \CRANpkg{coxme}\\
+Sparse Matrix & 32 & \CRANpkg{slam}, \CRANpkg{ROI}, \CRANpkg{registry}\\
+GUI: Gtk & 31 & \CRANpkg{RGtk2}, \CRANpkg{gWidgetstcltk}, \CRANpkg{gWidgetsRGtk2}\\
+Bioinformatics & 29 & \CRANpkg{limma}, \BIOpkg{affy}, \BIOpkg{marray}\\
+IO & 28 & \CRANpkg{RJSONIO}, \CRANpkg{Rook}, \CRANpkg{base64}\\
+rJava & 27 & \CRANpkg{rJava}, \CRANpkg{xlsxjars}, \CRANpkg{openNLP}\\
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -435,7 +404,7 @@ The data and scripts to reproduce the analysis in this paper are available at \u
 
 The authors would like to thank Wush Wu, Liang-Bo Wang, Taiwan R User group, R-Ladies Taipei, attendees of UseR! 2019, and the two reviewers for their valuable comments that greatly improved this paper.
 
-\bibliography{RJreferences}
+\bibliography{yenetal}
 
 \newpage
 \address{Chia-Yi Yen\\
@@ -446,10 +415,10 @@ The authors would like to thank Wush Wu, Liang-Bo Wang, Taiwan R User group, R-L
   \email{yen.chiayi@gmail.com}}
 
 \address{Mia Huai-Wen Chang\\
-  Akelius Residential Property AB\\
-  Erkelenzdamm 11-13, 10999 Berlin\\
+  Amazon Web Services\\
+  Marcel-Breuer-Stra{\ss}e 12, 80807 M\"unchen\\
   Germany\\
-  \email{mia5419@gmail.com}}
+  \email{miachang@amazon.com}}
 
 \address{Chung-hong Chan\\
   Mannheimer Zentrum f\"ur Europ\"aische Sozialforschung, Universit\"at Mannheim\\
